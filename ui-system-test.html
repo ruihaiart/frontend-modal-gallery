@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GenSpark UI Design System Test</title>
+    <style>
+        /* GenSpark UI Design System - Following .cursorrules */
+        
+        :root {
+            --color-primary: #232425;
+            --color-primary-hover: #393A3B;
+            --color-guide: #0F7FFF;
+            --color-guide-hover: #0E72E5;
+            --color-secondary: #F5F5F5;
+            --color-secondary-hover: #E9E9E9;
+            --color-border: #E2E2E2;
+            --color-danger: #EF4444;
+            --color-warning: #F59E0B;
+            --color-success: #10B981;
+        }
+
+        /* Base Component Classes */
+        .btn-base {
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.25s ease;
+            white-space: nowrap;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        .modal-base {
+            font-family: inherit;
+            color: #232425;
+            line-height: 1.5;
+        }
+
+        /* Button Sizes */
+        .btn-large {
+            width: 208px;
+            height: 40px;
+            font-size: 16px;
+        }
+
+        .btn-medium {
+            width: 144px;
+            height: 36px;
+            font-size: 16px;
+        }
+
+        .btn-small {
+            width: 96px;
+            height: 28px;
+            font-size: 16px;
+        }
+
+        /* Button Types */
+        .btn-primary-large {
+            background: var(--color-primary);
+            border-radius: 31px;
+            color: white;
+        }
+
+        .btn-primary-large:hover {
+            background: var(--color-primary-hover);
+            box-shadow: 0 2px 8px rgba(35, 36, 37, 0.15);
+        }
+
+        .btn-primary-small {
+            background: var(--color-primary);
+            border-radius: 8px;
+            color: white;
+        }
+
+        .btn-primary-small:hover {
+            background: var(--color-primary-hover);
+            box-shadow: 0 2px 8px rgba(35, 36, 37, 0.15);
+        }
+
+        .btn-guide {
+            background: var(--color-guide);
+            border-radius: 31px;
+            color: white;
+        }
+
+        .btn-guide:hover {
+            background: var(--color-guide-hover);
+            box-shadow: 0 2px 8px rgba(15, 127, 255, 0.15);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            color: var(--color-primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
+        }
+
+        .btn-secondary {
+            background: var(--color-secondary);
+            border: 1px solid #F0F0F0;
+            border-radius: 12px;
+            color: var(--color-primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--color-secondary-hover);
+        }
+
+        .btn-danger {
+            background: var(--color-danger);
+            border: none;
+            border-radius: 8px;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #dc2626;
+            box-shadow: 0 2px 8px rgba(239, 68, 68, 0.15);
+        }
+
+        .btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        /* Modal Button Radius Variants for Consistency */
+        .btn-primary-8px {
+            background: var(--color-primary);
+            border-radius: 8px;
+            color: white;
+        }
+
+        .btn-primary-8px:hover {
+            background: var(--color-primary-hover);
+            box-shadow: 0 2px 8px rgba(35, 36, 37, 0.15);
+        }
+
+        .btn-primary-12px {
+            background: var(--color-primary);
+            border-radius: 12px;
+            color: white;
+        }
+
+        .btn-primary-12px:hover {
+            background: var(--color-primary-hover);
+            box-shadow: 0 2px 8px rgba(35, 36, 37, 0.15);
+        }
+
+        .btn-outline-8px {
+            background: transparent;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            color: var(--color-primary);
+        }
+
+        .btn-outline-8px:hover {
+            background: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
+        }
+
+        .btn-outline-12px {
+            background: transparent;
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            color: var(--color-primary);
+        }
+
+        .btn-outline-12px:hover {
+            background: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
+        }
+
+        .btn-guide-12px {
+            background: var(--color-guide);
+            border-radius: 12px;
+            color: white;
+        }
+
+        .btn-guide-12px:hover {
+            background: var(--color-guide-hover);
+            box-shadow: 0 2px 8px rgba(15, 127, 255, 0.15);
+        }
+
+        .btn-danger-8px {
+            background: var(--color-danger);
+            border: none;
+            border-radius: 8px;
+            color: white;
+        }
+
+        .btn-danger-8px:hover {
+            background: #dc2626;
+            box-shadow: 0 2px 8px rgba(239, 68, 68, 0.15);
+        }
+
+        /* Modal Structure */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-dialog {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            padding: 24px;
+            transform: scale(0.9) translateY(20px);
+            transition: all 0.3s ease;
+            max-width: 90vw;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-overlay.active .modal-dialog {
+            transform: scale(1) translateY(0);
+        }
+
+        /* Modal Sizes */
+        .modal-small {
+            width: 400px;
+            max-width: 400px;
+        }
+
+        .modal-medium {
+            width: 500px;
+            max-width: 600px;
+        }
+
+        .modal-large {
+            width: 700px;
+            max-width: 800px;
+        }
+
+        /* Modal Components */
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .modal-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #232425;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .modal-body {
+            margin-bottom: 24px;
+            color: #606366;
+            line-height: 1.6;
+        }
+
+        .modal-footer {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            padding-top: 16px;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: #909499;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 4px;
+            transition: color 0.2s ease;
+            font-size: 24px;
+            line-height: 1;
+        }
+
+        .close-btn:hover {
+            color: #232425;
+            background: #f5f5f5;
+        }
+
+        .danger-icon {
+            color: var(--color-danger);
+            font-size: 24px;
+        }
+
+        .warning-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            padding: 16px;
+            background: #fff5f5;
+            border-radius: 8px;
+            border-left: 4px solid var(--color-danger);
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #232425;
+            margin-bottom: 8px;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            outline: none;
+            font-size: 14px;
+            transition: border-color 0.2s ease;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--color-guide);
+        }
+
+        /* Demo Page Styles */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 40px 20px;
+            margin: 0;
+            color: #232425;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .section h2 {
+            margin: 0 0 20px 0;
+            color: #232425;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .demo-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #e9ecef;
+        }
+
+        .demo-item h3 {
+            margin: 0 0 12px 0;
+            font-size: 16px;
+            font-weight: 600;
+            color: #232425;
+        }
+
+        .demo-item .description {
+            font-size: 14px;
+            color: #606366;
+            margin-bottom: 16px;
+            line-height: 1.4;
+        }
+
+        .demo-item .trigger-btn {
+            width: 100%;
+        }
+
+        .usage-note {
+            background: #f0f8ff;
+            border: 1px solid #b3d9ff;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 16px 0;
+            font-size: 14px;
+            color: #0066cc;
+        }
+
+        .pattern-title {
+            font-weight: 600;
+            color: #232425;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="section">
+            <h1 style="text-align: center; font-size: 2.5rem; font-weight: 700; margin-bottom: 40px;">
+                GenSpark UI Design System Test
+            </h1>
+            <p style="text-align: center; font-size: 1.1rem; color: #606366; margin-bottom: 40px;">
+                弹窗组件与按钮组件的正确配合使用示例
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>🔍 弹窗类型 + 按钮组合规范</h2>
+            <div class="demo-grid">
+                <!-- Confirmation Modal -->
+                <div class="demo-item">
+                    <h3>确认弹窗 (Confirmation)</h3>
+                    <div class="description">用于删除确认、重要决策确认</div>
+                    <div class="usage-note">
+                        <div class="pattern-title">按钮组合模式:</div>
+                        线型按钮-8px（取消）+ 主按钮-8px（确认）<br>
+                        <strong>圆角一致性：两个按钮都使用 8px 圆角</strong>
+                    </div>
+                    <button class="btn-base btn-danger btn-medium trigger-btn" onclick="showModal('delete-confirmation')">
+                        删除文件
+                    </button>
+                </div>
+
+                <!-- Form Modal -->
+                <div class="demo-item">
+                    <h3>表单弹窗 (Form)</h3>
+                    <div class="description">用于数据录入、设置配置、个人化设置</div>
+                    <div class="usage-note">
+                        <div class="pattern-title">按钮组合模式:</div>
+                        线型按钮-12px（取消）+ 主按钮-12px（提交）<br>
+                        <strong>圆角一致性：两个按钮都使用 12px 圆角</strong>
+                    </div>
+                    <button class="btn-base btn-secondary btn-medium trigger-btn" onclick="showModal('profile-form')">
+                        编辑个人资料
+                    </button>
+                </div>
+
+                <!-- Notification Modal -->
+                <div class="demo-item">
+                    <h3>通知弹窗 (Notification)</h3>
+                    <div class="description">用于系统通知、功能更新、促销信息</div>
+                    <div class="usage-note">
+                        <div class="pattern-title">按钮组合模式:</div>
+                        弱按钮-12px（关闭）+ 强引导按钮-12px（主要操作）<br>
+                        <strong>圆角一致性：两个按钮都使用 12px 圆角</strong>
+                    </div>
+                    <button class="btn-base btn-guide btn-medium trigger-btn" onclick="showModal('feature-notification')">
+                        查看新功能
+                    </button>
+                </div>
+
+                <!-- Preview Modal -->
+                <div class="demo-item">
+                    <h3>预览弹窗 (Preview)</h3>
+                    <div class="description">用于图片预览、内容预览、详细信息查看</div>
+                    <div class="usage-note">
+                        <div class="pattern-title">按钮组合模式:</div>
+                        弱按钮-12px（关闭）+ 主按钮-12px（可选的主要操作）<br>
+                        <strong>圆角一致性：两个按钮都使用 12px 圆角</strong>
+                    </div>
+                    <button class="btn-base btn-outline btn-medium trigger-btn" onclick="showModal('image-preview')">
+                        预览图片
+                    </button>
+                </div>
+
+                <!-- Settings Modal -->
+                <div class="demo-item">
+                    <h3>设置弹窗 (Settings)</h3>
+                    <div class="description">用于系统配置、偏好设置、复杂表单</div>
+                    <div class="usage-note">
+                        <div class="pattern-title">按钮组合模式:</div>
+                        线型按钮-12px（取消）+ 主按钮-12px（保存）<br>
+                        <strong>圆角一致性：两个按钮都使用 12px 圆角</strong>
+                    </div>
+                    <button class="btn-base btn-primary-large btn-medium trigger-btn" onclick="showModal('app-settings')">
+                        应用设置
+                    </button>
+                </div>
+
+                <!-- Feature Guidance -->
+                <div class="demo-item">
+                    <h3>功能引导弹窗</h3>
+                    <div class="description">用于新用户引导、功能介绍</div>
+                    <div class="usage-note">
+                        <div class="pattern-title">按钮组合模式:</div>
+                        线型按钮-12px（跳过）+ 强引导按钮-12px（继续）<br>
+                        <strong>圆角一致性：两个按钮都使用 12px 圆角</strong>
+                    </div>
+                    <button class="btn-base btn-secondary btn-medium trigger-btn" onclick="showModal('feature-guide')">
+                        功能引导
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Delete Confirmation Modal -->
+        <div id="delete-confirmation" class="modal-overlay">
+            <div class="modal-dialog modal-small">
+                <div class="modal-header">
+                    <h2 class="modal-title">
+                        <span class="danger-icon">⚠️</span>
+                        确认删除
+                    </h2>
+                    <button class="close-btn" onclick="hideModal('delete-confirmation')" aria-label="关闭">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="warning-content">
+                        <span style="font-size: 24px;">🗑️</span>
+                        <div>
+                            <strong>此操作不可撤销</strong><br>
+                            确定要删除"项目文档.pdf"吗？文件删除后无法恢复。
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-base btn-outline-8px btn-medium" onclick="hideModal('delete-confirmation')">
+                        取消
+                    </button>
+                    <button class="btn-base btn-danger-8px btn-medium" onclick="confirmDelete()">
+                        确认删除
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Form Modal -->
+        <div id="profile-form" class="modal-overlay">
+            <div class="modal-dialog modal-medium">
+                <div class="modal-header">
+                    <h2 class="modal-title">编辑个人资料</h2>
+                    <button class="close-btn" onclick="hideModal('profile-form')" aria-label="关闭">×</button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label>姓名</label>
+                            <input type="text" value="张三" placeholder="请输入姓名">
+                        </div>
+                        <div class="form-group">
+                            <label>邮箱</label>
+                            <input type="email" value="zhangsan@example.com" placeholder="请输入邮箱">
+                        </div>
+                        <div class="form-group">
+                            <label>个人简介</label>
+                            <textarea rows="3" placeholder="请输入个人简介">资深产品经理，专注于用户体验设计和产品策略。</textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-base btn-outline-12px btn-medium" onclick="hideModal('profile-form')">
+                        取消
+                    </button>
+                    <button class="btn-base btn-primary-12px btn-medium" onclick="saveProfile()">
+                        保存更改
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feature Notification Modal -->
+        <div id="feature-notification" class="modal-overlay">
+            <div class="modal-dialog modal-medium">
+                <div class="modal-header">
+                    <h2 class="modal-title">🎉 新功能发布</h2>
+                    <button class="close-btn" onclick="hideModal('feature-notification')" aria-label="关闭">×</button>
+                </div>
+                <div class="modal-body">
+                    <div style="text-align: center; margin-bottom: 20px;">
+                        <div style="font-size: 64px; margin-bottom: 16px;">🚀</div>
+                        <h3 style="margin: 0 0 12px 0; color: #232425;">AI 智能助手升级</h3>
+                        <p>我们为您带来了全新的 AI 功能体验！现在支持更智能的对话和更精准的回答。</p>
+                    </div>
+                    <div style="background: #f0f8ff; padding: 16px; border-radius: 8px; border-left: 4px solid var(--color-guide);">
+                        <strong>新功能亮点：</strong>
+                        <ul style="margin: 8px 0 0 20px;">
+                            <li>更智能的对话理解</li>
+                            <li>支持多轮对话上下文</li>
+                            <li>个性化回答推荐</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-base btn-secondary btn-medium" onclick="hideModal('feature-notification')" style="border-radius: 12px;">
+                        稍后体验
+                    </button>
+                    <button class="btn-base btn-guide-12px btn-medium" onclick="startExperience()">
+                        立即体验
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Image Preview Modal -->
+        <div id="image-preview" class="modal-overlay">
+            <div class="modal-dialog modal-large">
+                <div class="modal-header">
+                    <h2 class="modal-title">图片预览</h2>
+                    <button class="close-btn" onclick="hideModal('image-preview')" aria-label="关闭">×</button>
+                </div>
+                <div class="modal-body">
+                    <div style="text-align: center; margin-bottom: 20px;">
+                        <div style="width: 400px; height: 300px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); margin: 0 auto; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 24px; font-weight: 600;">
+                            示例图片
+                        </div>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 16px; border-radius: 8px;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 14px;">
+                            <div><strong>文件名:</strong> example-image.jpg</div>
+                            <div><strong>尺寸:</strong> 1920 × 1080</div>
+                            <div><strong>大小:</strong> 2.5 MB</div>
+                            <div><strong>格式:</strong> JPEG</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-base btn-secondary btn-medium" onclick="hideModal('image-preview')" style="border-radius: 12px;">
+                        关闭
+                    </button>
+                    <button class="btn-base btn-primary-12px btn-medium" onclick="downloadImage()">
+                        下载图片
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- App Settings Modal -->
+        <div id="app-settings" class="modal-overlay">
+            <div class="modal-dialog modal-medium">
+                <div class="modal-header">
+                    <h2 class="modal-title">应用设置</h2>
+                    <button class="close-btn" onclick="hideModal('app-settings')" aria-label="关闭">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>默认语言</label>
+                        <select style="width: 100%; padding: 12px; border: 1px solid var(--color-border); border-radius: 8px;">
+                            <option value="zh-CN">简体中文</option>
+                            <option value="en-US">English</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>主题设置</label>
+                        <div style="display: flex; gap: 12px;">
+                            <label style="display: flex; align-items: center; gap: 8px; font-weight: normal;">
+                                <input type="radio" name="theme" value="light" checked>
+                                浅色模式
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 8px; font-weight: normal;">
+                                <input type="radio" name="theme" value="dark">
+                                深色模式
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label style="display: flex; align-items: center; gap: 8px; font-weight: normal;">
+                            <input type="checkbox" checked>
+                            启用推送通知
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label style="display: flex; align-items: center; gap: 8px; font-weight: normal;">
+                            <input type="checkbox">
+                            自动保存草稿
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-base btn-outline-12px btn-medium" onclick="hideModal('app-settings')">
+                        取消
+                    </button>
+                    <button class="btn-base btn-primary-12px btn-medium" onclick="saveSettings()">
+                        保存设置
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feature Guide Modal -->
+        <div id="feature-guide" class="modal-overlay">
+            <div class="modal-dialog modal-medium">
+                <div class="modal-header">
+                    <h2 class="modal-title">功能引导</h2>
+                    <button class="close-btn" onclick="hideModal('feature-guide')" aria-label="关闭">×</button>
+                </div>
+                <div class="modal-body">
+                    <div style="text-align: center; margin-bottom: 24px;">
+                        <div style="font-size: 64px; margin-bottom: 16px;">🎯</div>
+                        <h3 style="margin: 0 0 12px 0; color: #232425;">欢迎使用 GenSpark</h3>
+                        <p>让我们快速了解如何使用核心功能，提升您的工作效率。</p>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;">
+                        <div style="text-align: center; padding: 16px; background: #f8f9fa; border-radius: 8px;">
+                            <div style="font-size: 32px; margin-bottom: 8px;">💬</div>
+                            <div style="font-weight: 600; margin-bottom: 4px;">智能对话</div>
+                            <div style="font-size: 12px; color: #606366;">与 AI 助手进行自然对话</div>
+                        </div>
+                        <div style="text-align: center; padding: 16px; background: #f8f9fa; border-radius: 8px;">
+                            <div style="font-size: 32px; margin-bottom: 8px;">📊</div>
+                            <div style="font-weight: 600; margin-bottom: 4px;">数据分析</div>
+                            <div style="font-size: 12px; color: #606366;">快速分析和可视化数据</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-base btn-outline-12px btn-medium" onclick="hideModal('feature-guide')">
+                        跳过引导
+                    </button>
+                    <button class="btn-base btn-guide-12px btn-medium" onclick="startGuide()">
+                        开始使用
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Modal Management
+        function showModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                
+                // Focus management
+                const firstFocusable = modal.querySelector('button, input, select, textarea');
+                if (firstFocusable) {
+                    setTimeout(() => firstFocusable.focus(), 100);
+                }
+            }
+        }
+
+        function hideModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Action Handlers
+        function confirmDelete() {
+            alert('文件已删除（模拟操作）');
+            hideModal('delete-confirmation');
+        }
+
+        function saveProfile() {
+            alert('个人资料已保存（模拟操作）');
+            hideModal('profile-form');
+        }
+
+        function startExperience() {
+            alert('正在启动新功能体验（模拟操作）');
+            hideModal('feature-notification');
+        }
+
+        function downloadImage() {
+            alert('图片下载已开始（模拟操作）');
+            hideModal('image-preview');
+        }
+
+        function saveSettings() {
+            alert('应用设置已保存（模拟操作）');
+            hideModal('app-settings');
+        }
+
+        function startGuide() {
+            alert('功能引导已开始（模拟操作）');
+            hideModal('feature-guide');
+        }
+
+        // Global Event Listeners
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const activeModal = document.querySelector('.modal-overlay.active');
+                if (activeModal) {
+                    hideModal(activeModal.id);
+                }
+            }
+        });
+
+        document.addEventListener('click', function(event) {
+            if (event.target.classList.contains('modal-overlay')) {
+                hideModal(event.target.id);
+            }
+        });
+
+        console.log('GenSpark UI Design System Test Loaded');
+        console.log('All modals and buttons follow the integrated design rules');
+    </script>
+</body>
+</html>

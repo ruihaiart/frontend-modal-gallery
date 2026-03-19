@@ -1,0 +1,322 @@
+/**
+ * GenSpark 弹窗组件通用样式
+ * 该文件提供了统一的弹窗样式规范，用于保持项目中所有弹窗的一致性
+ */
+
+/* 通用遮罩层 */
+.modal-mask,
+.modal-overlay,
+.drawer-mask,
+.dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 通用弹窗容器 */
+.modal-container,
+.dialog-container {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.15);
+  max-width: 90%;
+  width: 100%;
+  max-height: 90vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .modal-container,
+  .dialog-container {
+    max-width: 80%;
+    width: auto;
+  }
+}
+
+/* 通用标题栏 */
+.modal-header,
+.dialog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.modal-header h3,
+.dialog-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* 通用内容区 */
+.modal-body,
+.dialog-body {
+  padding: 20px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* 通用底部栏 */
+.modal-footer,
+.dialog-footer {
+  padding: 15px 20px;
+  border-top: 1px solid #eaeaea;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/* 通用关闭按钮 */
+.modal-close-btn,
+.dialog-close-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  line-height: 24px;
+  cursor: pointer;
+  color: #999;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+}
+
+.modal-close-btn:hover,
+.dialog-close-btn:hover {
+  color: #333;
+}
+
+/* 通用按钮样式 */
+.modal-btn,
+.dialog-btn {
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.2s;
+}
+
+.modal-btn-primary,
+.dialog-btn-primary {
+  background-color: #2196f3;
+  color: white;
+}
+
+.modal-btn-primary:hover,
+.dialog-btn-primary:hover {
+  background-color: #1976d2;
+}
+
+.modal-btn-secondary,
+.dialog-btn-secondary {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+.modal-btn-secondary:hover,
+.dialog-btn-secondary:hover {
+  background-color: #e0e0e0;
+}
+
+.modal-btn-danger,
+.dialog-btn-danger {
+  background-color: #f44336;
+  color: white;
+}
+
+.modal-btn-danger:hover,
+.dialog-btn-danger:hover {
+  background-color: #d32f2f;
+}
+
+/* 抽屉式弹窗样式 */
+.drawer {
+  position: fixed;
+  top: 0;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.drawer-right {
+  right: 0;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.drawer-left {
+  left: 0;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+/* 底部弹出样式 */
+.bottom-modal {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #fff;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  z-index: 1001;
+  overflow: hidden;
+}
+
+/* 全屏弹窗 */
+.fullscreen-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  z-index: 1001;
+  overflow: auto;
+}
+
+/* 标准动画效果 */
+.modal-fade-enter-active,
+.dialog-fade-enter-active {
+  animation: modal-fade-in 0.25s;
+}
+.modal-fade-leave-active,
+.dialog-fade-leave-active {
+  animation: modal-fade-out 0.25s;
+}
+@keyframes modal-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes modal-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.modal-zoom-enter-active,
+.dialog-zoom-enter-active {
+  animation: modal-zoom-in 0.25s cubic-bezier(0.4, 0, 0, 1.5);
+}
+.modal-zoom-leave-active,
+.dialog-zoom-leave-active {
+  animation: modal-zoom-out 0.25s;
+}
+@keyframes modal-zoom-in {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes modal-zoom-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
+/* 抽屉动画 */
+.drawer-right-enter-active {
+  animation: drawer-right-in 0.25s;
+}
+.drawer-right-leave-active {
+  animation: drawer-right-out 0.25s;
+}
+@keyframes drawer-right-in {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes drawer-right-out {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.drawer-left-enter-active {
+  animation: drawer-left-in 0.25s;
+}
+.drawer-left-leave-active {
+  animation: drawer-left-out 0.25s;
+}
+@keyframes drawer-left-in {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes drawer-left-out {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+/* 底部弹出动画 */
+.bottom-enter-active {
+  animation: bottom-in 0.25s;
+}
+.bottom-leave-active {
+  animation: bottom-out 0.25s;
+}
+@keyframes bottom-in {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes bottom-out {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}

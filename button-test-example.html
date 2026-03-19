@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GenSpark Button System Test</title>
+    <style>
+        /* GenSpark Button Design System - Following .cursorrules */
+        
+        :root {
+            --color-primary: #232425;
+            --color-primary-hover: #393A3B;
+            --color-guide: #0F7FFF;
+            --color-guide-hover: #0E72E5;
+            --color-secondary: #F5F5F5;
+            --color-secondary-hover: #E9E9E9;
+            --color-border: #E2E2E2;
+        }
+
+        /* Base Button Class (Required by .cursorrules) */
+        .btn-base {
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.25s ease;
+            white-space: nowrap;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        /* Button Sizes */
+        .btn-large {
+            width: 208px;
+            height: 40px;
+            font-size: 16px;
+        }
+
+        .btn-medium {
+            width: 144px;
+            height: 36px;
+            font-size: 16px;
+        }
+
+        .btn-small {
+            width: 96px;
+            height: 28px;
+            font-size: 16px;
+        }
+
+        /* Primary Button (Large Radius) */
+        .btn-primary-large {
+            background: var(--color-primary);
+            border-radius: 31px;
+            color: white;
+        }
+
+        .btn-primary-large:hover {
+            background: var(--color-primary-hover);
+            box-shadow: 0 2px 8px rgba(35, 36, 37, 0.15);
+        }
+
+        .btn-primary-large:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        /* Primary Button (Small Radius) */
+        .btn-primary-small {
+            background: var(--color-primary);
+            border-radius: 8px;
+            color: white;
+        }
+
+        .btn-primary-small:hover {
+            background: var(--color-primary-hover);
+            box-shadow: 0 2px 8px rgba(35, 36, 37, 0.15);
+        }
+
+        /* Guide Button (Blue) */
+        .btn-guide {
+            background: var(--color-guide);
+            border-radius: 31px;
+            color: white;
+        }
+
+        .btn-guide:hover {
+            background: var(--color-guide-hover);
+            box-shadow: 0 2px 8px rgba(15, 127, 255, 0.15);
+        }
+
+        /* Outline Button */
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            color: var(--color-primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--color-primary);
+            color: white;
+        }
+
+        /* Secondary Button (Weak) */
+        .btn-secondary {
+            background: var(--color-secondary);
+            border: 1px solid #F0F0F0;
+            border-radius: 12px;
+            color: var(--color-primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--color-secondary-hover);
+        }
+
+        /* Loading State */
+        .btn-loading {
+            color: transparent !important;
+            position: relative;
+        }
+
+        .btn-loading::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            border: 2px solid white;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Demo Page Styles */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: #f5f7fa;
+            padding: 40px 20px;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .section h2 {
+            margin: 0 0 20px 0;
+            color: #232425;
+            font-size: 24px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .demo-label {
+            font-size: 14px;
+            color: #606366;
+            min-width: 120px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="text-align: center; color: #232425; margin-bottom: 40px;">
+            GenSpark Button Design System Test
+        </h1>
+
+        <div class="section">
+            <h2>主按钮 (Primary Buttons)</h2>
+            
+            <div class="button-group">
+                <span class="demo-label">大圆角 (31px):</span>
+                <button class="btn-base btn-primary-large btn-large">确认提交</button>
+                <button class="btn-base btn-primary-large btn-medium">保存</button>
+                <button class="btn-base btn-primary-large btn-small">OK</button>
+            </div>
+
+            <div class="button-group">
+                <span class="demo-label">小圆角 (8px):</span>
+                <button class="btn-base btn-primary-small btn-large">提交表单</button>
+                <button class="btn-base btn-primary-small btn-medium">确认</button>
+                <button class="btn-base btn-primary-small btn-small">删除</button>
+            </div>
+
+            <div class="button-group">
+                <span class="demo-label">禁用状态:</span>
+                <button class="btn-base btn-primary-large btn-medium" disabled>已禁用</button>
+                <button class="btn-base btn-primary-large btn-medium btn-loading">加载中</button>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>强引导按钮 (Guide Buttons)</h2>
+            
+            <div class="button-group">
+                <span class="demo-label">引导功能:</span>
+                <button class="btn-base btn-guide btn-large">立即升级</button>
+                <button class="btn-base btn-guide btn-medium">开始体验</button>
+                <button class="btn-base btn-guide btn-small">试用</button>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>线型按钮 (Outline Buttons)</h2>
+            
+            <div class="button-group">
+                <span class="demo-label">次要操作:</span>
+                <button class="btn-base btn-outline btn-large">取消</button>
+                <button class="btn-base btn-outline btn-medium">重置</button>
+                <button class="btn-base btn-outline btn-small">返回</button>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>弱按钮 (Secondary Buttons)</h2>
+            
+            <div class="button-group">
+                <span class="demo-label">辅助功能:</span>
+                <button class="btn-base btn-secondary btn-large">设置</button>
+                <button class="btn-base btn-secondary btn-medium">编辑</button>
+                <button class="btn-base btn-secondary btn-small">查看</button>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>按钮组合示例 (Following Rules)</h2>
+            
+            <div style="background: #f8f9fa; padding: 20px; border-radius: 12px; margin-bottom: 16px;">
+                <h3 style="margin: 0 0 16px 0; color: #232425;">对话框按钮组</h3>
+                <div class="button-group">
+                    <button class="btn-base btn-outline btn-medium">取消</button>
+                    <button class="btn-base btn-primary-small btn-medium">确认删除</button>
+                </div>
+            </div>
+
+            <div style="background: #f8f9fa; padding: 20px; border-radius: 12px; margin-bottom: 16px;">
+                <h3 style="margin: 0 0 16px 0; color: #232425;">表单提交区域</h3>
+                <div class="button-group">
+                    <button class="btn-base btn-secondary btn-medium">保存为草稿</button>
+                    <button class="btn-base btn-outline btn-medium">预览</button>
+                    <button class="btn-base btn-primary-large btn-medium">发布文章</button>
+                </div>
+            </div>
+
+            <div style="background: #f8f9fa; padding: 20px; border-radius: 12px;">
+                <h3 style="margin: 0 0 16px 0; color: #232425;">功能引导页面</h3>
+                <div class="button-group">
+                    <button class="btn-base btn-outline btn-medium">跳过</button>
+                    <button class="btn-base btn-guide btn-large">立即开始</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Test interactive behavior
+        document.querySelectorAll('button:not([disabled])').forEach(button => {
+            button.addEventListener('click', function() {
+                console.log(`Clicked: ${this.textContent} - Classes: ${this.className}`);
+            });
+        });
+
+        console.log('GenSpark Button Design System Test Loaded');
+        console.log('All buttons follow the .cursorrules specifications');
+    </script>
+</body>
+</html> 

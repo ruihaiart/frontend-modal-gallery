@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GenSpark Modal Design Specifications</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #232425;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #232425;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            color: #606366;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .nav-link {
+            padding: 10px 20px;
+            background: #f5f5f5;
+            color: #606366;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: #232425;
+            color: white;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #232425;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+        }
+
+        .size-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .size-category {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 24px;
+            border: 2px solid #e9ecef;
+        }
+
+        .size-category.small {
+            border-color: #4CAF50;
+            background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%);
+        }
+
+        .size-category.medium {
+            border-color: #2196F3;
+            background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+        }
+
+        .size-category.large {
+            border-color: #FF9800;
+            background: linear-gradient(135deg, #fff8e1 0%, #fce4ec 100%);
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .category-icon {
+            font-size: 2rem;
+            margin-right: 12px;
+        }
+
+        .category-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #232425;
+        }
+
+        .category-width {
+            font-size: 0.9rem;
+            color: #606366;
+            margin-left: auto;
+            padding: 4px 8px;
+            background: rgba(255,255,255,0.7);
+            border-radius: 4px;
+        }
+
+        .modal-list {
+            list-style: none;
+        }
+
+        .modal-item {
+            background: white;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 12px;
+            border-left: 4px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .modal-item.small {
+            border-left-color: #4CAF50;
+        }
+
+        .modal-item.medium {
+            border-left-color: #2196F3;
+        }
+
+        .modal-item.large {
+            border-left-color: #FF9800;
+        }
+
+        .modal-item:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-name {
+            font-weight: 600;
+            color: #232425;
+            margin-bottom: 4px;
+        }
+
+        .modal-path {
+            font-size: 0.85rem;
+            color: #909499;
+            font-family: monospace;
+            margin-bottom: 8px;
+        }
+
+        .modal-description {
+            font-size: 0.9rem;
+            color: #606366;
+        }
+
+        .color-specs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .color-spec {
+            background: white;
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+            border: 1px solid #e9ecef;
+        }
+
+        .color-preview {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            margin: 0 auto 12px;
+            border: 2px solid #f0f0f0;
+        }
+
+        .color-primary { background-color: #232425; }
+        .color-cancel { background-color: #f5f5f5; }
+        .color-delete { background-color: #d03050; }
+        .color-success { background-color: #18a058; }
+
+        .color-name {
+            font-weight: 600;
+            color: #232425;
+            margin-bottom: 4px;
+        }
+
+        .color-hex {
+            font-family: monospace;
+            color: #606366;
+            font-size: 0.9rem;
+        }
+
+        .tech-stack {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .tech-item {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            border-left: 4px solid #2196F3;
+        }
+
+        .tech-name {
+            font-weight: 600;
+            color: #232425;
+            margin-bottom: 8px;
+        }
+
+        .tech-description {
+            color: #606366;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+        }
+
+        .tech-components {
+            list-style: none;
+        }
+
+        .tech-components li {
+            color: #606366;
+            font-size: 0.85rem;
+            margin-bottom: 4px;
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .tech-components li:before {
+            content: "•";
+            color: #2196F3;
+            position: absolute;
+            left: 0;
+        }
+
+        .usage-patterns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .pattern-category {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .pattern-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #232425;
+            margin-bottom: 16px;
+        }
+
+        .pattern-list {
+            list-style: none;
+        }
+
+        .pattern-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #e9ecef;
+            color: #606366;
+        }
+
+        .pattern-list li:last-child {
+            border-bottom: none;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid #e9ecef;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2196F3;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            color: #606366;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .size-categories,
+            .usage-patterns {
+                grid-template-columns: 1fr;
+            }
+
+            .color-specs,
+            .tech-stack {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Modal Design Specifications</h1>
+            <p>Comprehensive design system and usage patterns for GenSpark modals</p>
+        </div>
+
+        <div class="navigation">
+            <a href="modal-showcase.html" class="nav-link">Showcase</a>
+            <a href="design-specs.html" class="nav-link active">Design Specs</a>
+            <a href="README.md" class="nav-link">Documentation</a>
+        </div>
+
+        <!-- Size Categories -->
+        <div class="section">
+            <h2 class="section-title">📏 Size Categories & Standards</h2>
+            <div class="size-categories">
+                <div class="size-category small">
+                    <div class="category-header">
+                        <span class="category-icon">📱</span>
+                        <h3 class="category-title">Small Modals</h3>
+                        <span class="category-width">361px</span>
+                    </div>
+                    <ul class="modal-list">
+                        <li class="modal-item small">
+                            <div class="modal-name">Daily Limit Modal</div>
+                            <div class="modal-path">frontend-nuxt/components/fashion/OutLimitModal.vue</div>
+                            <div class="modal-description">Simple notifications with single action button</div>
+                        </li>
+                        <li class="modal-item small">
+                            <div class="modal-name">Storage Limit Modal</div>
+                            <div class="modal-path">frontend-nuxt/components/fashion/OutStorageLimitModal.vue</div>
+                            <div class="modal-description">Upgrade prompts with dual action buttons</div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="size-category medium">
+                    <div class="category-header">
+                        <span class="category-icon">💬</span>
+                        <h3 class="category-title">Medium Modals</h3>
+                        <span class="category-width">500-600px</span>
+                    </div>
+                    <ul class="modal-list">
+                        <li class="modal-item medium">
+                            <div class="modal-name">Research Me Modal</div>
+                            <div class="modal-path">frontend-nuxt/components/ResearchMeModal.vue</div>
+                            <div class="modal-description">User personalization with textarea input</div>
+                        </li>
+                        <li class="modal-item medium">
+                            <div class="modal-name">Personalization Dialog</div>
+                            <div class="modal-path">frontend-nuxt/components/personalization_dialog.vue</div>
+                            <div class="modal-description">Comprehensive user settings form</div>
+                        </li>
+                        <li class="modal-item medium">
+                            <div class="modal-name">Feedback Dialog</div>
+                            <div class="modal-path">frontend-nuxt/components/feedback_dialog.vue</div>
+                            <div class="modal-description">Support and feedback collection</div>
+                        </li>
+                        <li class="modal-item medium">
+                            <div class="modal-name">Chat Update Modal</div>
+                            <div class="modal-path">frontend-nuxt/components/menu/ChatUpdateModal.vue</div>
+                            <div class="modal-description">Feature announcements and promotions</div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="size-category large">
+                    <div class="category-header">
+                        <span class="category-icon">🖥️</span>
+                        <h3 class="category-title">Large Modals</h3>
+                        <span class="category-width">800px+</span>
+                    </div>
+                    <ul class="modal-list">
+                        <li class="modal-item large">
+                            <div class="modal-name">Export Dialogs</div>
+                            <div class="modal-path">admin-nuxt/ppt/components/ExportPdf.vue</div>
+                            <div class="modal-description">Complex export configuration interfaces</div>
+                        </li>
+                        <li class="modal-item large">
+                            <div class="modal-name">Share Modal</div>
+                            <div class="modal-path">Various components</div>
+                            <div class="modal-description">Full-screen sharing and preview interfaces</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">30+</div>
+                    <div class="stat-label">Total Modals</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Size Categories</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">2</div>
+                    <div class="stat-label">UI Frameworks</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Production Ready</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Color Specifications -->
+        <div class="section">
+            <h2 class="section-title">🎨 Color System & Button Standards</h2>
+            <div class="color-specs">
+                <div class="color-spec">
+                    <div class="color-preview color-primary"></div>
+                    <div class="color-name">Primary / OK</div>
+                    <div class="color-hex">#232425</div>
+                </div>
+                <div class="color-spec">
+                    <div class="color-preview color-cancel"></div>
+                    <div class="color-name">Cancel / Secondary</div>
+                    <div class="color-hex">#f5f5f5</div>
+                </div>
+                <div class="color-spec">
+                    <div class="color-preview color-delete"></div>
+                    <div class="color-name">Delete / Danger</div>
+                    <div class="color-hex">#d03050</div>
+                </div>
+                <div class="color-spec">
+                    <div class="color-preview color-success"></div>
+                    <div class="color-name">Success / Confirm</div>
+                    <div class="color-hex">#18a058</div>
+                </div>
+            </div>
+            <p style="color: #606366; font-size: 0.9rem; text-align: center;">
+                All button colors are production-tested and optimized for accessibility
+            </p>
+        </div>
+
+        <!-- Technology Stack -->
+        <div class="section">
+            <h2 class="section-title">⚙️ Technology Stack & Implementation</h2>
+            <div class="tech-stack">
+                <div class="tech-item">
+                    <div class="tech-name">Naive UI Framework</div>
+                    <div class="tech-description">Primary UI framework for modal components with consistent styling</div>
+                    <ul class="tech-components">
+                        <li>n-modal base component</li>
+                        <li>Built-in animations</li>
+                        <li>Accessibility features</li>
+                        <li>Dark mode support</li>
+                    </ul>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-name">Vue 3 Composition API</div>
+                    <div class="tech-description">Modern Vue.js patterns for reactive modal behavior</div>
+                    <ul class="tech-components">
+                        <li>setup() composition syntax</li>
+                        <li>Reactive state management</li>
+                        <li>Event handling</li>
+                        <li>Component lifecycle</li>
+                    </ul>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-name">Teleport API</div>
+                    <div class="tech-description">Vue 3 Teleport for proper modal rendering</div>
+                    <ul class="tech-components">
+                        <li>Portal to body element</li>
+                        <li>Z-index management</li>
+                        <li>Backdrop handling</li>
+                        <li>Focus management</li>
+                    </ul>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-name">i18n Internationalization</div>
+                    <div class="tech-description">Multi-language support for global accessibility</div>
+                    <ul class="tech-components">
+                        <li>English (primary)</li>
+                        <li>Chinese (Simplified/Traditional)</li>
+                        <li>Japanese, Korean</li>
+                        <li>European languages</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Usage Patterns -->
+        <div class="section">
+            <h2 class="section-title">🔄 Usage Patterns & Best Practices</h2>
+            <div class="usage-patterns">
+                <div class="pattern-category">
+                    <h3 class="pattern-title">Functional Categories</h3>
+                    <ul class="pattern-list">
+                        <li><strong>User Input:</strong> Research, personalization, feedback forms</li>
+                        <li><strong>Confirmation:</strong> Delete actions, destructive operations</li>
+                        <li><strong>Notification:</strong> Limits, updates, announcements</li>
+                        <li><strong>Selection:</strong> Options, settings, preferences</li>
+                        <li><strong>Preview:</strong> Image display, content viewing</li>
+                    </ul>
+                </div>
+                <div class="pattern-category">
+                    <h3 class="pattern-title">Interaction Patterns</h3>
+                    <ul class="pattern-list">
+                        <li><strong>ESC Key:</strong> Always closes modal (except non-closable)</li>
+                        <li><strong>Click Outside:</strong> Closes modal on backdrop click</li>
+                        <li><strong>Focus Management:</strong> Auto-focus first input element</li>
+                        <li><strong>Button Order:</strong> Cancel left, Primary action right</li>
+                        <li><strong>Loading States:</strong> Disable interactions during async operations</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Component Architecture -->
+        <div class="section">
+            <h2 class="section-title">🏗️ Component Architecture</h2>
+            <div style="background: #f8f9fa; border-radius: 8px; padding: 20px; margin-bottom: 20px;">
+                <h3 style="color: #232425; margin-bottom: 12px;">Standard Modal Structure</h3>
+                <pre style="color: #606366; font-family: monospace; font-size: 0.9rem; line-height: 1.6;">
+&lt;template&gt;
+  &lt;n-modal v-model:show="showModal" :mask-closable="true"&gt;
+    &lt;div class="modal-container"&gt;
+      &lt;div class="modal-header"&gt;
+        &lt;h2&gt;{{ $t('modal.title') }}&lt;/h2&gt;
+        &lt;button @click="closeModal" class="close-btn"&gt;×&lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class="modal-body"&gt;
+        &lt;!-- Modal content --&gt;
+      &lt;/div&gt;
+      &lt;div class="modal-footer"&gt;
+        &lt;button @click="closeModal" class="btn-cancel"&gt;Cancel&lt;/button&gt;
+        &lt;button @click="confirmAction" class="btn-primary"&gt;Confirm&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/n-modal&gt;
+&lt;/template&gt;</pre>
+            </div>
+            
+            <div style="background: #f8f9fa; border-radius: 8px; padding: 20px;">
+                <h3 style="color: #232425; margin-bottom: 12px;">CSS Standards</h3>
+                <pre style="color: #606366; font-family: monospace; font-size: 0.9rem; line-height: 1.6;">
+.modal-container {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  max-width: 90vw;
+  max-height: 90vh;
+}
+
+.btn-primary {
+  background: #232425;
+  color: white;
+  border-radius: 8px;
+  padding: 12px 24px;
+}
+
+.btn-cancel {
+  background: #f5f5f5;
+  color: #606366;
+  border-radius: 8px;
+  padding: 12px 24px;
+}</pre>
+            </div>
+        </div>
+
+        <!-- File Organization -->
+        <div class="section">
+            <h2 class="section-title">📁 File Organization & Naming</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                <div>
+                    <h3 style="color: #232425; margin-bottom: 16px;">Frontend Structure</h3>
+                    <div style="background: #f8f9fa; border-radius: 8px; padding: 16px; font-family: monospace; font-size: 0.85rem; color: #606366;">
+frontend-nuxt/<br>
+├── components/<br>
+│   ├── ResearchMeModal.vue<br>
+│   ├── personalization_dialog.vue<br>
+│   ├── feedback_dialog.vue<br>
+│   ├── menu/<br>
+│   │   └── ChatUpdateModal.vue<br>
+│   └── fashion/<br>
+│       ├── OutLimitModal.vue<br>
+│       └── OutStorageLimitModal.vue<br>
+└── locales/<br>
+    └── en-US.json
+                    </div>
+                </div>
+                <div>
+                    <h3 style="color: #232425; margin-bottom: 16px;">Admin Structure</h3>
+                    <div style="background: #f8f9fa; border-radius: 8px; padding: 16px; font-family: monospace; font-size: 0.85rem; color: #606366;">
+admin-nuxt/<br>
+├── components/<br>
+├── ppt/<br>
+│   └── components/<br>
+│       ├── ExportPdf.vue<br>
+│       ├── ExportImage.vue<br>
+│       ├── ExportJson.vue<br>
+│       ├── Modal.vue<br>
+│       └── Drawer.vue<br>
+└── locales/<br>
+    └── en-US.json
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Development Guidelines -->
+        <div class="section">
+            <h2 class="section-title">📋 Development Guidelines</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                <div style="background: #e8f5e9; border-radius: 8px; padding: 20px; border-left: 4px solid #4CAF50;">
+                    <h4 style="color: #2e7d32; margin-bottom: 12px;">✅ Do</h4>
+                    <ul style="color: #2e7d32; list-style-position: inside;">
+                        <li>Use consistent sizing (361px, 500-600px, 800px+)</li>
+                        <li>Implement proper focus management</li>
+                        <li>Add ESC key and backdrop click handlers</li>
+                        <li>Use i18n for all text content</li>
+                        <li>Follow button color standards</li>
+                    </ul>
+                </div>
+                <div style="background: #ffebee; border-radius: 8px; padding: 20px; border-left: 4px solid #f44336;">
+                    <h4 style="color: #c62828; margin-bottom: 12px;">❌ Don't</h4>
+                    <ul style="color: #c62828; list-style-position: inside;">
+                        <li>Create custom modal overlays without framework</li>
+                        <li>Use arbitrary sizes outside the standard system</li>
+                        <li>Forget to handle loading and error states</li>
+                        <li>Mix different UI frameworks in same modal</li>
+                        <li>Hardcode text strings in templates</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
