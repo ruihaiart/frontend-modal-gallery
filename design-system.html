@@ -2009,19 +2009,15 @@
 
 
       <style>
-        .mg-group { margin-bottom: 40px; }
-        .mg-group-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-        .mg-label { font-size: 11px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--ui-text-faint); margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid var(--ui-border); }
-        .mg-card { background: var(--ui-bg-page); border: 1px solid var(--ui-border); border-radius: 12px; overflow: hidden; }
-        .mg-card-meta { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; padding: 14px 16px 12px; }
-        .mg-card-info { flex: 1; min-width: 0; }
-        .mg-card-name { font-size: 13px; font-weight: 600; color: var(--ui-text-primary); margin-bottom: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .mg-card-name code { font-size: 10px; }
-        .mg-card-desc { font-size: 12px; color: var(--ui-text-secondary); line-height: 1.45; }
-        .mg-badge { font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 5px; background: #EFF6FF; color: #2563EB; white-space: nowrap; flex-shrink: 0; }
-        .mg-preview { height: 220px; overflow: hidden; display: flex; align-items: flex-start; justify-content: center; background: #F0F0F2; border-top: 1px solid var(--ui-border); border-bottom: 1px solid var(--ui-border); padding: 16px; position: relative; }
-        .mg-preview::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 40px; background: linear-gradient(transparent, #F0F0F2); pointer-events: none; }
-        .mg-preview > * { transform: scale(0.62); transform-origin: top center; flex-shrink: 0; }
+        .mg-group { margin-bottom: 48px; }
+        .mg-label { font-size: 11px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--ui-text-faint); margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--ui-border); }
+        .mg-card { background: var(--ui-bg-page); border: 1px solid var(--ui-border); border-radius: 14px; overflow: hidden; margin-bottom: 20px; }
+        .mg-card-meta { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; padding: 16px 20px 14px; }
+        .mg-card-info { flex: 1; }
+        .mg-card-name { font-size: 14px; font-weight: 600; color: var(--ui-text-primary); margin-bottom: 3px; }
+        .mg-card-desc { font-size: 13px; color: var(--ui-text-secondary); line-height: 1.5; }
+        .mg-badge { font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 6px; background: #EFF6FF; color: #2563EB; white-space: nowrap; flex-shrink: 0; }
+        .mg-preview { padding: 32px 24px; display: flex; align-items: center; justify-content: center; background: #F0F0F2; border-top: 1px solid var(--ui-border); border-bottom: 1px solid var(--ui-border); }
         .mg-code-wrap { position: relative; }
         .mg-code-wrap pre { margin: 0; padding: 16px 20px 16px; font-size: 11.5px; line-height: 1.75; background: #111; color: #e2e8f0; overflow-x: auto; font-family: "SF Mono", "Fira Code", monospace; }
         .mg-copy { position: absolute; top: 10px; right: 12px; padding: 4px 10px; border-radius: 6px; border: none; background: rgba(255,255,255,.1); color: #cbd5e1; font-size: 11px; font-family: inherit; cursor: pointer; transition: all .15s; }
@@ -2109,8 +2105,6 @@
       <!-- ── System ── -->
       <div class="mg-group">
         <div class="mg-label">System</div>
-        <div class="mg-group-grid">
-        <div class="mg-group-grid">
 
         <!-- Confirm Dialog -->
         <div class="mg-card">
@@ -2245,7 +2239,6 @@
       <!-- ── Feedback & Status ── -->
       <div class="mg-group">
         <div class="mg-label">Feedback &amp; Status</div>
-        <div class="mg-group-grid">
 
         <!-- Subscription Success -->
         <div class="mg-card">
@@ -2355,7 +2348,6 @@
       <!-- ── Paywall & Upgrade ── -->
       <div class="mg-group">
         <div class="mg-label">Paywall &amp; Upgrade</div>
-        <div class="mg-group-grid">
 
         <!-- Membership Gate -->
         <div class="mg-card">
@@ -2463,7 +2455,6 @@
       <!-- ── Subscription ── -->
       <div class="mg-group">
         <div class="mg-label">Subscription</div>
-        <div class="mg-group-grid">
 
         <!-- Downgrade Confirm -->
         <div class="mg-card">
@@ -2535,7 +2526,6 @@
       <!-- ── Workspace ── -->
       <div class="mg-group">
         <div class="mg-label">Workspace</div>
-        <div class="mg-group-grid">
 
         <!-- Create Hub -->
         <div class="mg-card">
@@ -2705,7 +2695,6 @@
       <!-- ── System (additional) ── -->
       <div class="mg-group">
         <div class="mg-label">System — Additional</div>
-        <div class="mg-group-grid">
 
         <!-- GlobalDialog -->
         <div class="mg-card">
@@ -2905,7 +2894,6 @@ const featureModalConfig = {
       <!-- ── Agent ── -->
       <div class="mg-group">
         <div class="mg-label">Agent</div>
-        <div class="mg-group-grid">
 
         <!-- Agent Detail -->
         <div class="mg-card">
@@ -3021,7 +3009,6 @@ const featureModalConfig = {
       <!-- ── Payment ── -->
       <div class="mg-group">
         <div class="mg-label">Payment</div>
-        <div class="mg-group-grid">
 
         <!-- Payment Result -->
         <div class="mg-card">
@@ -3244,7 +3231,6 @@ const featureModalConfig = {
       <!-- ── Workspace (additional) ── -->
       <div class="mg-group">
         <div class="mg-label">Workspace — Additional</div>
-        <div class="mg-group-grid">
 
         <!-- Hub Members -->
         <div class="mg-card">
