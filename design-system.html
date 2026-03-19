@@ -1885,243 +1885,601 @@
     <section class="section" id="modals">
       <div class="section-header">
         <h2 class="section-title">Modals</h2>
-        <p class="section-desc">Production modal components from the Genspark codebase. Click Preview to see each modal live.</p>
+        <p class="section-desc">Production modal components. Styles shown inline — copy the implementation code below each.</p>
       </div>
 
-      <!-- Live Modal Gallery -->
-      <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:32px">
+      <style>
+        .modal-gallery-group { margin-bottom: 40px; }
+        .modal-gallery-label { font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--ui-text-faint); margin-bottom: 14px; }
+        .modal-exhibit { background: var(--ui-bg-page); border: 1px solid var(--ui-border); border-radius: 14px; overflow: hidden; margin-bottom: 16px; }
+        .modal-exhibit-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; border-bottom: 1px solid var(--ui-border); }
+        .modal-exhibit-name { font-size: 14px; font-weight: 600; color: var(--ui-text-primary); }
+        .modal-exhibit-desc { font-size: 13px; color: var(--ui-text-secondary); margin-top: 1px; }
+        .modal-exhibit-body { padding: 32px 24px; display: flex; align-items: center; justify-content: center; background: var(--ui-bg-subtle); }
+        .modal-exhibit-code { position: relative; }
+        .modal-exhibit-code pre { margin: 0; padding: 16px 20px; font-size: 12px; line-height: 1.7; background: #1a1a1a; color: #e8e8e8; overflow-x: auto; border-top: 1px solid var(--ui-border); }
+        .modal-copy-btn { position: absolute; top: 10px; right: 12px; padding: 4px 10px; border-radius: 6px; border: none; background: rgba(255,255,255,0.12); color: #e8e8e8; font-size: 11px; cursor: pointer; transition: background 0.15s; }
+        .modal-copy-btn:hover { background: rgba(255,255,255,0.22); }
+        .modal-copy-btn.copied { background: #10B981; color: #fff; }
+        /* Inline modal card */
+        .m-card { background: #fff; border-radius: 16px; padding: 24px; width: 100%; max-width: 480px; box-shadow: 0 4px 24px rgba(0,0,0,0.12); }
+        .m-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+        .m-card-title { font-size: 18px; font-weight: 700; color: #232425; }
+        .m-card-close { width: 28px; height: 28px; border: none; background: #F5F5F5; border-radius: 50%; cursor: pointer; font-size: 14px; color: #606366; display: flex; align-items: center; justify-content: center; }
+        .m-card-body { font-size: 15px; color: #606366; line-height: 1.6; margin-bottom: 20px; }
+        .m-card-footer { display: flex; justify-content: flex-end; gap: 8px; }
+        .m-btn { height: 40px; padding: 0 16px; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; border: none; }
+        .m-btn-outline { background: #fff; border: 1px solid #EAEAEA; color: #232425; }
+        .m-btn-primary { background: #232425; color: #fff; font-weight: 600; }
+        .m-btn-blue { background: #0F7FFF; color: #fff; font-weight: 600; }
+        .m-btn-danger { background: #EF4444; color: #fff; font-weight: 600; }
+        .m-btn-ghost { background: none; border: none; color: #606366; }
+        .m-btn-pill { border-radius: 30px; }
+        .m-btn-full { width: 100%; height: 48px; font-size: 16px; }
+        .m-warning-card { background: #FFFBEE; border-left: 3px solid #F59E0B; border-radius: 0 8px 8px 0; padding: 14px 16px; margin-bottom: 20px; }
+        .m-login-btn { width: 100%; height: 44px; border-radius: 12px; border: none; background: #F1F1F1; font-size: 15px; color: #0D0D0D; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 10px; }
+        .m-login-outline { background: #fff; border: 1px solid rgba(0,0,0,0.15); }
+        .m-divider { display: flex; align-items: center; gap: 9px; margin: 4px 0 10px; }
+        .m-divider-line { flex: 1; height: 0; border-top: 1px dashed #EAEAEA; }
+        .m-step { display: flex; gap: 14px; padding: 12px 0; }
+        .m-step + .m-step { border-top: 1px solid #F2F2F2; }
+        .m-step-dot { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+        .m-step-done { background: #232425; color: #fff; }
+        .m-step-active { background: #0F7FFF; color: #fff; }
+        .m-step-pending { border: 1.5px solid #D0D3D8; color: #909499; }
+      </style>
 
-        <!-- Category: System -->
-        <div class="card-title" style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ui-text-faint);padding:0 0 4px">System</div>
+      <!-- ── System ── -->
+      <div class="modal-gallery-group">
+        <div class="modal-gallery-label">System</div>
 
-        <!-- Confirm Dialog -->
-        <div class="card" style="display:flex;align-items:center;justify-content:space-between;gap:24px;padding:20px 24px">
-          <div>
-            <div style="font-size:15px;font-weight:600;color:var(--ui-text-primary);margin-bottom:4px">Confirm Dialog</div>
-            <div style="font-size:13px;color:var(--ui-text-secondary)">Generic confirmation — standard & danger variants</div>
+        <!-- Confirm Standard -->
+        <div class="modal-exhibit">
+          <div class="modal-exhibit-header">
+            <div>
+              <div class="modal-exhibit-name">Confirm Dialog</div>
+              <div class="modal-exhibit-desc">Generic confirmation — use for non-destructive actions</div>
+            </div>
           </div>
-          <div style="display:flex;gap:8px;flex-shrink:0">
-            <button class="btn btn-secondary btn-sm" onclick="openModal('modal-confirm-standard')">Standard</button>
-            <button class="btn btn-secondary btn-sm" onclick="openModal('modal-confirm-danger')">Danger</button>
+          <div class="modal-exhibit-body">
+            <div class="m-card">
+              <div class="m-card-header">
+                <span class="m-card-title">Delete project?</span>
+                <button class="m-card-close">✕</button>
+              </div>
+              <div class="m-card-body">Are you sure you want to delete this project? All associated data will be permanently removed.</div>
+              <div class="m-card-footer">
+                <button class="m-btn m-btn-outline">Cancel</button>
+                <button class="m-btn m-btn-primary">Confirm</button>
+              </div>
+            </div>
+          </div>
+          <div class="modal-exhibit-code">
+            <pre id="code-confirm">&lt;div class="modal-overlay"&gt;
+  &lt;div class="modal" style="width:480px;border-radius:16px;padding:24px"&gt;
+    &lt;div class="modal-header"&gt;
+      &lt;h3&gt;Delete project?&lt;/h3&gt;
+      &lt;button class="close-btn"&gt;✕&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;p class="modal-body"&gt;
+      Are you sure? This action cannot be undone.
+    &lt;/p&gt;
+    &lt;div class="modal-footer"&gt;
+      &lt;button class="btn-outline" @click="close"&gt;Cancel&lt;/button&gt;
+      &lt;button class="btn-primary" @click="confirm"&gt;Confirm&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+            <button class="modal-copy-btn" onclick="copyCode('code-confirm', this)">Copy</button>
           </div>
         </div>
 
-        <!-- Login Dialog -->
-        <div class="card" style="display:flex;align-items:center;justify-content:space-between;gap:24px;padding:20px 24px">
-          <div>
-            <div style="font-size:15px;font-weight:600;color:var(--ui-text-primary);margin-bottom:4px">Login Dialog</div>
-            <div style="font-size:13px;color:var(--ui-text-secondary)">Sign in with Google, Apple, or more options</div>
+        <!-- Confirm Danger -->
+        <div class="modal-exhibit">
+          <div class="modal-exhibit-header">
+            <div>
+              <div class="modal-exhibit-name">Confirm Dialog — Danger</div>
+              <div class="modal-exhibit-desc">Destructive action confirmation — confirm button turns red</div>
+            </div>
           </div>
-          <button class="btn btn-secondary btn-sm" onclick="openModal('modal-login')">Preview</button>
+          <div class="modal-exhibit-body">
+            <div class="m-card">
+              <div class="m-card-header">
+                <span class="m-card-title">Delete account?</span>
+                <button class="m-card-close">✕</button>
+              </div>
+              <div class="m-card-body">This will permanently delete your account and all your data. This action <strong>cannot be undone</strong>.</div>
+              <div class="m-card-footer">
+                <button class="m-btn m-btn-outline">Cancel</button>
+                <button class="m-btn m-btn-danger">Delete Account</button>
+              </div>
+            </div>
+          </div>
+          <div class="modal-exhibit-code">
+            <pre id="code-confirm-danger">&lt;!-- Same as Confirm Dialog, change confirm button class --&gt;
+&lt;button class="btn-danger" @click="confirm"&gt;Delete Account&lt;/button&gt;
+
+&lt;!-- CSS --&gt;
+.btn-danger {
+  background: #EF4444;
+  color: #fff;
+  border-radius: 8px;
+  border: none;
+  height: 40px;
+  padding: 0 16px;
+  font-weight: 600;
+}</pre>
+            <button class="modal-copy-btn" onclick="copyCode('code-confirm-danger', this)">Copy</button>
+          </div>
         </div>
 
-        <!-- Category: Feedback & Status -->
-        <div class="card-title" style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ui-text-faint);padding:16px 0 4px">Feedback & Status</div>
-
-        <!-- Success Modal -->
-        <div class="card" style="display:flex;align-items:center;justify-content:space-between;gap:24px;padding:20px 24px">
-          <div>
-            <div style="font-size:15px;font-weight:600;color:var(--ui-text-primary);margin-bottom:4px">Subscription Success</div>
-            <div style="font-size:13px;color:var(--ui-text-secondary)">Post-payment success state with checkmark animation</div>
+        <!-- Login -->
+        <div class="modal-exhibit">
+          <div class="modal-exhibit-header">
+            <div>
+              <div class="modal-exhibit-name">Login Dialog</div>
+              <div class="modal-exhibit-desc">Sign in with Google, Apple, or more options</div>
+            </div>
           </div>
-          <button class="btn btn-secondary btn-sm" onclick="openModal('modal-success')">Preview</button>
+          <div class="modal-exhibit-body">
+            <div class="m-card" style="max-width:480px">
+              <div style="display:flex;justify-content:flex-end;margin:-8px -8px 8px"><button class="m-card-close">✕</button></div>
+              <div style="text-align:center;margin-bottom:20px">
+                <h2 style="font-size:22px;font-weight:700;color:#0D0D0D;margin:0 0 6px">Sign in to Genspark</h2>
+                <p style="font-size:14px;color:#606366;margin:0">Access your AI workspace and all your projects</p>
+              </div>
+              <button class="m-login-btn">
+                <svg width="16" height="16" viewBox="0 0 16 16"><path d="M15.68 8.18c0-.57-.05-1.12-.14-1.64H8v3.1h4.29a3.67 3.67 0 01-1.59 2.41v2h2.57c1.5-1.38 2.37-3.41 2.37-5.87z" fill="#4285F4"/><path d="M8 16c2.16 0 3.97-.71 5.29-1.93l-2.57-2a4.8 4.8 0 01-7.18-2.52H.94v2.07A8 8 0 008 16z" fill="#34A853"/><path d="M3.54 9.55A4.8 4.8 0 013.28 8c0-.54.09-1.06.26-1.55V4.38H.94A8 8 0 000 8c0 1.29.31 2.51.94 3.62l2.6-2.07z" fill="#FBBC05"/><path d="M8 3.18c1.22 0 2.31.42 3.17 1.24l2.37-2.37A8 8 0 000 8h.94A4.8 4.8 0 018 3.18z" fill="#EA4335"/></svg>
+                Continue with Google
+              </button>
+              <button class="m-login-btn">
+                <svg width="15" height="15" viewBox="0 0 15 15" fill="#000"><path d="M10.47.1c.07.85-.25 1.7-.74 2.3-.49.61-1.29 1.08-2.07 1.02-.08-.8.29-1.65.75-2.23C8.9.52 9.73.06 10.47.1zM13.18 10.3c-.38.83-.56 1.2-1.04 1.94-.68 1.03-1.63 2.32-2.81 2.33-1.04.01-1.32-.68-2.73-.67-1.42.01-1.72.69-2.77.68-1.18-.01-2.07-1.18-2.75-2.21C-.63 9.97-.09 6.73 1.64 4.98c1.22-1.22 3.17-1.26 4.41-.03.44.44.54.91 1.47.91.95 0 1.22-.6 2.28-.61 1.16-.01 2.47.67 3.35 1.79l-.02.42-.01-.16z"/></svg>
+                Continue with Apple
+              </button>
+              <div class="m-divider"><div class="m-divider-line"></div><span style="font-size:13px;color:#909499">or</span><div class="m-divider-line"></div></div>
+              <button class="m-login-btn m-login-outline">More options</button>
+            </div>
+          </div>
+          <div class="modal-exhibit-code">
+            <pre id="code-login">&lt;!-- LoginDialog.vue (simplified) --&gt;
+&lt;n-modal v-model:show="visible"&gt;
+  &lt;div class="login-modal"&gt;
+    &lt;div class="header"&gt;
+      &lt;h2&gt;Sign in to Genspark&lt;/h2&gt;
+    &lt;/div&gt;
+    &lt;button class="social-btn" @click="handleGoogleLogin"&gt;
+      &lt;GoogleIcon /&gt; Continue with Google
+    &lt;/button&gt;
+    &lt;button class="social-btn" @click="handleAppleLogin"&gt;
+      &lt;AppleIcon /&gt; Continue with Apple
+    &lt;/button&gt;
+    &lt;div class="divider"&gt;&lt;span&gt;or&lt;/span&gt;&lt;/div&gt;
+    &lt;button class="social-btn outline" @click="handleMoreOptions"&gt;
+      More options
+    &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/n-modal&gt;
+
+&lt;!-- social-btn styles --&gt;
+.social-btn {
+  width: 100%; height: 44px; border-radius: 12px;
+  background: #F1F1F1; border: none; font-size: 15px;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.social-btn.outline { background: #fff; border: 1px solid rgba(0,0,0,0.15); }</pre>
+            <button class="modal-copy-btn" onclick="copyCode('code-login', this)">Copy</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Feedback & Status ── -->
+      <div class="modal-gallery-group">
+        <div class="modal-gallery-label">Feedback &amp; Status</div>
+
+        <!-- Success -->
+        <div class="modal-exhibit">
+          <div class="modal-exhibit-header">
+            <div>
+              <div class="modal-exhibit-name">Subscription Success</div>
+              <div class="modal-exhibit-desc">Post-payment confirmation with checkmark</div>
+            </div>
+          </div>
+          <div class="modal-exhibit-body">
+            <div class="m-card" style="text-align:center;display:flex;flex-direction:column;align-items:center;gap:24px">
+              <button class="m-card-close" style="align-self:flex-end">✕</button>
+              <svg width="70" height="70" viewBox="0 0 70 70"><circle cx="35" cy="35" r="30" fill="none" stroke="#10B981" stroke-width="4"/><path d="M20 36l10 10 20-22" stroke="#10B981" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <div>
+                <div style="font-size:22px;font-weight:700;color:#232425;margin-bottom:6px">Subscription Activated!</div>
+                <div style="font-size:14px;color:#606366;line-height:1.6">Your plan is now active. Enjoy all the premium features.</div>
+              </div>
+              <button class="m-btn m-btn-primary m-btn-pill m-btn-full">Get Started</button>
+            </div>
+          </div>
+          <div class="modal-exhibit-code">
+            <pre id="code-success">&lt;!-- SubscriptionSuccessModal.vue --&gt;
+&lt;div class="modal-overlay" @click.self="$emit('close')"&gt;
+  &lt;div class="modal-window"&gt;
+    &lt;button class="modal-close" @click="$emit('close')"&gt;✕&lt;/button&gt;
+    &lt;div class="modal-icon"&gt;
+      &lt;!-- Green checkmark SVG --&gt;
+      &lt;svg width="70" height="70" viewBox="0 0 70 70"&gt;
+        &lt;circle cx="35" cy="35" r="30" fill="none" stroke="#10B981" stroke-width="4"/&gt;
+        &lt;path d="M20 36l10 10 20-22" stroke="#10B981" stroke-width="4" fill="none" stroke-linecap="round"/&gt;
+      &lt;/svg&gt;
+    &lt;/div&gt;
+    &lt;h2&gt;{{ title || 'Subscription Activated!' }}&lt;/h2&gt;
+    &lt;p&gt;{{ subtitle }}&lt;/p&gt;
+    &lt;button class="btn-primary" @click="$emit('close')"&gt;Get Started&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- .modal-window --&gt;
+width: 480px; border-radius: 16px; padding: 24px;
+display: flex; flex-direction: column; align-items: center; gap: 40px;</pre>
+            <button class="modal-copy-btn" onclick="copyCode('code-success', this)">Copy</button>
+          </div>
         </div>
 
         <!-- Task Submitted -->
-        <div class="card" style="display:flex;align-items:center;justify-content:space-between;gap:24px;padding:20px 24px">
-          <div>
-            <div style="font-size:15px;font-weight:600;color:var(--ui-text-primary);margin-bottom:4px">Task Submitted</div>
-            <div style="font-size:13px;color:var(--ui-text-secondary)">Async task acknowledgment with celebration state</div>
+        <div class="modal-exhibit">
+          <div class="modal-exhibit-header">
+            <div>
+              <div class="modal-exhibit-name">Task Submitted</div>
+              <div class="modal-exhibit-desc">Async task acknowledgment with celebration state</div>
+            </div>
           </div>
-          <button class="btn btn-secondary btn-sm" onclick="openModal('modal-task')">Preview</button>
-        </div>
-
-        <!-- Category: Paywall & Upgrade -->
-        <div class="card-title" style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ui-text-faint);padding:16px 0 4px">Paywall & Upgrade</div>
-
-        <div class="card" style="display:flex;align-items:center;justify-content:space-between;gap:24px;padding:20px 24px">
-          <div>
-            <div style="font-size:15px;font-weight:600;color:var(--ui-text-primary);margin-bottom:4px">Membership Gate</div>
-            <div style="font-size:13px;color:var(--ui-text-secondary)">Feature gate with upgrade CTA for Pro features</div>
+          <div class="modal-exhibit-body">
+            <div class="m-card" style="text-align:center;width:540px;max-width:100%">
+              <div style="font-size:30px;margin-bottom:14px">🎉 🎉 🎉</div>
+              <p style="font-size:16px;color:#232425;margin:0 0 8px">Your task has been submitted!</p>
+              <p style="font-size:14px;font-weight:600;color:#232425;margin:0 0 20px">Feel free to leave the page, we'll notify you when done.</p>
+              <div style="display:flex;justify-content:center;gap:8px">
+                <button class="m-btn m-btn-outline">OK</button>
+                <button class="m-btn m-btn-primary">Check Task Status</button>
+              </div>
+            </div>
           </div>
-          <button class="btn btn-secondary btn-sm" onclick="openModal('modal-membership')">Preview</button>
-        </div>
+          <div class="modal-exhibit-code">
+            <pre id="code-task">&lt;!-- TaskSubmittedModal.vue --&gt;
+&lt;NModal v-model:show="internalShow" :mask-closable="maskClosable"&gt;
+  &lt;div class="create_result"&gt;
+    &lt;div class="content"&gt;
+      &lt;p style="font-size:30px"&gt;🎉 🎉 🎉&lt;/p&gt;
+      &lt;p&gt;{{ t('pages.autopilotagent.task_submitted_desc') }}&lt;/p&gt;
+      &lt;p class="bold"&gt;{{ t('pages.autopilotagent.task_submitted_desc_feel_free') }}&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="buttons"&gt;
+      &lt;div class="button default" @click="handleCancel"&gt;OK&lt;/div&gt;
+      &lt;div v-if="showViewButton" class="button" @click="handleConfirm"&gt;
+        Check Task Status
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/NModal&gt;
 
-        <div class="card" style="display:flex;align-items:center;justify-content:space-between;gap:24px;padding:20px 24px">
-          <div>
-            <div style="font-size:15px;font-weight:600;color:var(--ui-text-primary);margin-bottom:4px">Member Required</div>
-            <div style="font-size:13px;color:var(--ui-text-secondary)">Hard paywall with decorative gradient background</div>
+&lt;!-- .create_result --&gt;
+width: 540px; padding: 30px 20px 20px;
+text-align: center; font-size: 16px;</pre>
+            <button class="modal-copy-btn" onclick="copyCode('code-task', this)">Copy</button>
           </div>
-          <button class="btn btn-secondary btn-sm" onclick="openModal('modal-member-required')">Preview</button>
-        </div>
-
-        <!-- Category: Subscription -->
-        <div class="card-title" style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ui-text-faint);padding:16px 0 4px">Subscription</div>
-
-        <div class="card" style="display:flex;align-items:center;justify-content:space-between;gap:24px;padding:20px 24px">
-          <div>
-            <div style="font-size:15px;font-weight:600;color:var(--ui-text-primary);margin-bottom:4px">Downgrade Confirm</div>
-            <div style="font-size:13px;color:var(--ui-text-secondary)">Warning list of features lost on downgrade</div>
-          </div>
-          <button class="btn btn-secondary btn-sm" onclick="openModal('modal-downgrade')">Preview</button>
-        </div>
-
-        <!-- Category: Workspace -->
-        <div class="card-title" style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ui-text-faint);padding:16px 0 4px">Workspace</div>
-
-        <div class="card" style="display:flex;align-items:center;justify-content:space-between;gap:24px;padding:20px 24px">
-          <div>
-            <div style="font-size:15px;font-weight:600;color:var(--ui-text-primary);margin-bottom:4px">Create Hub</div>
-            <div style="font-size:13px;color:var(--ui-text-secondary)">Create or edit a Hub with name, color and description</div>
-          </div>
-          <button class="btn btn-secondary btn-sm" onclick="openModal('modal-create-hub')">Preview</button>
-        </div>
-
-        <div class="card" style="display:flex;align-items:center;justify-content:space-between;gap:24px;padding:20px 24px">
-          <div>
-            <div style="font-size:15px;font-weight:600;color:var(--ui-text-primary);margin-bottom:4px">Delete Hub</div>
-            <div style="font-size:13px;color:var(--ui-text-secondary)">Multi-step deletion with progress indicators</div>
-          </div>
-          <button class="btn btn-secondary btn-sm" onclick="openModal('modal-delete-hub')">Preview</button>
-        </div>
-
-        <div style="margin-top:12px">
-          <a href="modal-showcase.html" target="_blank" style="font-size:13px;color:var(--color-brand-secondary);text-decoration:none;display:inline-flex;align-items:center;gap:4px">
-            View full Modal Gallery →
-          </a>
         </div>
       </div>
 
-      <!-- Token reference (collapsed) -->
-      <details style="margin-bottom:24px">
-        <summary style="font-size:13px;font-weight:600;color:var(--ui-text-secondary);cursor:pointer;padding:12px 16px;background:var(--ui-bg-subtle);border-radius:8px;list-style:none">
-          ▸ Token Reference — Modal sizes & shadows
-        </summary>
-        <div class="modals-grid" style="margin-top:12px">
+      <!-- ── Paywall & Upgrade ── -->
+      <div class="modal-gallery-group">
+        <div class="modal-gallery-label">Paywall &amp; Upgrade</div>
 
-        <!-- SM Modal -->
-        <div class="modal-preview-wrap">
-          <div class="modal-size-label">
-            <span class="modal-size-name">SM</span>
-            <span class="token-chip" onclick="copyToken('modal-sm', this)">modal-sm</span>
-            <span class="modal-size-px">480px</span>
-          </div>
-          <div class="modal-scale-wrap">
-            <div class="modal-scale-inner">
-              <div class="modal-card" style="max-width: 480px;">
-                <div class="modal-header">
-                  <div class="modal-title">Confirm action</div>
-                  <button class="modal-close">✕</button>
-                </div>
-                <div class="modal-body">
-                  <p class="modal-body-text">Are you sure you want to proceed? This action cannot be undone.</p>
-                </div>
-                <div class="modal-footer">
-                  <button class="btn btn-secondary btn-md">Cancel</button>
-                  <button class="btn btn-danger btn-md">Confirm</button>
-                </div>
-              </div>
+        <!-- Membership Gate -->
+        <div class="modal-exhibit">
+          <div class="modal-exhibit-header">
+            <div>
+              <div class="modal-exhibit-name">Membership Gate</div>
+              <div class="modal-exhibit-desc">Feature gate with upgrade CTA — use for soft paywall</div>
             </div>
+          </div>
+          <div class="modal-exhibit-body">
+            <div class="m-card" style="text-align:center;display:flex;flex-direction:column;align-items:center;gap:18px;position:relative">
+              <button class="m-card-close" style="position:absolute;top:0;right:0">✕</button>
+              <h2 style="font-size:20px;font-weight:700;color:#232425;margin:0;padding-top:4px">Unlock Pro Features</h2>
+              <p style="font-size:14px;color:#606366;line-height:1.6;margin:0">This feature requires a Genspark Pro membership. Upgrade to access unlimited AI requests, creative tools, and more.</p>
+              <button class="m-btn m-btn-blue m-btn-pill m-btn-full">Upgrade to Pro</button>
+              <button class="m-btn m-btn-ghost" style="font-size:13px">Continue with Free</button>
+            </div>
+          </div>
+          <div class="modal-exhibit-code">
+            <pre id="code-gate">&lt;!-- MembershipGateModal.vue --&gt;
+&lt;Teleport to="body"&gt;
+  &lt;div class="membership-gate-overlay" @click.self="handleSecondaryAction"&gt;
+    &lt;div class="membership-gate-modal"&gt;
+      &lt;CloseIcon @click="handleSecondaryAction" /&gt;
+      &lt;div class="modal-title"&gt;{{ title }}&lt;/div&gt;
+      &lt;div class="modal-description"&gt;{{ description }}&lt;/div&gt;
+      &lt;div class="primary-button" @click="handlePrimaryAction"&gt;
+        Upgrade to Pro
+      &lt;/div&gt;
+      &lt;div class="secondary-button" @click="handleSecondaryAction"&gt;
+        Continue with Free
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/Teleport&gt;
+
+&lt;!-- .primary-button --&gt;
+width: 100%; height: 48px; border-radius: 30px;
+background: #0F7FFF; color: #fff; font-weight: 600;</pre>
+            <button class="modal-copy-btn" onclick="copyCode('code-gate', this)">Copy</button>
           </div>
         </div>
 
-        <!-- MD Modal -->
-        <div class="modal-preview-wrap">
-          <div class="modal-size-label">
-            <span class="modal-size-name">MD</span>
-            <span class="token-chip" onclick="copyToken('modal-md', this)">modal-md</span>
-            <span class="modal-size-px">560px</span>
-          </div>
-          <div class="modal-scale-wrap">
-            <div class="modal-scale-inner">
-              <div class="modal-card" style="max-width: 560px;">
-                <div class="modal-header">
-                  <div class="modal-title">Edit profile</div>
-                  <button class="modal-close">✕</button>
-                </div>
-                <div class="modal-body">
-                  <p class="modal-body-text">Update your personal information and preferences below.</p>
-                  <div style="display: flex; flex-direction: column; gap: 12px;">
-                    <input class="input-field" type="text" placeholder="Full name" style="width:100%">
-                    <input class="input-field" type="text" placeholder="Email address" style="width:100%">
-                  </div>
-                </div>
-                <div class="modal-footer">
-                  <button class="btn btn-secondary btn-md">Discard</button>
-                  <button class="btn btn-blue btn-md">Save changes</button>
-                </div>
-              </div>
+        <!-- Member Required -->
+        <div class="modal-exhibit">
+          <div class="modal-exhibit-header">
+            <div>
+              <div class="modal-exhibit-name">Member Required</div>
+              <div class="modal-exhibit-desc">Hard paywall with decorative gradient background</div>
             </div>
           </div>
-        </div>
-
-        <!-- LG Modal -->
-        <div class="modal-preview-wrap">
-          <div class="modal-size-label">
-            <span class="modal-size-name">LG</span>
-            <span class="token-chip" onclick="copyToken('modal-lg', this)">modal-lg</span>
-            <span class="modal-size-px">640px</span>
-          </div>
-          <div class="modal-scale-wrap">
-            <div class="modal-scale-inner">
-              <div class="modal-card" style="max-width: 640px;">
-                <div class="modal-header">
-                  <div class="modal-title">Create new project</div>
-                  <button class="modal-close">✕</button>
-                </div>
-                <div class="modal-body">
-                  <p class="modal-body-text">Fill in the details below to set up your new project workspace.</p>
-                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-                    <input class="input-field" type="text" placeholder="Project name" style="grid-column: 1/-1">
-                    <input class="input-field" type="text" placeholder="Team">
-                    <input class="input-field" type="text" placeholder="Category">
-                  </div>
-                </div>
-                <div class="modal-footer">
-                  <button class="btn btn-secondary btn-md">Cancel</button>
-                  <button class="btn btn-primary btn-md">Create project</button>
-                </div>
-              </div>
+          <div class="modal-exhibit-body">
+            <div class="m-card" style="text-align:center;display:flex;flex-direction:column;align-items:center;gap:18px;overflow:hidden;position:relative">
+              <div style="position:absolute;bottom:-40px;right:-40px;width:160px;height:160px;border-radius:50%;background:#0F7FFF;opacity:.15;filter:blur(36px);pointer-events:none"></div>
+              <div style="position:absolute;bottom:-20px;right:60px;width:110px;height:110px;border-radius:50%;background:#8B5CF6;opacity:.15;filter:blur(28px);pointer-events:none"></div>
+              <button class="m-card-close" style="position:absolute;top:0;right:0;z-index:1">✕</button>
+              <h2 style="font-size:20px;font-weight:700;color:#232425;margin:0;padding-top:4px;position:relative;z-index:1">Upgrade Required</h2>
+              <p style="font-size:14px;color:#606366;line-height:1.6;margin:0;position:relative;z-index:1">This feature is only available for Pro members. Upgrade your plan to continue.</p>
+              <button class="m-btn m-btn-blue m-btn-pill m-btn-full" style="position:relative;z-index:1">Upgrade to Pro</button>
+              <button class="m-btn m-btn-ghost" style="font-size:13px;position:relative;z-index:1">Not now</button>
             </div>
           </div>
-        </div>
+          <div class="modal-exhibit-code">
+            <pre id="code-member">&lt;!-- MemberRequiredModal.vue --&gt;
+&lt;NModal v-model:show="showModal"&gt;
+  &lt;div class="member-required-dialog-wrapper"&gt;
+    &lt;div class="member-required-dialog"&gt;
+      &lt;div class="title"&gt;Upgrade Required&lt;/div&gt;
+      &lt;div class="message"&gt;{{ displayMessage }}&lt;/div&gt;
+      &lt;div class="button primary" @click="goToPricing"&gt;Upgrade to Pro&lt;/div&gt;
+      &lt;div class="button" @click="showModal = false"&gt;Not now&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- Decorative blur orbs --&gt;
+    &lt;div class="background"&gt;
+      &lt;div class="b1"&gt;&lt;/div&gt; &lt;!-- blue orb --&gt;
+      &lt;div class="b2"&gt;&lt;/div&gt; &lt;!-- purple orb --&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/NModal&gt;
 
-        <!-- XL Modal -->
-        <div class="modal-preview-wrap">
-          <div class="modal-size-label">
-            <span class="modal-size-name">XL</span>
-            <span class="token-chip" onclick="copyToken('modal-xl', this)">modal-xl</span>
-            <span class="modal-size-px">800px</span>
-          </div>
-          <div class="modal-scale-wrap">
-            <div class="modal-scale-inner">
-              <div class="modal-card" style="max-width: 800px;">
-                <div class="modal-header">
-                  <div class="modal-title">Advanced settings</div>
-                  <button class="modal-close">✕</button>
-                </div>
-                <div class="modal-body">
-                  <p class="modal-body-text">Configure advanced options for your integration. Changes apply immediately after saving.</p>
-                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-                    <input class="input-field" type="text" placeholder="API endpoint URL" style="grid-column: 1/-1">
-                    <input class="input-field" type="text" placeholder="Client ID">
-                    <input class="input-field" type="text" placeholder="Client Secret">
-                    <input class="input-field" type="text" placeholder="Timeout (ms)">
-                    <input class="input-field" type="text" placeholder="Max retries">
-                  </div>
-                </div>
-                <div class="modal-footer">
-                  <button class="btn btn-ghost btn-md">Reset defaults</button>
-                  <button class="btn btn-secondary btn-md">Cancel</button>
-                  <button class="btn btn-primary btn-md">Apply settings</button>
-                </div>
-              </div>
-            </div>
+&lt;!-- .b1, .b2 decorative orbs --&gt;
+position: absolute; border-radius: 50%; filter: blur(36px); opacity: 0.15;</pre>
+            <button class="modal-copy-btn" onclick="copyCode('code-member', this)">Copy</button>
           </div>
         </div>
-
       </div>
-        </details><!-- end token reference -->
+
+      <!-- ── Subscription ── -->
+      <div class="modal-gallery-group">
+        <div class="modal-gallery-label">Subscription</div>
+
+        <!-- Downgrade -->
+        <div class="modal-exhibit">
+          <div class="modal-exhibit-header">
+            <div>
+              <div class="modal-exhibit-name">Downgrade Confirm</div>
+              <div class="modal-exhibit-desc">Warning list of features lost on downgrade</div>
+            </div>
+          </div>
+          <div class="modal-exhibit-body">
+            <div class="m-card">
+              <div class="m-card-header">
+                <span class="m-card-title">Confirm Downgrade</span>
+                <button class="m-card-close">✕</button>
+              </div>
+              <div class="m-warning-card">
+                <p style="font-size:13px;font-weight:600;color:#92400E;margin:0 0 10px">After downgrading, you will lose access to:</p>
+                <div style="display:flex;flex-direction:column;gap:6px">
+                  <div style="display:flex;gap:8px;font-size:13px;color:#606366"><span style="color:#EF4444;font-weight:700">✕</span> Unused credits will be removed</div>
+                  <div style="display:flex;gap:8px;font-size:13px;color:#606366"><span style="color:#EF4444;font-weight:700">✕</span> Unlimited AI requests</div>
+                  <div style="display:flex;gap:8px;font-size:13px;color:#606366"><span style="color:#EF4444;font-weight:700">✕</span> Creative tools &amp; design studio</div>
+                  <div style="display:flex;gap:8px;font-size:13px;color:#606366"><span style="color:#EF4444;font-weight:700">✕</span> Meeting transcription &amp; Speakly</div>
+                  <div style="display:flex;gap:8px;font-size:13px;color:#606366"><span style="color:#EF4444;font-weight:700">✕</span> Additional cloud storage</div>
+                </div>
+              </div>
+              <div class="m-card-footer">
+                <button class="m-btn m-btn-outline">Cancel</button>
+                <button class="m-btn m-btn-danger">Confirm Downgrade</button>
+              </div>
+            </div>
+          </div>
+          <div class="modal-exhibit-code">
+            <pre id="code-downgrade">&lt;!-- SubscriptionDowngradeConfirmModal.vue --&gt;
+&lt;div class="modal-overlay" @click.self="$emit('close')"&gt;
+  &lt;div class="modal-window"&gt;
+    &lt;h2&gt;Confirm Downgrade&lt;/h2&gt;
+    &lt;!-- Warning card --&gt;
+    &lt;div class="warning-card"&gt;
+      &lt;p class="warning-label"&gt;After downgrading, you will lose access to:&lt;/p&gt;
+      &lt;div v-for="item in lostFeatures" class="warning-item"&gt;
+        &lt;svg class="warning-x"&gt;...&lt;/svg&gt;
+        &lt;span&gt;{{ item }}&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="actions"&gt;
+      &lt;button class="btn-outline" @click="$emit('close')"&gt;Cancel&lt;/button&gt;
+      &lt;button class="btn-danger" @click="confirmDowngrade"&gt;Confirm Downgrade&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- .warning-card --&gt;
+background: #FFFBEE; border-left: 3px solid #F59E0B;
+border-radius: 0 8px 8px 0; padding: 14px 16px;</pre>
+            <button class="modal-copy-btn" onclick="copyCode('code-downgrade', this)">Copy</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Workspace ── -->
+      <div class="modal-gallery-group">
+        <div class="modal-gallery-label">Workspace</div>
+
+        <!-- Create Hub -->
+        <div class="modal-exhibit">
+          <div class="modal-exhibit-header">
+            <div>
+              <div class="modal-exhibit-name">Create Hub</div>
+              <div class="modal-exhibit-desc">Create or edit a Hub with name, color picker, description</div>
+            </div>
+          </div>
+          <div class="modal-exhibit-body">
+            <div class="m-card" style="max-width:480px">
+              <div class="m-card-header" style="margin-bottom:20px">
+                <span class="m-card-title" style="font-size:17px">Create Hub</span>
+                <button class="m-card-close">✕</button>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:16px;margin-bottom:20px">
+                <div>
+                  <div style="font-size:13px;font-weight:500;color:#232425;margin-bottom:6px">Name</div>
+                  <input type="text" placeholder="Hub name" style="width:100%;height:40px;border-radius:8px;border:1px solid #EAEAEA;padding:0 12px;font-size:14px;color:#232425;outline:none;box-sizing:border-box">
+                </div>
+                <div>
+                  <div style="font-size:13px;font-weight:500;color:#232425;margin-bottom:8px">Color</div>
+                  <div style="display:flex;gap:8px">
+                    <div style="width:26px;height:26px;border-radius:50%;background:#FF6B6B;cursor:pointer;outline:2.5px solid #232425;outline-offset:2px"></div>
+                    <div style="width:26px;height:26px;border-radius:50%;background:#FF9F43;cursor:pointer"></div>
+                    <div style="width:26px;height:26px;border-radius:50%;background:#FECA57;cursor:pointer"></div>
+                    <div style="width:26px;height:26px;border-radius:50%;background:#48DBFB;cursor:pointer"></div>
+                    <div style="width:26px;height:26px;border-radius:50%;background:#1DD1A1;cursor:pointer"></div>
+                    <div style="width:26px;height:26px;border-radius:50%;background:#54A0FF;cursor:pointer"></div>
+                    <div style="width:26px;height:26px;border-radius:50%;background:#5F27CD;cursor:pointer"></div>
+                    <div style="width:26px;height:26px;border-radius:50%;background:#232425;cursor:pointer"></div>
+                  </div>
+                </div>
+                <div>
+                  <div style="font-size:13px;font-weight:500;color:#232425;margin-bottom:6px">Description</div>
+                  <textarea placeholder="Describe this hub..." rows="3" style="width:100%;border-radius:8px;border:1px solid #EAEAEA;padding:10px 12px;font-size:14px;color:#232425;outline:none;resize:none;font-family:inherit;box-sizing:border-box"></textarea>
+                </div>
+              </div>
+              <div class="m-card-footer">
+                <button class="m-btn m-btn-outline">Cancel</button>
+                <button class="m-btn m-btn-primary">Create</button>
+              </div>
+            </div>
+          </div>
+          <div class="modal-exhibit-code">
+            <pre id="code-hub">&lt;!-- CreateHubDialog.vue --&gt;
+&lt;div class="dialog-overlay"&gt;
+  &lt;div class="dialog-content"&gt;
+    &lt;div class="dialog-header"&gt;
+      &lt;p class="dialog-title"&gt;Create Hub&lt;/p&gt;
+      &lt;button class="close-btn" @click="close"&gt;×&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class="form"&gt;
+      &lt;div class="form-field"&gt;
+        &lt;p class="field-label"&gt;Name&lt;/p&gt;
+        &lt;input v-model="formData.name" class="text-input" placeholder="Hub name" maxlength="50" /&gt;
+      &lt;/div&gt;
+      &lt;div class="form-field"&gt;
+        &lt;p class="field-label"&gt;Color&lt;/p&gt;
+        &lt;div class="color-options"&gt;
+          &lt;button v-for="(color, i) in colorOptions" :key="i"
+            :style="{ backgroundColor: color }"
+            :class="['color-option', { selected: selectedColorIndex === i }]"
+            @click="selectColor(i)" /&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="form-field"&gt;
+        &lt;p class="field-label"&gt;Description&lt;/p&gt;
+        &lt;textarea v-model="formData.description" class="text-area" maxlength="500" /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="action-buttons"&gt;
+      &lt;div class="cancel-button" @click="close"&gt;Cancel&lt;/div&gt;
+      &lt;div :class="['submit-button', { enabled: isFormValid }]" @click="submit"&gt;Create&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+            <button class="modal-copy-btn" onclick="copyCode('code-hub', this)">Copy</button>
+          </div>
+        </div>
+
+        <!-- Delete Hub -->
+        <div class="modal-exhibit">
+          <div class="modal-exhibit-header">
+            <div>
+              <div class="modal-exhibit-name">Delete Hub</div>
+              <div class="modal-exhibit-desc">Multi-step deletion with progress indicators</div>
+            </div>
+          </div>
+          <div class="modal-exhibit-body">
+            <div class="m-card" style="max-width:480px">
+              <div class="m-card-header" style="margin-bottom:16px">
+                <span class="m-card-title" style="font-size:17px">Delete Hub</span>
+                <button class="m-card-close">✕</button>
+              </div>
+              <div style="margin-bottom:20px">
+                <div class="m-step">
+                  <div class="m-step-dot m-step-done">✓</div>
+                  <div><div style="font-size:14px;font-weight:600;color:#232425">Removing agents</div><div style="font-size:13px;color:#606366;margin-top:2px">Disconnecting all agents from this hub</div></div>
+                </div>
+                <div class="m-step">
+                  <div class="m-step-dot m-step-active">2</div>
+                  <div><div style="font-size:14px;font-weight:600;color:#232425">Clearing data</div><div style="font-size:13px;color:#606366;margin-top:2px">Removing all hub files and history</div></div>
+                </div>
+                <div class="m-step" style="opacity:0.45">
+                  <div class="m-step-dot m-step-pending">3</div>
+                  <div><div style="font-size:14px;font-weight:600;color:#232425">Finalizing</div><div style="font-size:13px;color:#606366;margin-top:2px">Completing the deletion process</div></div>
+                </div>
+              </div>
+              <div class="m-card-footer">
+                <button class="m-btn m-btn-outline">Cancel</button>
+                <button class="m-btn m-btn-danger">Delete</button>
+              </div>
+            </div>
+          </div>
+          <div class="modal-exhibit-code">
+            <pre id="code-delete-hub">&lt;!-- DeleteHubDialog.vue --&gt;
+&lt;div class="dialog-overlay"&gt;
+  &lt;div class="dialog-content"&gt;
+    &lt;div class="dialog-header"&gt;
+      &lt;p&gt;Delete Hub&lt;/p&gt;
+      &lt;button @click="handleCancel"&gt;×&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class="steps-container"&gt;
+      &lt;div v-for="(step, i) in steps" :key="i"
+        class="step-item"
+        :class="{ active: currentStep === i+1, completed: currentStep &gt; i+1 }"&gt;
+        &lt;div class="step-indicator"&gt;
+          &lt;span v-if="currentStep &gt; i+1"&gt;✓&lt;/span&gt;
+          &lt;span v-else&gt;{{ i+1 }}&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class="step-content"&gt;
+          &lt;div class="step-title"&gt;{{ step.title }}&lt;/div&gt;
+          &lt;div class="step-description"&gt;{{ step.description }}&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="actions"&gt;
+      &lt;button @click="handleCancel"&gt;Cancel&lt;/button&gt;
+      &lt;button class="btn-danger" @click="startDelete"&gt;Delete&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+            <button class="modal-copy-btn" onclick="copyCode('code-delete-hub', this)">Copy</button>
+          </div>
+        </div>
+      </div>
+
+      <script>
+      function copyCode(id, btn) {
+        const pre = document.getElementById(id);
+        if (!pre) return;
+        navigator.clipboard.writeText(pre.innerText).then(() => {
+          btn.textContent = 'Copied!';
+          btn.classList.add('copied');
+          setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+        });
+      }
+      </script>
+
     </section>
 
     <!-- ========================================================
