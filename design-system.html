@@ -1166,7 +1166,8 @@
                 <span class="swatch-label">Blue / CTA</span>
               </div>
             </div>
-          </div>
+          </details>
+        </div>
         </div>
 
         <!-- Text -->
@@ -1213,7 +1214,8 @@
                 <span class="swatch-label">Links</span>
               </div>
             </div>
-          </div>
+          </details>
+        </div>
         </div>
 
         <!-- Background -->
@@ -1244,7 +1246,8 @@
                 <span class="swatch-label">Subtle fill</span>
               </div>
             </div>
-          </div>
+          </details>
+        </div>
         </div>
 
         <!-- Border -->
@@ -1283,7 +1286,8 @@
                 <span class="swatch-label">Focus / selected</span>
               </div>
             </div>
-          </div>
+          </details>
+        </div>
         </div>
 
         <!-- Status -->
@@ -1322,7 +1326,8 @@
                 <span class="swatch-label">Informational</span>
               </div>
             </div>
-          </div>
+          </details>
+        </div>
         </div>
       </div>
     </section>
@@ -1393,7 +1398,8 @@
               <span class="type-spec">12px / 400 / 1.4</span>
             </div>
             <div class="type-sample t-caption">Caption text for timestamps, footnotes, and fine print.</div>
-          </div>
+          </details>
+        </div>
         </div>
       </div>
     </section>
@@ -1458,7 +1464,8 @@
             <div class="spacing-meta"><span class="token-chip" onclick="copyToken('--spacing-10', this)">--spacing-10</span></div>
             <div class="spacing-bar-wrap"><div class="spacing-bar" style="width:48px"></div></div>
             <div class="spacing-px">48px</div>
-          </div>
+          </details>
+        </div>
         </div>
       </div>
     </section>
@@ -1522,7 +1529,8 @@
               <span class="radius-name" onclick="copyToken('--radius-pill', this)" style="cursor:pointer">--radius-pill</span>
               <span class="radius-value">30px · Pill</span>
             </div>
-          </div>
+          </details>
+        </div>
         </div>
       </div>
     </section>
@@ -1591,7 +1599,8 @@
           <div class="btn-size-col disabled-col">
             <button class="btn btn-primary btn-pill btn-md" disabled>Get started</button>
             <div class="size-label">disabled</div>
-          </div>
+          </details>
+        </div>
         </div>
       </div>
 
@@ -1617,7 +1626,8 @@
           <div class="btn-size-col disabled-col">
             <button class="btn btn-primary btn-md" disabled>Save changes</button>
             <div class="size-label">disabled</div>
-          </div>
+          </details>
+        </div>
         </div>
       </div>
 
@@ -1643,7 +1653,8 @@
           <div class="btn-size-col disabled-col">
             <button class="btn btn-blue btn-pill btn-md" disabled>Try for free</button>
             <div class="size-label">disabled</div>
-          </div>
+          </details>
+        </div>
         </div>
       </div>
 
@@ -1669,7 +1680,8 @@
           <div class="btn-size-col disabled-col">
             <button class="btn btn-blue btn-md" disabled>Submit</button>
             <div class="size-label">disabled</div>
-          </div>
+          </details>
+        </div>
         </div>
       </div>
 
@@ -1695,7 +1707,8 @@
           <div class="btn-size-col disabled-col">
             <button class="btn btn-secondary btn-md" disabled>Cancel</button>
             <div class="size-label">disabled</div>
-          </div>
+          </details>
+        </div>
         </div>
       </div>
 
@@ -1721,7 +1734,8 @@
           <div class="btn-size-col disabled-col">
             <button class="btn btn-outline btn-md" disabled>Edit profile</button>
             <div class="size-label">disabled</div>
-          </div>
+          </details>
+        </div>
         </div>
       </div>
 
@@ -1747,7 +1761,8 @@
           <div class="btn-size-col disabled-col">
             <button class="btn btn-danger btn-md" disabled>Delete</button>
             <div class="size-label">disabled</div>
-          </div>
+          </details>
+        </div>
         </div>
       </div>
 
@@ -1773,7 +1788,8 @@
           <div class="btn-size-col disabled-col">
             <button class="btn btn-ghost btn-md" disabled>More options</button>
             <div class="size-label">disabled</div>
-          </div>
+          </details>
+        </div>
         </div>
       </div>
 
@@ -1799,7 +1815,8 @@
           <div class="btn-size-col disabled-col">
             <button class="btn btn-link btn-md" disabled>Learn more</button>
             <div class="size-label">disabled</div>
-          </div>
+          </details>
+        </div>
         </div>
       </div>
     </section>
@@ -1888,6 +1905,109 @@
         <p class="section-desc">Production modal content redesigned to conform to the Design System. Each modal uses correct tokens — copy the compliant implementation below.</p>
       </div>
 
+      <div class="mg-tokens-banner">
+        <div class="mg-tokens-banner-left">
+          <span class="mg-tokens-banner-icon">📦</span>
+          <div>
+            <div class="mg-tokens-banner-title">Modal Design Tokens</div>
+            <div class="mg-tokens-banner-desc">Copy and add to your <code>:root {}</code> if tokens are not yet imported</div>
+          </div>
+        </div>
+        <button class="mg-tokens-copy-btn" onclick="copyModalTokens(this)">Copy all tokens</button>
+      </div>
+      <pre id="modal-tokens-block" style="display:none">:root {
+  /* Layout */
+  --modal-radius: 16px;
+  --modal-padding: 24px;
+  --modal-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  --modal-width-sm: 480px;
+  --modal-width-md: 560px;
+  --modal-width-lg: 640px;
+  --modal-title-size: 20px;
+  --modal-title-size-lg: 24px;
+  --modal-title-weight: 700;
+
+  /* Brand colors */
+  --color-brand-primary: #232425;
+  --color-brand-hover: #393A3B;
+  --color-brand-secondary: #0F7FFF;
+
+  /* Text */
+  --color-text-primary: #232425;
+  --color-text-secondary: #606366;
+  --color-text-tertiary: #909499;
+
+  /* Backgrounds */
+  --color-bg-page: #FFFFFF;
+  --color-bg-subtle: #F5F5F5;
+
+  /* Borders */
+  --color-border-default: #EAEAEA;
+  --color-border-brand: #0F7FFF;
+  --color-border-strong: #D0D3D8;
+  --color-border-subtle: #F2F2F2;
+
+  /* Status */
+  --color-error: #EF4444;
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+
+  /* Radius */
+  --radius-4: 4px;
+  --radius-6: 6px;
+  --radius-8: 8px;
+  --radius-10: 10px;
+  --radius-12: 12px;
+
+  /* Sizes */
+  --size-sm: 32px;
+  --size-md: 40px;
+  --size-lg: 48px;
+
+  /* Spacing */
+  --space-4: 4px;   --space-6: 6px;   --space-8: 8px;
+  --space-10: 10px; --space-12: 12px; --space-14: 14px;
+  --space-16: 16px; --space-20: 20px; --space-24: 24px; --space-48: 48px;
+
+  /* Typography */
+  --text-caption: 12px;
+  --text-small: 14px;
+  --text-body: 16px;
+
+  /* Misc */
+  --transition-fast: 150ms;
+  --border-width-1: 1px;
+}</pre>
+
+      <style>
+        .mg-tokens-banner {
+          display: flex; align-items: center; justify-content: space-between;
+          gap: 16px; padding: 16px 20px; background: #F0F6FF;
+          border: 1px solid #BFD7FF; border-radius: 10px; margin-bottom: 24px;
+        }
+        .mg-tokens-banner-left { display: flex; align-items: center; gap: 12px; }
+        .mg-tokens-banner-icon { font-size: 20px; }
+        .mg-tokens-banner-title { font-size: 14px; font-weight: 600; color: #1D4ED8; margin-bottom: 2px; }
+        .mg-tokens-banner-desc { font-size: 12px; color: #3B82F6; }
+        .mg-tokens-banner-desc code { background: rgba(59,130,246,0.1); padding: 1px 5px; border-radius: 4px; font-family: "SF Mono", monospace; }
+        .mg-tokens-copy-btn { padding: 8px 16px; border-radius: 8px; border: none; background: #1D4ED8; color: #fff; font-size: 13px; font-weight: 600; cursor: pointer; white-space: nowrap; transition: background 0.15s; flex-shrink: 0; }
+        .mg-tokens-copy-btn:hover { background: #1E40AF; }
+        .mg-tokens-copy-btn.ok { background: #10B981; }
+      </style>
+
+      <script>
+      function copyModalTokens(btn) {
+        const el = document.getElementById('modal-tokens-block');
+        if (!el) return;
+        navigator.clipboard.writeText(el.innerText).then(() => {
+          btn.textContent = 'Copied!';
+          btn.classList.add('ok');
+          setTimeout(() => { btn.textContent = 'Copy all tokens'; btn.classList.remove('ok'); }, 2500);
+        });
+      }
+      </script>
+
+
       <style>
         .mg-group { margin-bottom: 48px; }
         .mg-label { font-size: 11px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--ui-text-faint); margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--ui-border); }
@@ -1903,6 +2023,21 @@
         .mg-copy { position: absolute; top: 10px; right: 12px; padding: 4px 10px; border-radius: 6px; border: none; background: rgba(255,255,255,.1); color: #cbd5e1; font-size: 11px; font-family: inherit; cursor: pointer; transition: all .15s; }
         .mg-copy:hover { background: rgba(255,255,255,.18); color: #fff; }
         .mg-copy.ok { background: #10B981; color: #fff; }
+        /* Collapsible code blocks */
+        .mg-code-details { border-top: 1px solid var(--ui-border, #EAEAEA); }
+        .mg-code-toggle {
+          display: flex; align-items: center; gap: 6px;
+          padding: 10px 20px; font-size: 12px; font-weight: 600;
+          color: var(--ui-text-faint, #909499); cursor: pointer;
+          list-style: none; user-select: none;
+          transition: color 0.15s;
+        }
+        .mg-code-toggle::-webkit-details-marker { display: none; }
+        .mg-code-toggle::before { content: '›'; font-size: 14px; transition: transform 0.15s; display: inline-block; }
+        .mg-code-details[open] .mg-code-toggle::before { transform: rotate(90deg); }
+        .mg-code-details[open] .mg-code-toggle { color: var(--ui-text-secondary, #606366); }
+        .mg-code-toggle:hover { color: var(--ui-text-secondary, #606366); }
+
 
         /* ── DS-Compliant Modal Styles (tokens applied) ── */
         .ds-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; z-index: 999; }
@@ -1991,17 +2126,19 @@
               </div>
             </div>
           </div>
+          <details class="mg-code-details">
+            <summary class="mg-code-toggle">查看代码</summary>
           <div class="mg-code-wrap">
             <pre id="c-confirm">&lt;!-- ConfirmDialog.vue — DS-compliant implementation --&gt;
 &lt;div class="modal-overlay"&gt; &lt;!-- rgba(0,0,0,0.4) backdrop --&gt;
-  &lt;div class="modal"&gt; &lt;!-- width:480px; border-radius:var(--modal-radius); padding:var(--modal-padding); --&gt;
+  &lt;div class="modal"&gt; &lt;!-- width:480px; border-radius:var(--modal-radius, 16px); padding:var(--modal-padding, 24px); --&gt;
     &lt;button class="close-btn" @click="handleCancel"&gt;✕&lt;/button&gt;
 
     &lt;h3 class="modal-title"&gt;{{ title }}&lt;/h3&gt;
-    &lt;!-- font-size:var(--modal-title-size); font-weight:700; color:var(--color-text-primary) --&gt;
+    &lt;!-- font-size:var(--modal-title-size, 20px); font-weight:700; color:var(--color-text-primary, #232425) --&gt;
 
     &lt;p class="modal-body"&gt;{{ message }}&lt;/p&gt;
-    &lt;!-- font-size:var(--text-small); color:var(--color-text-secondary); line-height:1.6 --&gt;
+    &lt;!-- font-size:var(--text-small, 14px); color:var(--color-text-secondary, #606366); line-height:1.6 --&gt;
 
     &lt;div class="modal-footer"&gt;
       &lt;button class="btn-outline" @click="handleCancel"&gt;{{ cancelText }}&lt;/button&gt;
@@ -2013,11 +2150,11 @@
 &lt;/div&gt;
 
 /* Token usage */
-.modal         { border-radius: var(--modal-radius); padding: var(--modal-padding); box-shadow: var(--modal-shadow); }
-.modal-title   { font-size: var(--modal-title-size); font-weight: var(--modal-title-weight); }
-.btn-primary   { background: var(--color-brand-primary); border-radius: var(--radius-8); height: var(--size-md); }
-.btn-danger    { background: var(--color-error); border-radius: var(--radius-8); height: var(--size-md); }
-.btn-outline   { border: 1px solid var(--color-border-default); border-radius: var(--radius-8); height: var(--size-md); }</pre>
+.modal         { border-radius: var(--modal-radius, 16px); padding: var(--modal-padding, 24px); box-shadow: var(--modal-shadow, 0 10px 25px rgba(0,0,0,0.2)); }
+.modal-title   { font-size: var(--modal-title-size, 20px); font-weight: var(--modal-title-weight, 700); }
+.btn-primary   { background: var(--color-brand-primary, #232425); border-radius: var(--radius-8, 8px); height: var(--size-md, 40px); }
+.btn-danger    { background: var(--color-error, #EF4444); border-radius: var(--radius-8, 8px); height: var(--size-md, 40px); }
+.btn-outline   { border: 1px solid var(--color-border-default, #EAEAEA); border-radius: var(--radius-8, 8px); height: var(--size-md, 40px); }</pre>
             <button class="mg-copy" onclick="mgCopy('c-confirm',this)">Copy</button>
           </div>
         </div>
@@ -2054,9 +2191,11 @@
               </div>
             </div>
           </div>
+          <details class="mg-code-details">
+            <summary class="mg-code-toggle">查看代码</summary>
           <div class="mg-code-wrap">
             <pre id="c-login">&lt;!-- LoginDialog.vue — DS-compliant implementation --&gt;
-&lt;div class="modal"&gt; &lt;!-- width:480px; border-radius:var(--modal-radius) --&gt;
+&lt;div class="modal"&gt; &lt;!-- width:480px; border-radius:var(--modal-radius, 16px) --&gt;
   &lt;div class="header-row"&gt;
     &lt;button class="close-btn" @click="handleClose"&gt;✕&lt;/button&gt;
   &lt;/div&gt;
@@ -2082,14 +2221,14 @@
 /* Token usage */
 .social-btn {
   width: 100%; height: 44px;
-  border-radius: var(--radius-12);
-  background: var(--color-bg-subtle);   /* #F5F5F5 */
-  border: none; font-size: var(--text-body);
-  gap: var(--space-8);
+  border-radius: var(--radius-12, 12px);
+  background: var(--color-bg-subtle, #F5F5F5);   /* #F5F5F5 */
+  border: none; font-size: var(--text-body, 16px);
+  gap: var(--space-8, 8px);
 }
 .social-btn.outline {
-  background: var(--color-bg-page);
-  border: 1px solid var(--color-border-default);
+  background: var(--color-bg-page, #FFFFFF);
+  border: 1px solid var(--color-border-default, #EAEAEA);
 }</pre>
             <button class="mg-copy" onclick="mgCopy('c-login',this)">Copy</button>
           </div>
@@ -2120,6 +2259,8 @@
               <button class="ds-btn ds-btn-primary-pill ds-btn-lg ds-btn-full">Get Started</button>
             </div>
           </div>
+          <details class="mg-code-details">
+            <summary class="mg-code-toggle">查看代码</summary>
           <div class="mg-code-wrap">
             <pre id="c-success">&lt;!-- SubscriptionSuccessModal.vue — DS-compliant --&gt;
 &lt;div class="modal-overlay" @click.self="$emit('close')"&gt;
@@ -2128,8 +2269,8 @@
 
     &lt;!-- Success icon --&gt;
     &lt;svg width="70" height="70" viewBox="0 0 70 70"&gt;
-      &lt;circle cx="35" cy="35" r="30" fill="none" stroke="var(--color-success)" stroke-width="4"/&gt;
-      &lt;path d="M20 36l10 10 20-22" stroke="var(--color-success)" stroke-width="4"
+      &lt;circle cx="35" cy="35" r="30" fill="none" stroke="var(--color-success, #10B981)" stroke-width="4"/&gt;
+      &lt;path d="M20 36l10 10 20-22" stroke="var(--color-success, #10B981)" stroke-width="4"
         fill="none" stroke-linecap="round" stroke-linejoin="round"/&gt;
     &lt;/svg&gt;
 
@@ -2143,9 +2284,9 @@
 &lt;/div&gt;
 
 /* Token usage */
-.modal          { border-radius: var(--modal-radius); padding: var(--modal-padding); box-shadow: var(--modal-shadow); }
-.btn-primary-pill { background: var(--color-brand-primary); border-radius: 30px; height: var(--size-lg); }
-.close-btn      { background: var(--color-bg-subtle); border-radius: 50%; }</pre>
+.modal          { border-radius: var(--modal-radius, 16px); padding: var(--modal-padding, 24px); box-shadow: var(--modal-shadow, 0 10px 25px rgba(0,0,0,0.2)); }
+.btn-primary-pill { background: var(--color-brand-primary, #232425); border-radius: 30px; height: var(--size-lg, 48px); }
+.close-btn      { background: var(--color-bg-subtle, #F5F5F5); border-radius: 50%; }</pre>
             <button class="mg-copy" onclick="mgCopy('c-success',this)">Copy</button>
           </div>
         </div>
@@ -2170,6 +2311,8 @@
               </div>
             </div>
           </div>
+          <details class="mg-code-details">
+            <summary class="mg-code-toggle">查看代码</summary>
           <div class="mg-code-wrap">
             <pre id="c-task">&lt;!-- TaskSubmittedModal.vue — DS-compliant --&gt;
 &lt;NModal v-model:show="internalShow" :mask-closable="maskClosable"&gt;
@@ -2177,10 +2320,10 @@
     &lt;p style="font-size:28px"&gt;🎉 🎉 🎉&lt;/p&gt;
 
     &lt;h3&gt;Your task has been submitted!&lt;/h3&gt;
-    &lt;!-- font-size:var(--modal-title-size); font-weight:700 --&gt;
+    &lt;!-- font-size:var(--modal-title-size, 20px); font-weight:700 --&gt;
 
     &lt;p class="bold"&gt;Feel free to leave — we'll notify you when done.&lt;/p&gt;
-    &lt;!-- font-weight:600; color:var(--color-text-primary) --&gt;
+    &lt;!-- font-weight:600; color:var(--color-text-primary, #232425) --&gt;
 
     &lt;div class="modal-footer" style="justify-content:center"&gt;
       &lt;button class="btn-outline" @click="handleCancel"&gt;OK&lt;/button&gt;
@@ -2192,9 +2335,9 @@
 &lt;/NModal&gt;
 
 /* Token usage */
-.modal     { border-radius: var(--modal-radius); padding: var(--modal-padding); }
-.btn-primary  { background: var(--color-brand-primary); border-radius: var(--radius-8); height: var(--size-md); }
-.btn-outline  { border: 1px solid var(--color-border-default); border-radius: var(--radius-8); height: var(--size-md); }</pre>
+.modal     { border-radius: var(--modal-radius, 16px); padding: var(--modal-padding, 24px); }
+.btn-primary  { background: var(--color-brand-primary, #232425); border-radius: var(--radius-8, 8px); height: var(--size-md, 40px); }
+.btn-outline  { border: 1px solid var(--color-border-default, #EAEAEA); border-radius: var(--radius-8, 8px); height: var(--size-md, 40px); }</pre>
             <button class="mg-copy" onclick="mgCopy('c-task',this)">Copy</button>
           </div>
         </div>
@@ -2222,6 +2365,8 @@
               <button class="ds-btn ds-btn-ghost" style="font-size:13px">Continue with Free</button>
             </div>
           </div>
+          <details class="mg-code-details">
+            <summary class="mg-code-toggle">查看代码</summary>
           <div class="mg-code-wrap">
             <pre id="c-gate">&lt;!-- MembershipGateModal.vue — DS-compliant --&gt;
 &lt;Teleport to="body"&gt;
@@ -2245,8 +2390,8 @@
 &lt;/Teleport&gt;
 
 /* Token usage */
-.btn-blue-pill { background: var(--color-brand-secondary); border-radius: 30px; height: var(--size-lg); }
-.btn-ghost     { background: none; border: none; color: var(--color-text-secondary); font-size: var(--text-small); }</pre>
+.btn-blue-pill { background: var(--color-brand-secondary, #0F7FFF); border-radius: 30px; height: var(--size-lg, 48px); }
+.btn-ghost     { background: none; border: none; color: var(--color-text-secondary, #606366); font-size: var(--text-small, 14px); }</pre>
             <button class="mg-copy" onclick="mgCopy('c-gate',this)">Copy</button>
           </div>
         </div>
@@ -2271,6 +2416,8 @@
               <button class="ds-btn ds-btn-ghost" style="font-size:13px;position:relative;z-index:1">Not now</button>
             </div>
           </div>
+          <details class="mg-code-details">
+            <summary class="mg-code-toggle">查看代码</summary>
           <div class="mg-code-wrap">
             <pre id="c-member">&lt;!-- MemberRequiredModal.vue — DS-compliant --&gt;
 &lt;NModal v-model:show="showModal"&gt;
@@ -2295,7 +2442,7 @@
 
 /* Orb tokens */
 .orb { position: absolute; border-radius: 50%; filter: blur(40px); pointer-events: none; }
-.orb-blue   { width: 160px; height: 160px; bottom: -40px; right: -40px; background: var(--color-brand-secondary); opacity: 0.12; }
+.orb-blue   { width: 160px; height: 160px; bottom: -40px; right: -40px; background: var(--color-brand-secondary, #0F7FFF); opacity: 0.12; }
 .orb-purple { width: 110px; height: 110px; bottom: -20px; right: 60px; background: #8B5CF6; opacity: 0.12; }</pre>
             <button class="mg-copy" onclick="mgCopy('c-member',this)">Copy</button>
           </div>
@@ -2333,6 +2480,8 @@
               </div>
             </div>
           </div>
+          <details class="mg-code-details">
+            <summary class="mg-code-toggle">查看代码</summary>
           <div class="mg-code-wrap">
             <pre id="c-downgrade">&lt;!-- SubscriptionDowngradeConfirmModal.vue — DS-compliant --&gt;
 &lt;div class="modal-overlay" @click.self="$emit('close')"&gt;
@@ -2359,12 +2508,12 @@
 /* Warning card token pattern */
 .warning-card {
   background: #FFFBEE;
-  border-left: 3px solid var(--color-warning);  /* #F59E0B */
-  border-radius: 0 var(--radius-8) var(--radius-8) 0;
-  padding: var(--space-16);
-  margin-bottom: var(--space-20);
+  border-left: 3px solid var(--color-warning, #F59E0B);  /* #F59E0B */
+  border-radius: 0 var(--radius-8, 8px) var(--radius-8, 8px) 0;
+  padding: var(--space-16, 16px);
+  margin-bottom: var(--space-20, 20px);
 }
-.btn-danger { background: var(--color-error); border-radius: var(--radius-8); height: var(--size-md); }</pre>
+.btn-danger { background: var(--color-error, #EF4444); border-radius: var(--radius-8, 8px); height: var(--size-md, 40px); }</pre>
             <button class="mg-copy" onclick="mgCopy('c-downgrade',this)">Copy</button>
           </div>
         </div>
@@ -2414,10 +2563,12 @@
               </div>
             </div>
           </div>
+          <details class="mg-code-details">
+            <summary class="mg-code-toggle">查看代码</summary>
           <div class="mg-code-wrap">
             <pre id="c-hub">&lt;!-- CreateHubDialog.vue — DS-compliant --&gt;
 &lt;div class="dialog-overlay" v-if="modelValue"&gt;
-  &lt;div class="dialog" style="width:480px"&gt;  &lt;!-- border-radius:var(--modal-radius) --&gt;
+  &lt;div class="dialog" style="width:480px"&gt;  &lt;!-- border-radius:var(--modal-radius, 16px) --&gt;
     &lt;div class="dialog-header"&gt;
       &lt;h3&gt;Create Hub&lt;/h3&gt;
       &lt;button class="close-btn" @click="close"&gt;✕&lt;/button&gt;
@@ -2453,10 +2604,10 @@
 &lt;/div&gt;
 
 /* Token usage */
-.ds-input    { border: 1px solid var(--color-border-default); border-radius: var(--radius-8); height: var(--size-md); }
-.ds-input:focus { border-color: var(--color-border-brand); box-shadow: 0 0 0 3px rgba(15,127,255,.1); }
-.ds-textarea { border: 1px solid var(--color-border-default); border-radius: var(--radius-8); }
-.color-dot.selected { outline: 2.5px solid var(--color-text-primary); outline-offset: 2px; }</pre>
+.ds-input    { border: 1px solid var(--color-border-default, #EAEAEA); border-radius: var(--radius-8, 8px); height: var(--size-md, 40px); }
+.ds-input:focus { border-color: var(--color-border-brand, #0F7FFF); box-shadow: 0 0 0 3px rgba(15,127,255,.1); }
+.ds-textarea { border: 1px solid var(--color-border-default, #EAEAEA); border-radius: var(--radius-8, 8px); }
+.color-dot.selected { outline: 2.5px solid var(--color-text-primary, #232425); outline-offset: 2px; }</pre>
             <button class="mg-copy" onclick="mgCopy('c-hub',this)">Copy</button>
           </div>
         </div>
@@ -2494,6 +2645,8 @@
               </div>
             </div>
           </div>
+          <details class="mg-code-details">
+            <summary class="mg-code-toggle">查看代码</summary>
           <div class="mg-code-wrap">
             <pre id="c-delhub">&lt;!-- DeleteHubDialog.vue — DS-compliant --&gt;
 &lt;div class="dialog-overlay" v-if="modelValue"&gt;
@@ -2526,10 +2679,750 @@
 
 /* Step indicator tokens */
 .step-dot         { width:28px; height:28px; border-radius:50%; font-size:12px; font-weight:700; }
-.step.done .step-dot   { background: var(--color-brand-primary); color:#fff; }
-.step.active .step-dot { background: var(--color-brand-secondary); color:#fff; }
-.step.pending .step-dot { border: 1.5px solid var(--color-border-strong); color: var(--color-text-tertiary); }</pre>
+.step.done .step-dot   { background: var(--color-brand-primary, #232425); color:#fff; }
+.step.active .step-dot { background: var(--color-brand-secondary, #0F7FFF); color:#fff; }
+.step.pending .step-dot { border: 1.5px solid var(--color-border-strong, #D0D3D8); color: var(--color-text-tertiary, #909499); }</pre>
             <button class="mg-copy" onclick="mgCopy('c-delhub',this)">Copy</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── System (additional) ── -->
+      <div class="mg-group">
+        <div class="mg-label">System — Additional</div>
+
+        <!-- GlobalDialog -->
+        <div class="mg-card">
+          <div class="mg-card-meta">
+            <div class="mg-card-info">
+              <div class="mg-card-name">Global Dialog — Input Mode <code style="font-size:11px;background:#f5f5f7;padding:2px 6px;border-radius:4px;color:#606366">GlobalDialog.vue</code></div>
+              <div class="mg-card-desc">Multi-mode dialog: confirm / input / danger. Shown here in input mode with text field.</div>
+            </div>
+            <span class="mg-badge">DS Compliant</span>
+          </div>
+          <div class="mg-preview">
+            <div class="ds-modal-wrap sm">
+              <button class="ds-close">✕</button>
+              <div class="ds-modal-title">Rename workspace</div>
+              <div class="ds-modal-body" style="margin-bottom:12px">Enter a new name for your workspace.</div>
+              <div class="ds-field">
+                <input class="ds-input" type="text" placeholder="Enter workspace name..." style="margin-bottom:0">
+              </div>
+              <div class="ds-modal-footer" style="margin-top:20px">
+                <button class="ds-btn ds-btn-outline">Cancel</button>
+                <button class="ds-btn ds-btn-primary">Rename</button>
+              </div>
+            </div>
+          </div>
+          <details class="mg-code-details">
+            <summary class="mg-code-toggle">查看代码</summary>
+          <div class="mg-code-wrap">
+            <pre id="c-globalDialog">&lt;!-- GlobalDialog.vue — DS-compliant (input mode) --&gt;
+&lt;div class="modal" style="width:480px"&gt;
+  &lt;button class="close-btn"&gt;✕&lt;/button&gt;
+  &lt;h3&gt;{{ title }}&lt;/h3&gt;
+  &lt;p&gt;{{ content }}&lt;/p&gt;
+
+  &lt;!-- input mode --&gt;
+  &lt;div v-if="mode === 'input'" class="input-container"&gt;
+    &lt;input v-model="inputValue" class="ds-input"
+      :placeholder="placeholder" :maxlength="maxLength || 100"
+      @keydown.enter="confirmInput" /&gt;
+  &lt;/div&gt;
+
+  &lt;div class="modal-footer"&gt;
+    &lt;button class="btn-outline" @click="cancel"&gt;{{ cancelText }}&lt;/button&gt;
+    &lt;button :class="isDangerous ? 'btn-danger' : 'btn-primary'" @click="confirm"&gt;
+      {{ confirmText }}
+    &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+/* Token usage */
+.ds-input { border: 1px solid var(--color-border-default, #EAEAEA); border-radius: var(--radius-8, 8px); height: var(--size-md, 40px); padding: 0 var(--space-12, 12px); }
+.ds-input:focus { border-color: var(--color-border-brand, #0F7FFF); box-shadow: 0 0 0 3px rgba(15,127,255,.1); }
+.btn-danger { background: var(--color-error, #EF4444); border-radius: var(--radius-8, 8px); }</pre>
+            <button class="mg-copy" onclick="mgCopy('c-globalDialog',this)">Copy</button>
+          </div>
+        </div>
+
+        <!-- Feature Announcement Modal -->
+        <div class="mg-card">
+          <div class="mg-card-meta">
+            <div class="mg-card-info">
+              <div class="mg-card-name">Feature Announcement <code style="font-size:11px;background:#f5f5f7;padding:2px 6px;border-radius:4px;color:#606366">FeatureModal.vue</code></div>
+              <div class="mg-card-desc">Campaign modal with cover image (16:9) + title + description + CTA. Shown once per modalKey via localStorage.</div>
+            </div>
+            <span class="mg-badge">DS Compliant</span>
+          </div>
+          <div class="mg-preview">
+            <div class="ds-modal-wrap md" style="padding:16px">
+              <button class="ds-close">✕</button>
+              <div style="width:100%;aspect-ratio:16/9;background:#E0E0E0;border-radius:12px;margin-bottom:16px;display:flex;align-items:center;justify-content:center">
+                <span style="font-size:13px;color:#909499">Cover Image (16:9)</span>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:0 8px 12px">
+                <div>
+                  <div style="font-size:18px;font-weight:700;color:#232425;margin-bottom:4px">Introducing Genspark AI Drive</div>
+                  <div style="font-size:14px;color:#606366">Store, access and analyze all your files with AI.</div>
+                </div>
+                <button class="ds-btn ds-btn-primary-pill" style="margin-left:20px;white-space:nowrap">Try it now →</button>
+              </div>
+            </div>
+          </div>
+          <details class="mg-code-details">
+            <summary class="mg-code-toggle">查看代码</summary>
+          <div class="mg-code-wrap">
+            <pre id="c-featureModal">&lt;!-- FeatureModal.vue — DS-compliant (card_detail type) --&gt;
+&lt;!-- Only modify featureModalConfig, no template changes needed --&gt;
+const featureModalConfig = {
+  modalType: 'card_detail',        // 'card_detail' | 'image_button'
+  modalKey: 'ai-drive-v1',         // unique key → shown once per user
+  title: 'Introducing AI Drive',
+  description: 'Store, access and analyze files with AI.',
+  coverImage: 'https://cdn.genspark.ai/...',
+  featureLink: 'https://genspark.ai/drive',
+  actionText: 'Try it now →',
+  actionPath: '/drive',
+  enabled: true,
+  campaignStartDate: '2026-03-01T00:00:00Z',
+  campaignEndDate: '2026-04-01T00:00:00Z',
+}
+
+/* Modal card layout */
+.feature-modal {
+  width: var(--modal-width-md, 560px);       /* 560px */
+  border-radius: var(--modal-radius, 16px);
+  padding: var(--space-16, 16px);           /* 16px — tighter for image modals */
+  background: var(--color-bg-page, #FFFFFF);
+  box-shadow: var(--modal-shadow, 0 10px 25px rgba(0,0,0,0.2));
+}
+.cover-image {
+  width: 100%; aspect-ratio: 16/9;
+  border-radius: var(--radius-12, 12px);    /* softer inner radius */
+  object-fit: cover;
+}
+.action-btn { border-radius: 30px; background: var(--color-brand-primary, #232425); height: var(--size-md, 40px); }</pre>
+            <button class="mg-copy" onclick="mgCopy('c-featureModal',this)">Copy</button>
+          </div>
+        </div>
+
+        <!-- Authorization Required -->
+        <div class="mg-card">
+          <div class="mg-card-meta">
+            <div class="mg-card-info">
+              <div class="mg-card-name">Authorization Required <code style="font-size:11px;background:#f5f5f7;padding:2px 6px;border-radius:4px;color:#606366">AuthorizationRequiredModal.vue</code></div>
+              <div class="mg-card-desc">Tool connection gate — list of required tools with connected/connect states</div>
+            </div>
+            <span class="mg-badge">DS Compliant</span>
+          </div>
+          <div class="mg-preview">
+            <div class="ds-modal-wrap sm">
+              <button class="ds-close">✕</button>
+              <div class="ds-modal-title">Connect Required Tools</div>
+              <div class="ds-modal-body">This agent needs access to the following tools to complete your request.</div>
+              <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px">
+                <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border:1px solid #EAEAEA;border-radius:10px">
+                  <div style="display:flex;align-items:center;gap:10px">
+                    <div style="width:28px;height:28px;background:#EA4335;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;font-weight:700">G</div>
+                    <span style="font-size:14px;font-weight:500;color:#232425">Gmail</span>
+                  </div>
+                  <span style="font-size:13px;color:#10B981;font-weight:600;display:flex;align-items:center;gap:4px">✓ Connected</span>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border:1px solid #EAEAEA;border-radius:10px">
+                  <div style="display:flex;align-items:center;gap:10px">
+                    <div style="width:28px;height:28px;background:#4285F4;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;font-weight:700">G</div>
+                    <span style="font-size:14px;font-weight:500;color:#232425">Google Calendar</span>
+                  </div>
+                  <button style="display:flex;align-items:center;gap:4px;padding:6px 12px;background:#232425;color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer">+ Connect</button>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border:1px solid #EAEAEA;border-radius:10px">
+                  <div style="display:flex;align-items:center;gap:10px">
+                    <div style="width:28px;height:28px;background:#611f69;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;font-weight:700">S</div>
+                    <span style="font-size:14px;font-weight:500;color:#232425">Slack</span>
+                  </div>
+                  <button style="display:flex;align-items:center;gap:4px;padding:6px 12px;background:#232425;color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer">+ Connect</button>
+                </div>
+              </div>
+              <div class="ds-modal-footer" style="justify-content:flex-end">
+                <button class="ds-btn ds-btn-outline">Close</button>
+              </div>
+            </div>
+          </div>
+          <details class="mg-code-details">
+            <summary class="mg-code-toggle">查看代码</summary>
+          <div class="mg-code-wrap">
+            <pre id="c-authRequired">&lt;!-- AuthorizationRequiredModal.vue — DS-compliant --&gt;
+&lt;div class="modal-overlay" @click.self="$emit('close')"&gt;
+  &lt;div class="modal" style="width:480px"&gt;
+    &lt;button class="close-btn"&gt;✕&lt;/button&gt;
+    &lt;h3&gt;{{ title }}&lt;/h3&gt;
+    &lt;p&gt;{{ description }}&lt;/p&gt;
+
+    &lt;div class="tools-list"&gt;
+      &lt;div v-for="tool in tools" :key="tool.name" class="tool-item"&gt;
+        &lt;div class="tool-info"&gt;
+          &lt;div class="tool-icon"&gt;&lt;img :src="tool.icon" /&gt;&lt;/div&gt;
+          &lt;span&gt;{{ tool.title }}&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;button v-if="!tool.installed" class="connect-btn" @click="handleConnect(tool)"&gt;
+          + Connect
+        &lt;/button&gt;
+        &lt;span v-else class="connected-badge"&gt;✓ Connected&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;button class="btn-outline" @click="$emit('close')"&gt;Close&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+/* Token usage */
+.tool-item    { border: 1px solid var(--color-border-default, #EAEAEA); border-radius: var(--radius-10, 10px); padding: var(--space-12, 12px) var(--space-14, 14px); }
+.connect-btn  { background: var(--color-brand-primary, #232425); color: #fff; border-radius: var(--radius-8, 8px); }
+.connected-badge { color: var(--color-success, #10B981); font-weight: 600; }</pre>
+            <button class="mg-copy" onclick="mgCopy('c-authRequired',this)">Copy</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Agent ── -->
+      <div class="mg-group">
+        <div class="mg-label">Agent</div>
+
+        <!-- Agent Detail -->
+        <div class="mg-card">
+          <div class="mg-card-meta">
+            <div class="mg-card-info">
+              <div class="mg-card-name">Agent Detail Modal <code style="font-size:11px;background:#f5f5f7;padding:2px 6px;border-radius:4px;color:#606366">AgentDetailModal.vue</code></div>
+              <div class="mg-card-desc">Agent profile — avatar, name, stats, description, and use action</div>
+            </div>
+            <span class="mg-badge">DS Compliant</span>
+          </div>
+          <div class="mg-preview">
+            <div class="ds-modal-wrap md" style="text-align:center;padding:32px 24px">
+              <button class="ds-close">✕</button>
+              <div style="width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#667eea,#764ba2);margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:700;color:#fff">G</div>
+              <div style="font-size:22px;font-weight:700;color:#232425;margin-bottom:4px">Genspark Research</div>
+              <div style="font-size:14px;color:#909499;margin-bottom:16px">by Genspark</div>
+              <div style="font-size:14px;color:#606366;line-height:1.6;margin-bottom:20px;text-align:left">A powerful AI research assistant that helps you find, summarize, and analyze information from across the web. Perfect for deep research tasks.</div>
+              <div style="display:flex;justify-content:center;gap:48px;margin-bottom:24px">
+                <div><div style="font-size:20px;font-weight:700;color:#232425">4.2k</div><div style="font-size:12px;color:#909499">Favorited</div></div>
+                <div><div style="font-size:20px;font-weight:700;color:#232425">128k</div><div style="font-size:12px;color:#909499">Used</div></div>
+              </div>
+              <button class="ds-btn ds-btn-primary ds-btn-lg ds-btn-full">Use Agent</button>
+            </div>
+          </div>
+          <details class="mg-code-details">
+            <summary class="mg-code-toggle">查看代码</summary>
+          <div class="mg-code-wrap">
+            <pre id="c-agentDetail">&lt;!-- AgentDetailModal.vue — DS-compliant --&gt;
+&lt;div class="modal-overlay" @click.self="close"&gt;
+  &lt;div class="modal" style="width:560px; text-align:center; padding:32px 24px"&gt;
+    &lt;button class="close-btn"&gt;✕&lt;/button&gt;
+
+    &lt;div class="agent-avatar" :style="{ background: getAvatarGradient(agent.id) }"&gt;
+      &lt;img v-if="agent.avatar" :src="agent.avatar" /&gt;
+      &lt;span v-else&gt;{{ agent.name?.charAt(0) }}&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;h2&gt;{{ agent.name }}&lt;/h2&gt;
+    &lt;p class="agent-by"&gt;by {{ getDisplayName }}&lt;/p&gt;
+    &lt;p class="agent-desc"&gt;{{ agent.description }}&lt;/p&gt;
+
+    &lt;div class="agent-stats"&gt;
+      &lt;div&gt;&lt;span&gt;{{ formatBookmarkCount(bookmarkCount) }}&lt;/span&gt;&lt;label&gt;Favorited&lt;/label&gt;&lt;/div&gt;
+      &lt;div&gt;&lt;span&gt;{{ formatUsedCount(usedCount) }}&lt;/span&gt;&lt;label&gt;Used&lt;/label&gt;&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;button class="btn-primary btn-lg btn-full" @click="useAgent"&gt;Use Agent&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+/* Token usage */
+.agent-avatar { width:80px; height:80px; border-radius:50%; margin:0 auto var(--space-16, 16px); }
+.btn-primary  { background: var(--color-brand-primary, #232425); border-radius: var(--radius-8, 8px); height: var(--size-lg, 48px); }
+.agent-stats  { display:flex; justify-content:center; gap:var(--space-48, 48px); margin-bottom:var(--space-20, 20px); }</pre>
+            <button class="mg-copy" onclick="mgCopy('c-agentDetail',this)">Copy</button>
+          </div>
+        </div>
+
+        <!-- ResearchMe / Personalization -->
+        <div class="mg-card">
+          <div class="mg-card-meta">
+            <div class="mg-card-info">
+              <div class="mg-card-name">Personalization / Research Me <code style="font-size:11px;background:#f5f5f7;padding:2px 6px;border-radius:4px;color:#606366">ResearchMeModal.vue</code></div>
+              <div class="mg-card-desc">Personalization input — user pastes profile info, choose manual edit or auto research</div>
+            </div>
+            <span class="mg-badge">DS Compliant</span>
+          </div>
+          <div class="mg-preview">
+            <div class="ds-modal-wrap sm" style="text-align:center">
+              <button class="ds-close">✕</button>
+              <div class="ds-modal-title-lg" style="font-size:20px;margin-bottom:6px">Let Genspark Know You</div>
+              <div class="ds-modal-body" style="margin-bottom:16px">Get more personalized responses based on your profile.</div>
+              <textarea class="ds-textarea" rows="4" style="text-align:left" placeholder="Paste your LinkedIn URL, Twitter URL, name, company, or anything about you..."></textarea>
+              <div class="ds-modal-footer" style="margin-top:16px;justify-content:center">
+                <button class="ds-btn ds-btn-outline">Manual Input</button>
+                <button class="ds-btn ds-btn-primary">Auto Research</button>
+              </div>
+            </div>
+          </div>
+          <details class="mg-code-details">
+            <summary class="mg-code-toggle">查看代码</summary>
+          <div class="mg-code-wrap">
+            <pre id="c-researchMe">&lt;!-- ResearchMeModal.vue — DS-compliant --&gt;
+&lt;Teleport to="body"&gt;
+  &lt;div v-if="modelValue" class="modal-overlay" @click.self="$emit('update:modelValue', false)"&gt;
+    &lt;div class="modal" style="width:480px; text-align:center"&gt;
+      &lt;button class="close-btn" @click="$emit('update:modelValue', false)"&gt;✕&lt;/button&gt;
+
+      &lt;h2&gt;Let Genspark Know You&lt;/h2&gt;
+      &lt;p&gt;Get more personalized responses based on your profile.&lt;/p&gt;
+
+      &lt;textarea v-model="inputText" class="ds-textarea"
+        placeholder="Paste your LinkedIn URL, Twitter URL, name, company..." /&gt;
+
+      &lt;div class="modal-footer"&gt;
+        &lt;button class="btn-outline" @click="handleManualInput"&gt;Manual Input&lt;/button&gt;
+        &lt;button class="btn-primary" @click="handleAutoResearch"&gt;Auto Research&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/Teleport&gt;
+
+/* Token usage */
+.ds-textarea { width:100%; border:1px solid var(--color-border-default, #EAEAEA); border-radius:var(--radius-8, 8px); padding:var(--space-12, 12px); font-size:var(--text-small, 14px); resize:none; }
+.btn-primary { background:var(--color-brand-primary, #232425); border-radius:var(--radius-8, 8px); height:var(--size-md, 40px); }
+.btn-outline { border:1px solid var(--color-border-default, #EAEAEA); border-radius:var(--radius-8, 8px); height:var(--size-md, 40px); }</pre>
+            <button class="mg-copy" onclick="mgCopy('c-researchMe',this)">Copy</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Payment ── -->
+      <div class="mg-group">
+        <div class="mg-label">Payment</div>
+
+        <!-- Payment Result -->
+        <div class="mg-card">
+          <div class="mg-card-meta">
+            <div class="mg-card-info">
+              <div class="mg-card-name">Payment Result <code style="font-size:11px;background:#f5f5f7;padding:2px 6px;border-radius:4px;color:#606366">payment/ResultModal.vue</code></div>
+              <div class="mg-card-desc">Generic success/error result modal — icon changes with type prop</div>
+            </div>
+            <span class="mg-badge">DS Compliant</span>
+          </div>
+          <div class="mg-preview">
+            <div class="ds-modal-wrap sm" style="display:flex;flex-direction:column;align-items:center;gap:16px;padding:32px 24px;text-align:center">
+              <button class="ds-close">✕</button>
+              <div style="width:64px;height:64px;border-radius:50%;background:#DCFCE7;display:flex;align-items:center;justify-content:center">
+                <svg width="28" height="28" viewBox="0 0 32 32" fill="none"><path d="M26.6667 8L12 22.6667L5.33333 16" stroke="#10B981" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div>
+                <div class="ds-modal-title" style="margin-bottom:6px">Payment Successful</div>
+                <div class="ds-modal-body" style="margin:0">Your subscription is now active. Enjoy premium features!</div>
+              </div>
+              <button class="ds-btn ds-btn-primary ds-btn-full">OK</button>
+            </div>
+          </div>
+          <details class="mg-code-details">
+            <summary class="mg-code-toggle">查看代码</summary>
+          <div class="mg-code-wrap">
+            <pre id="c-paymentResult">&lt;!-- payment/ResultModal.vue — DS-compliant --&gt;
+&lt;div v-if="show" class="modal-overlay" @click="$emit('close')"&gt;
+  &lt;div class="modal" style="width:480px; text-align:center; padding:32px 24px" @click.stop&gt;
+    &lt;button class="close-btn"&gt;✕&lt;/button&gt;
+
+    &lt;!-- Icon changes with type --&gt;
+    &lt;div class="result-icon" :class="type"&gt;
+      &lt;svg v-if="type==='success'"&gt;...checkmark...&lt;/svg&gt;
+      &lt;svg v-else&gt;...X mark...&lt;/svg&gt;
+    &lt;/div&gt;
+
+    &lt;h2&gt;{{ title }}&lt;/h2&gt;
+    &lt;p&gt;{{ message }}&lt;/p&gt;
+    &lt;button class="btn-result" :class="type" @click="$emit('close')"&gt;
+      {{ buttonText || (type === 'success' ? 'OK' : 'Close') }}
+    &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+/* Token usage */
+.result-icon { width:64px; height:64px; border-radius:50%; margin:0 auto var(--space-16, 16px); }
+.result-icon.success { background:#DCFCE7; color: var(--color-success, #10B981); }
+.result-icon.error   { background:#FEE2E2; color: var(--color-error, #EF4444); }
+.btn-result.success { background: var(--color-brand-primary, #232425); border-radius: var(--radius-8, 8px); }
+.btn-result.error   { background: var(--color-error, #EF4444); border-radius: var(--radius-8, 8px); }</pre>
+            <button class="mg-copy" onclick="mgCopy('c-paymentResult',this)">Copy</button>
+          </div>
+        </div>
+
+        <!-- Retention Modal -->
+        <div class="mg-card">
+          <div class="mg-card-meta">
+            <div class="mg-card-info">
+              <div class="mg-card-name">Subscription Retention <code style="font-size:11px;background:#f5f5f7;padding:2px 6px;border-radius:4px;color:#606366">subscription2/SubscriptionRetentionModal.vue</code></div>
+              <div class="mg-card-desc">Churn prevention — presents best-value plan with benefits list before user downgrades</div>
+            </div>
+            <span class="mg-badge">DS Compliant</span>
+          </div>
+          <div class="mg-preview">
+            <div class="ds-modal-wrap sm">
+              <button class="ds-close">✕</button>
+              <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px">
+                <div style="font-size:28px">✨</div>
+                <div>
+                  <div style="font-size:18px;font-weight:700;color:#232425;margin-bottom:2px">Before you go...</div>
+                  <div style="font-size:14px;color:#606366">Switch to our best-value plan and save 50%</div>
+                </div>
+              </div>
+              <div style="background:#F7F8FA;border-radius:12px;padding:16px;margin-bottom:20px">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+                  <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#0F7FFF">Best Value</span>
+                  <span style="font-size:11px;font-weight:700;color:#10B981;background:#DCFCE7;padding:2px 8px;border-radius:20px">Save 50%</span>
+                </div>
+                <div style="margin-bottom:12px"><span style="font-size:28px;font-weight:700;color:#232425">$9.99</span><span style="font-size:14px;color:#606366"> / month</span></div>
+                <div style="display:flex;flex-direction:column;gap:6px">
+                  <div style="display:flex;align-items:center;gap:8px;font-size:14px;color:#606366"><span style="color:#10B981;font-weight:700">✓</span> 1,000 credits / month</div>
+                  <div style="display:flex;align-items:center;gap:8px;font-size:14px;color:#606366"><span style="color:#10B981;font-weight:700">✓</span> Unlimited AI requests</div>
+                  <div style="display:flex;align-items:center;gap:8px;font-size:14px;color:#606366"><span style="color:#10B981;font-weight:700">✓</span> Speakly voice assistant</div>
+                  <div style="display:flex;align-items:center;gap:8px;font-size:14px;color:#606366"><span style="color:#10B981;font-weight:700">✓</span> Meeting transcription</div>
+                  <div style="display:flex;align-items:center;gap:8px;font-size:14px;color:#606366"><span style="color:#10B981;font-weight:700">✓</span> Additional cloud storage</div>
+                </div>
+              </div>
+              <div class="ds-modal-footer">
+                <button class="ds-btn ds-btn-outline">Downgrade anyway</button>
+                <button class="ds-btn ds-btn-primary">Switch to Best Value</button>
+              </div>
+            </div>
+          </div>
+          <details class="mg-code-details">
+            <summary class="mg-code-toggle">查看代码</summary>
+          <div class="mg-code-wrap">
+            <pre id="c-retention">&lt;!-- SubscriptionRetentionModal.vue — DS-compliant --&gt;
+&lt;div class="modal-overlay" @click.self="$emit('close')"&gt;
+  &lt;div class="modal" style="width:480px"&gt;
+    &lt;button class="close-btn"&gt;✕&lt;/button&gt;
+
+    &lt;div class="modal-header"&gt;
+      &lt;div class="modal-icon"&gt;✨&lt;/div&gt;
+      &lt;div&gt;
+        &lt;h2&gt;Before you go...&lt;/h2&gt;
+        &lt;p&gt;Switch to our best-value plan and save {{ savingsPercent }}%&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class="plan-card"&gt;  &lt;!-- background:var(--color-bg-subtle, #F5F5F5); border-radius:var(--radius-12, 12px) --&gt;
+      &lt;div class="plan-top"&gt;
+        &lt;span class="badge-blue"&gt;Best Value&lt;/span&gt;
+        &lt;span class="badge-green"&gt;Save {{ savingsPercent }}%&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class="plan-price"&gt;
+        {{ formatPrice(bestValueTier.monthlyPrice) }}
+        &lt;span&gt;/ month&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;ul class="benefits"&gt;
+        &lt;li v-for="b in benefits"&gt;✓ {{ b }}&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+
+    &lt;div class="modal-footer"&gt;
+      &lt;button class="btn-outline" @click="$emit('downgrade')"&gt;Downgrade anyway&lt;/button&gt;
+      &lt;button class="btn-primary" @click="$emit('switch')"&gt;Switch to Best Value&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+/* Token usage */
+.plan-card  { background: var(--color-bg-subtle, #F5F5F5); border-radius: var(--radius-12, 12px); padding: var(--space-16, 16px); }
+.badge-blue { color: var(--color-brand-secondary, #0F7FFF); font-weight:700; font-size:11px; }
+.badge-green { background:#DCFCE7; color: var(--color-success, #10B981); border-radius:20px; }</pre>
+            <button class="mg-copy" onclick="mgCopy('c-retention',this)">Copy</button>
+          </div>
+        </div>
+
+        <!-- Pricing Modal -->
+        <div class="mg-card">
+          <div class="mg-card-meta">
+            <div class="mg-card-info">
+              <div class="mg-card-name">Subscription Pricing <code style="font-size:11px;background:#f5f5f7;padding:2px 6px;border-radius:4px;color:#606366">subscription2/SubscriptionPricingModal.vue</code></div>
+              <div class="mg-card-desc">Side-by-side plan columns with Monthly/Annual toggle. Largest modal (640px).</div>
+            </div>
+            <span class="mg-badge">DS Compliant</span>
+          </div>
+          <div class="mg-preview">
+            <div class="ds-modal-wrap lg">
+              <button class="ds-close">✕</button>
+              <div style="text-align:center;margin-bottom:20px">
+                <div style="font-size:22px;font-weight:700;color:#232425;margin-bottom:12px">Choose your plan</div>
+                <div style="display:inline-flex;background:#F0F0F2;border-radius:30px;padding:3px;gap:2px">
+                  <button style="padding:6px 16px;border-radius:28px;border:none;background:#232425;color:#fff;font-size:13px;font-weight:600;cursor:pointer">Monthly</button>
+                  <button style="padding:6px 16px;border-radius:28px;border:none;background:transparent;color:#606366;font-size:13px;cursor:pointer">Annual — Save 20%</button>
+                </div>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+                <div style="border:1px solid #EAEAEA;border-radius:12px;padding:20px">
+                  <div style="font-size:16px;font-weight:700;color:#232425;margin-bottom:8px">Plus</div>
+                  <div style="margin-bottom:16px"><span style="font-size:26px;font-weight:700;color:#232425">$4.99</span><span style="font-size:13px;color:#606366">/mo</span></div>
+                  <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:16px;font-size:13px;color:#606366">
+                    <div>✓ 300 credits / month</div><div>✓ Unlimited basic tasks</div><div>✓ Priority support</div><div>✓ Creative tools</div><div>✓ Cloud storage 10GB</div>
+                  </div>
+                  <button style="width:100%;height:40px;border-radius:8px;border:1px solid #EAEAEA;background:#fff;color:#232425;font-weight:600;cursor:pointer">Get Plus</button>
+                </div>
+                <div style="border:2px solid #232425;border-radius:12px;padding:20px;position:relative">
+                  <div style="position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:#232425;color:#fff;font-size:11px;font-weight:700;padding:2px 10px;border-radius:20px;white-space:nowrap">Most Popular</div>
+                  <div style="font-size:16px;font-weight:700;color:#232425;margin-bottom:8px">Pro</div>
+                  <div style="margin-bottom:16px"><span style="font-size:26px;font-weight:700;color:#232425">$9.99</span><span style="font-size:13px;color:#606366">/mo</span></div>
+                  <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:16px;font-size:13px;color:#606366">
+                    <div>✓ 1,000 credits / month</div><div>✓ Unlimited AI requests</div><div>✓ Speakly + Meetings</div><div>✓ Creative studio</div><div>✓ Cloud storage 50GB</div>
+                  </div>
+                  <button style="width:100%;height:40px;border-radius:8px;border:none;background:#232425;color:#fff;font-weight:600;cursor:pointer">Get Pro</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <details class="mg-code-details">
+            <summary class="mg-code-toggle">查看代码</summary>
+          <div class="mg-code-wrap">
+            <pre id="c-pricing">&lt;!-- SubscriptionPricingModal.vue — DS-compliant (simplified layout) --&gt;
+&lt;Teleport to="body"&gt;
+  &lt;div v-if="modelValue" class="pricing-overlay" @click.self="close"&gt;
+    &lt;div class="modal" style="width:640px"&gt;
+      &lt;button class="close-btn"&gt;✕&lt;/button&gt;
+
+      &lt;div class="page-header"&gt;
+        &lt;h1&gt;Choose your plan&lt;/h1&gt;
+      &lt;/div&gt;
+
+      &lt;!-- Monthly/Annual toggle --&gt;
+      &lt;div class="toggle-row"&gt;
+        &lt;SubscriptionIntervalToggle v-model="selectedInterval" :savings-percent="20" /&gt;
+      &lt;/div&gt;
+
+      &lt;!-- Plan columns --&gt;
+      &lt;div class="plan-columns"&gt;  &lt;!-- display:grid; grid-template-columns:1fr 1fr; gap:16px --&gt;
+        &lt;SubscriptionPlanColumn v-bind="plusProps" @action="handleAction" /&gt;
+        &lt;SubscriptionPlanColumn v-bind="proProps" @action="handleAction" /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/Teleport&gt;
+
+/* Token usage */
+.modal        { border-radius: var(--modal-radius, 16px); padding: var(--modal-padding, 24px); width: var(--modal-width-lg, 640px); }
+.plan-columns { display:grid; grid-template-columns:1fr 1fr; gap:var(--space-16, 16px); }
+.plan-card    { border:1px solid var(--color-border-default, #EAEAEA); border-radius:var(--radius-12, 12px); padding:var(--space-20, 20px); }
+.plan-card.popular { border-color: var(--color-brand-primary, #232425); border-width:2px; }
+.btn-plan     { height:var(--size-md, 40px); width:100%; border-radius:var(--radius-8, 8px); }
+.toggle-pill  { background:var(--color-bg-subtle, #F5F5F5); border-radius:30px; }</pre>
+            <button class="mg-copy" onclick="mgCopy('c-pricing',this)">Copy</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Workspace (additional) ── -->
+      <div class="mg-group">
+        <div class="mg-label">Workspace — Additional</div>
+
+        <!-- Hub Members -->
+        <div class="mg-card">
+          <div class="mg-card-meta">
+            <div class="mg-card-info">
+              <div class="mg-card-name">Hub Members <code style="font-size:11px;background:#f5f5f7;padding:2px 6px;border-radius:4px;color:#606366">hub/HubMembersDialog.vue</code></div>
+              <div class="mg-card-desc">Member list with roles, pending state, invite button (owner only), and remove action</div>
+            </div>
+            <span class="mg-badge">DS Compliant</span>
+          </div>
+          <div class="mg-preview">
+            <div class="ds-modal-wrap md" style="padding:0;overflow:hidden">
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px">
+                <span style="font-size:16px;font-weight:700;color:#232425">Hub Members</span>
+                <div style="display:flex;align-items:center;gap:8px">
+                  <button style="padding:6px 14px;border-radius:8px;border:1px solid #EAEAEA;background:#fff;font-size:13px;font-weight:600;color:#232425;cursor:pointer">Invite</button>
+                  <button class="ds-close" style="position:static">✕</button>
+                </div>
+              </div>
+              <div style="border-top:1px solid #F0F0F2"></div>
+              <div style="padding:8px 0">
+                <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 20px">
+                  <div style="display:flex;align-items:center;gap:10px">
+                    <div style="width:36px;height:36px;border-radius:50%;background:#FFB3BA;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff">H</div>
+                    <div><div style="font-size:14px;font-weight:600;color:#232425">Harry Chang</div><div style="font-size:12px;color:#909499">harry@mainfunc.ai</div></div>
+                  </div>
+                  <span style="font-size:12px;color:#909499;font-weight:500">Owner</span>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 20px">
+                  <div style="display:flex;align-items:center;gap:10px">
+                    <div style="width:36px;height:36px;border-radius:50%;background:#B3D9FF;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff">A</div>
+                    <div><div style="font-size:14px;font-weight:600;color:#232425">Alice Wang</div><div style="font-size:12px;color:#909499">alice@genspark.ai</div></div>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:8px"><span style="font-size:12px;color:#909499">Member</span><button style="width:24px;height:24px;border-radius:6px;border:none;background:#FEE2E2;color:#EF4444;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center">×</button></div>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 20px">
+                  <div style="display:flex;align-items:center;gap:10px">
+                    <div style="width:36px;height:36px;border-radius:50%;background:#B3FFCA;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#3D9970">J</div>
+                    <div style="display:flex;align-items:center;gap:8px"><div style="font-size:14px;font-weight:600;color:#232425">Jay Liu</div><span style="font-size:11px;background:#FEF9C3;color:#92400E;padding:2px 6px;border-radius:4px;font-weight:600">Pending</span></div><div style="font-size:12px;color:#909499">jay@company.com</div>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:8px"><span style="font-size:12px;color:#909499">Member</span><button style="width:24px;height:24px;border-radius:6px;border:none;background:#FEE2E2;color:#EF4444;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center">×</button></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <details class="mg-code-details">
+            <summary class="mg-code-toggle">查看代码</summary>
+          <div class="mg-code-wrap">
+            <pre id="c-hubMembers">&lt;!-- HubMembersDialog.vue — DS-compliant --&gt;
+&lt;div v-if="modelValue" class="dialog" @keydown.esc="close"&gt;
+  &lt;div class="dialog-content" style="width:560px"&gt;
+    &lt;div class="dialog-header"&gt;
+      &lt;p class="dialog-title"&gt;Hub Members&lt;/p&gt;
+      &lt;div class="header-actions"&gt;
+        &lt;button class="btn-invite" :disabled="!isOwner" @click="openInviteDialog"&gt;Invite&lt;/button&gt;
+        &lt;button class="close-btn" @click="close"&gt;✕&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="divider"&gt;&lt;/div&gt;
+    &lt;div class="members-list"&gt;
+      &lt;div v-for="member in members" :key="member.email" class="member-item"&gt;
+        &lt;div class="member-info"&gt;
+          &lt;div class="avatar" :style="{ background: getAvatarColor(member.email) }"&gt;
+            {{ getEmailInitial(member.email) }}
+          &lt;/div&gt;
+          &lt;div&gt;
+            &lt;div class="member-name"&gt;{{ member.name }}&lt;/div&gt;
+            &lt;div class="member-email"&gt;{{ member.email }}&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="member-actions"&gt;
+          &lt;span class="role-label"&gt;{{ getRoleText(member.role) }}&lt;/span&gt;
+          &lt;button v-if="isOwner &amp;&amp; member.role !== 'owner'"
+            class="remove-btn" @click="confirmRemoveMember(member.email)"&gt;✕&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+/* Token usage */
+.dialog-content { border-radius: var(--modal-radius, 16px); }
+.avatar         { width:36px; height:36px; border-radius:50%; }
+.btn-invite     { border:1px solid var(--color-border-default, #EAEAEA); border-radius:var(--radius-8, 8px); }
+.remove-btn     { background:#FEE2E2; color:var(--color-error, #EF4444); border-radius:var(--radius-6, 6px); }
+.pending-badge  { background:#FEF9C3; color:#92400E; border-radius:var(--radius-4, 4px); }</pre>
+            <button class="mg-copy" onclick="mgCopy('c-hubMembers',this)">Copy</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── UI Patterns ── -->
+      <div class="mg-group">
+        <div class="mg-label">UI Patterns</div>
+
+        <!-- Settings Dialog -->
+        <div class="mg-card">
+          <div class="mg-card-meta">
+            <div class="mg-card-info">
+              <div class="mg-card-name">Settings Dialog <code style="font-size:11px;background:#f5f5f7;padding:2px 6px;border-radius:4px;color:#606366">SettingsDialogV2.vue</code></div>
+              <div class="mg-card-desc">Large sidebar + content panel layout. Sidebar nav with active state, horizontal content area.</div>
+            </div>
+            <span class="mg-badge">DS Compliant</span>
+          </div>
+          <div class="mg-preview">
+            <div style="width:680px;max-width:100%;height:420px;display:flex;background:#fff;border-radius:16px;box-shadow:0 10px 25px rgba(0,0,0,0.2);overflow:hidden">
+              <!-- Sidebar -->
+              <div style="width:160px;background:#F7F8FA;display:flex;flex-direction:column;padding:16px 8px;flex-shrink:0;border-right:1px solid #EAEAEA">
+                <div style="display:flex;align-items:center;gap:6px;padding:8px;margin-bottom:16px">
+                  <div style="width:22px;height:22px;background:#232425;border-radius:6px"></div>
+                  <span style="font-size:13px;font-weight:700;color:#232425">Genspark</span>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:2px">
+                  <div style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;background:#232425">
+                    <span style="font-size:14px">⚙️</span>
+                    <span style="font-size:13px;font-weight:600;color:#fff">General</span>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;cursor:pointer">
+                    <span style="font-size:14px">🔧</span>
+                    <span style="font-size:13px;color:#606366">Tools</span>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;cursor:pointer">
+                    <span style="font-size:14px">🗂️</span>
+                    <span style="font-size:13px;color:#606366">Data Controls</span>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;cursor:pointer">
+                    <span style="font-size:14px">🔌</span>
+                    <span style="font-size:13px;color:#606366">Integrations</span>
+                  </div>
+                </div>
+              </div>
+              <!-- Content -->
+              <div style="flex:1;display:flex;flex-direction:column;overflow:hidden">
+                <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 24px;border-bottom:1px solid #EAEAEA">
+                  <span style="font-size:16px;font-weight:700;color:#232425">General</span>
+                  <div class="ds-close" style="position:static;cursor:pointer">✕</div>
+                </div>
+                <div style="flex:1;padding:20px 24px;overflow-y:auto">
+                  <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid #F0F0F2">
+                    <div><div style="font-size:14px;font-weight:500;color:#232425">Language</div><div style="font-size:12px;color:#909499">Interface display language</div></div>
+                    <select style="height:32px;border-radius:8px;border:1px solid #EAEAEA;padding:0 10px;font-size:13px;color:#232425">
+                      <option>English</option>
+                    </select>
+                  </div>
+                  <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid #F0F0F2">
+                    <div><div style="font-size:14px;font-weight:500;color:#232425">Memory</div><div style="font-size:12px;color:#909499">Let Genspark remember context</div></div>
+                    <div style="width:40px;height:22px;border-radius:30px;background:#232425;position:relative;cursor:pointer"><div style="width:18px;height:18px;border-radius:50%;background:#fff;position:absolute;top:2px;right:2px"></div></div>
+                  </div>
+                  <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 0">
+                    <div><div style="font-size:14px;font-weight:500;color:#232425">Data sharing</div><div style="font-size:12px;color:#909499">Help improve Genspark</div></div>
+                    <div style="width:40px;height:22px;border-radius:30px;background:#E0E0E0;position:relative;cursor:pointer"><div style="width:18px;height:18px;border-radius:50%;background:#fff;position:absolute;top:2px;left:2px"></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <details class="mg-code-details">
+            <summary class="mg-code-toggle">查看代码</summary>
+          <div class="mg-code-wrap">
+            <pre id="c-settings">&lt;!-- SettingsDialogV2.vue — DS-compliant --&gt;
+&lt;NModal v-model:show="showDialog"&gt;
+  &lt;div class="settings-v2"&gt;  &lt;!-- display:flex; width:680px; height:480px; overflow:hidden; border-radius:var(--modal-radius, 16px) --&gt;
+
+    &lt;!-- Sidebar --&gt;
+    &lt;div class="settings-sidebar"&gt;
+      &lt;div class="sidebar-logo"&gt;
+        &lt;GensparkLogo /&gt; &lt;span&gt;Genspark&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;nav&gt;
+        &lt;div v-for="item in navItems" :key="item.id"
+          :class="['nav-item', { active: activeTab === item.id }]"
+          @click="activeTab = item.id"&gt;
+          &lt;component :is="item.icon" /&gt;
+          &lt;span&gt;{{ item.label }}&lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/nav&gt;
+    &lt;/div&gt;
+
+    &lt;div class="settings-divider"&gt;&lt;/div&gt; &lt;!-- 1px vertical border --&gt;
+
+    &lt;!-- Content area --&gt;
+    &lt;div class="settings-content"&gt;
+      &lt;div class="content-header"&gt;
+        &lt;h2&gt;{{ currentTabLabel }}&lt;/h2&gt;
+        &lt;button class="close-btn" @click="showDialog = false"&gt;✕&lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class="content-divider"&gt;&lt;/div&gt;
+      &lt;component :is="currentTabComponent" /&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/NModal&gt;
+
+/* Token usage */
+.settings-v2   { display:flex; width:680px; height:480px; overflow:hidden; border-radius:var(--modal-radius, 16px); }
+.settings-sidebar { width:160px; background:var(--color-bg-subtle, #F5F5F5); padding:var(--space-16, 16px) var(--space-8, 8px); }
+.nav-item      { display:flex; align-items:center; gap:var(--space-8, 8px); padding:var(--space-8, 8px) var(--space-10, 10px); border-radius:var(--radius-8, 8px); }
+.nav-item.active { background:var(--color-brand-primary, #232425); color:#fff; }
+.settings-divider { width:1px; background:var(--color-border-default, #EAEAEA); flex-shrink:0; }
+.settings-content { flex:1; display:flex; flex-direction:column; overflow:hidden; }</pre>
+            <button class="mg-copy" onclick="mgCopy('c-settings',this)">Copy</button>
           </div>
         </div>
       </div>
@@ -2628,7 +3521,8 @@
                 <span class="badge badge-neutral">v2.0.4</span>
               </div>
             </div>
-          </div>
+          </details>
+        </div>
 
         </div>
       </div>
