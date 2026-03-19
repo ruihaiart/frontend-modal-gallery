@@ -1856,6 +1856,552 @@
         </div>
     </div>
 
+    <!-- ===== NEW ONLINE MODALS SECTION ===== -->
+
+    <!-- System Modals Section -->
+    <div class="modal-section">
+        <div class="section-header">
+            <h2 class="section-title">System Modals</h2>
+            <p class="section-description">Generic confirm dialogs and authentication flows</p>
+        </div>
+        <div class="modal-grid">
+
+            <!-- Generic Confirm Dialog (Standard) -->
+            <div class="modal-item">
+                <div class="modal-header">
+                    <h3 class="modal-title">Confirm Dialog</h3>
+                    <span class="modal-size">480px</span>
+                </div>
+                <div class="modal-path">components/GenericConfirmDialog.vue</div>
+                <div class="modal-preview">
+                    <div class="preview-modal">
+                        <div style="width:480px;background:white;border-radius:16px;padding:28px;font-family:-apple-system,sans-serif;box-shadow:0 20px 60px rgba(0,0,0,0.15);">
+                            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+                                <h3 style="font-size:20px;font-weight:700;color:#232425;">Confirm Action</h3>
+                                <button style="background:none;border:none;font-size:18px;cursor:pointer;color:#909499;">✕</button>
+                            </div>
+                            <p style="font-size:16px;color:#606366;margin-bottom:28px;line-height:1.5;">Are you sure you want to proceed? This action cannot be undone.</p>
+                            <div style="display:flex;gap:12px;">
+                                <button style="flex:1;height:44px;background:white;border:1px solid #EAEAEA;border-radius:8px;font-size:15px;color:#232425;cursor:pointer;">Cancel</button>
+                                <button style="flex:1;height:44px;background:#232425;border:none;border-radius:8px;font-size:15px;color:white;cursor:pointer;">Confirm</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="code-section">
+                    <div class="code-header">
+                        <span class="code-label">Vue Component</span>
+                        <button class="copy-btn" onclick="copyCode(this, 'confirm-dialog-code')">Copy</button>
+                    </div>
+                    <div class="code-snippet" id="confirm-dialog-code">&lt;div class="confirm-dialog" style="width:480px; border-radius:16px; padding:28px;"&gt;
+  &lt;div class="dialog-header"&gt;
+    &lt;h3&gt;{{ title }}&lt;/h3&gt;
+    &lt;button class="close-btn" @click="$emit('close')"&gt;✕&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;p class="dialog-message"&gt;{{ message }}&lt;/p&gt;
+  &lt;div class="dialog-footer"&gt;
+    &lt;button class="btn-cancel" @click="$emit('cancel')"&gt;Cancel&lt;/button&gt;
+    &lt;button class="btn-confirm" @click="$emit('confirm')"&gt;Confirm&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</div>
+                </div>
+                <button class="show-modal-btn" onclick="showModal('generic-confirm-modal')">Show Modal</button>
+            </div>
+
+            <!-- Generic Confirm Dialog (Danger) -->
+            <div class="modal-item">
+                <div class="modal-header">
+                    <h3 class="modal-title">Confirm Dialog (Danger)</h3>
+                    <span class="modal-size">480px</span>
+                </div>
+                <div class="modal-path">components/GenericConfirmDialog.vue — danger variant</div>
+                <div class="modal-preview">
+                    <div class="preview-modal">
+                        <div style="width:480px;background:white;border-radius:16px;padding:28px;font-family:-apple-system,sans-serif;box-shadow:0 20px 60px rgba(0,0,0,0.15);">
+                            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+                                <h3 style="font-size:20px;font-weight:700;color:#232425;">Delete Project</h3>
+                                <button style="background:none;border:none;font-size:18px;cursor:pointer;color:#909499;">✕</button>
+                            </div>
+                            <p style="font-size:16px;color:#606366;margin-bottom:28px;line-height:1.5;">This will permanently delete the project and all its data. This action cannot be undone.</p>
+                            <div style="display:flex;gap:12px;">
+                                <button style="flex:1;height:44px;background:white;border:1px solid #EAEAEA;border-radius:8px;font-size:15px;color:#232425;cursor:pointer;">Cancel</button>
+                                <button style="flex:1;height:44px;background:#EF4444;border:none;border-radius:8px;font-size:15px;color:white;cursor:pointer;">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="code-section">
+                    <div class="code-header">
+                        <span class="code-label">Vue Component</span>
+                        <button class="copy-btn" onclick="copyCode(this, 'confirm-danger-code')">Copy</button>
+                    </div>
+                    <div class="code-snippet" id="confirm-danger-code">&lt;!-- Pass :danger="true" prop --&gt;
+&lt;GenericConfirmDialog
+  :danger="true"
+  title="Delete Project"
+  message="This will permanently delete..."
+  confirm-text="Delete"
+  @confirm="handleDelete"
+  @cancel="closeDialog"
+/&gt;</div>
+                </div>
+                <button class="show-modal-btn" onclick="showModal('generic-confirm-danger-modal')">Show Modal</button>
+            </div>
+
+            <!-- Login Dialog -->
+            <div class="modal-item">
+                <div class="modal-header">
+                    <h3 class="modal-title">Login Dialog</h3>
+                    <span class="modal-size">480px</span>
+                </div>
+                <div class="modal-path">components/auth/LoginDialog.vue</div>
+                <div class="modal-preview">
+                    <div class="preview-modal">
+                        <div style="width:480px;background:white;border-radius:16px;padding:32px;font-family:-apple-system,sans-serif;box-shadow:0 20px 60px rgba(0,0,0,0.15);position:relative;">
+                            <button style="position:absolute;top:16px;right:16px;background:none;border:none;font-size:18px;cursor:pointer;color:#909499;">✕</button>
+                            <h2 style="font-size:24px;font-weight:700;color:#232425;text-align:center;margin-bottom:8px;">Sign in to Genspark</h2>
+                            <p style="font-size:14px;color:#909499;text-align:center;margin-bottom:28px;">Access your AI-powered workspace</p>
+                            <button style="width:100%;height:44px;background:#F1F1F1;border:none;border-radius:12px;display:flex;align-items:center;justify-content:center;gap:10px;font-size:15px;color:#232425;margin-bottom:12px;cursor:pointer;">
+                                <svg width="18" height="18" viewBox="0 0 18 18"><path d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.874 2.684-6.615z" fill="#4285F4"/><path d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 0 0 9 18z" fill="#34A853"/><path d="M3.964 10.71A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 0 0 0 9c0 1.452.348 2.827.957 4.042l3.007-2.332z" fill="#FBBC05"/><path d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.958L3.964 7.29C4.672 5.163 6.656 3.58 9 3.58z" fill="#EA4335"/></svg>
+                                Continue with Google
+                            </button>
+                            <button style="width:100%;height:44px;background:#F1F1F1;border:none;border-radius:12px;display:flex;align-items:center;justify-content:center;gap:10px;font-size:15px;color:#232425;margin-bottom:20px;cursor:pointer;">
+                                <svg width="18" height="18" viewBox="0 0 18 18"><path d="M13.28 9.75c-.02-2.3 1.88-3.42 1.97-3.47-1.07-1.57-2.74-1.78-3.33-1.8-1.41-.14-2.76.83-3.48.83-.72 0-1.82-.81-3-.79C3.9 4.54 2.3 5.54 1.42 7.1-.37 10.3.82 15.07 2.58 17.59c.88 1.26 1.92 2.68 3.28 2.63 1.32-.05 1.82-.85 3.42-.85 1.6 0 2.05.85 3.44.82 1.42-.02 2.32-1.28 3.18-2.55.99-1.45 1.41-2.87 1.43-2.94-.03-.02-2.75-1.06-2.77-4.23l.02.28z" fill="#000"/><path d="M11.1 2.7C11.83 1.8 12.3.56 12.17-.7 11.07-.63 9.77.07 9 1c-.7.84-1.31 2.1-1.15 3.34 1.24.1 2.5-.63 3.25-1.64z" fill="#000"/></svg>
+                                Continue with Apple
+                            </button>
+                            <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+                                <div style="flex:1;border-top:1px dashed #EAEAEA;"></div>
+                                <span style="font-size:13px;color:#909499;">OR</span>
+                                <div style="flex:1;border-top:1px dashed #EAEAEA;"></div>
+                            </div>
+                            <button style="width:100%;height:44px;background:white;border:1px solid #EAEAEA;border-radius:12px;font-size:15px;color:#232425;cursor:pointer;">More Options</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="code-section">
+                    <div class="code-header">
+                        <span class="code-label">Vue Component</span>
+                        <button class="copy-btn" onclick="copyCode(this, 'login-dialog-code')">Copy</button>
+                    </div>
+                    <div class="code-snippet" id="login-dialog-code">&lt;div class="login-dialog" style="width:480px; border-radius:16px;"&gt;
+  &lt;button class="close-btn" @click="close"&gt;✕&lt;/button&gt;
+  &lt;h2&gt;Sign in to Genspark&lt;/h2&gt;
+  &lt;p class="subtitle"&gt;Access your AI-powered workspace&lt;/p&gt;
+  &lt;button class="social-btn" @click="loginWithGoogle"&gt;
+    &lt;GoogleIcon /&gt; Continue with Google
+  &lt;/button&gt;
+  &lt;button class="social-btn" @click="loginWithApple"&gt;
+    &lt;AppleIcon /&gt; Continue with Apple
+  &lt;/button&gt;
+  &lt;div class="divider"&gt;&lt;span&gt;OR&lt;/span&gt;&lt;/div&gt;
+  &lt;button class="more-options"&gt;More Options&lt;/button&gt;
+&lt;/div&gt;</div>
+                </div>
+                <button class="show-modal-btn" onclick="showModal('login-dialog-modal')">Show Modal</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Feedback & Status Modals Section -->
+    <div class="modal-section">
+        <div class="section-header">
+            <h2 class="section-title">Feedback &amp; Status Modals</h2>
+            <p class="section-description">Success states and task progress notifications</p>
+        </div>
+        <div class="modal-grid">
+
+            <!-- Subscription Success Modal -->
+            <div class="modal-item">
+                <div class="modal-header">
+                    <h3 class="modal-title">Subscription Success Modal</h3>
+                    <span class="modal-size">480px</span>
+                </div>
+                <div class="modal-path">components/subscription/SuccessModal.vue</div>
+                <div class="modal-preview">
+                    <div class="preview-modal">
+                        <div style="width:480px;background:white;border-radius:16px;padding:40px 32px;font-family:-apple-system,sans-serif;box-shadow:0 20px 60px rgba(0,0,0,0.15);text-align:center;position:relative;">
+                            <button style="position:absolute;top:16px;right:16px;background:none;border:none;font-size:18px;cursor:pointer;color:#909499;">✕</button>
+                            <svg width="70" height="70" viewBox="0 0 70 70" style="margin-bottom:20px;"><circle cx="35" cy="35" r="30" fill="none" stroke="#10B981" stroke-width="4"/><path d="M20 36l10 10 20-22" stroke="#10B981" stroke-width="4" fill="none" stroke-linecap="round"/></svg>
+                            <h2 style="font-size:24px;font-weight:700;color:#232425;margin-bottom:12px;">Subscription Activated!</h2>
+                            <p style="font-size:15px;color:#606366;margin-bottom:32px;line-height:1.5;">Your plan is now active. Enjoy all the premium features.</p>
+                            <button style="width:100%;height:48px;background:#232425;border:none;border-radius:30px;font-size:16px;color:white;cursor:pointer;font-weight:500;">Get Started</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="code-section">
+                    <div class="code-header">
+                        <span class="code-label">Vue Component</span>
+                        <button class="copy-btn" onclick="copyCode(this, 'sub-success-code')">Copy</button>
+                    </div>
+                    <div class="code-snippet" id="sub-success-code">&lt;div class="success-modal" style="width:480px; border-radius:16px; text-align:center;"&gt;
+  &lt;button class="close-btn"&gt;✕&lt;/button&gt;
+  &lt;svg width="70" height="70"&gt;&lt;!-- checkmark --&gt;&lt;/svg&gt;
+  &lt;h2&gt;Subscription Activated!&lt;/h2&gt;
+  &lt;p&gt;Your plan is now active. Enjoy all the premium features.&lt;/p&gt;
+  &lt;button class="btn-primary-pill" @click="$emit('close')"&gt;Get Started&lt;/button&gt;
+&lt;/div&gt;</div>
+                </div>
+                <button class="show-modal-btn" onclick="showModal('subscription-success-modal')">Show Modal</button>
+            </div>
+
+            <!-- Task Submitted Modal -->
+            <div class="modal-item">
+                <div class="modal-header">
+                    <h3 class="modal-title">Task Submitted Modal</h3>
+                    <span class="modal-size">540px</span>
+                </div>
+                <div class="modal-path">components/tasks/TaskSubmittedModal.vue</div>
+                <div class="modal-preview">
+                    <div class="preview-modal">
+                        <div style="width:540px;background:white;border-radius:16px;padding:40px 32px;font-family:-apple-system,sans-serif;box-shadow:0 20px 60px rgba(0,0,0,0.15);text-align:center;">
+                            <div style="font-size:30px;margin-bottom:16px;">🎉 🎉 🎉</div>
+                            <p style="font-size:18px;color:#232425;margin-bottom:12px;">Your task has been submitted!</p>
+                            <p style="font-size:15px;color:#606366;font-weight:600;margin-bottom:32px;line-height:1.5;">Feel free to leave the page, we'll notify you when done.</p>
+                            <div style="display:flex;gap:12px;justify-content:center;">
+                                <button style="padding:10px 24px;background:white;border:1px solid #EAEAEA;border-radius:8px;font-size:15px;color:#232425;cursor:pointer;">OK</button>
+                                <button style="padding:10px 24px;background:#232425;border:none;border-radius:8px;font-size:15px;color:white;cursor:pointer;">Check Task Status</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="code-section">
+                    <div class="code-header">
+                        <span class="code-label">Vue Component</span>
+                        <button class="copy-btn" onclick="copyCode(this, 'task-submitted-code')">Copy</button>
+                    </div>
+                    <div class="code-snippet" id="task-submitted-code">&lt;div class="task-submitted-modal" style="width:540px; border-radius:16px; text-align:center;"&gt;
+  &lt;div class="emoji-row"&gt;🎉 🎉 🎉&lt;/div&gt;
+  &lt;p class="title"&gt;Your task has been submitted!&lt;/p&gt;
+  &lt;p class="subtitle"&gt;Feel free to leave the page...&lt;/p&gt;
+  &lt;div class="footer"&gt;
+    &lt;button class="btn-outline" @click="$emit('close')"&gt;OK&lt;/button&gt;
+    &lt;button class="btn-primary" @click="goToTasks"&gt;Check Task Status&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</div>
+                </div>
+                <button class="show-modal-btn" onclick="showModal('task-submitted-modal')">Show Modal</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Paywall & Upgrade Modals Section -->
+    <div class="modal-section">
+        <div class="section-header">
+            <h2 class="section-title">Paywall &amp; Upgrade Modals</h2>
+            <p class="section-description">Membership gate and upgrade prompts for Pro features</p>
+        </div>
+        <div class="modal-grid">
+
+            <!-- Membership Gate Modal -->
+            <div class="modal-item">
+                <div class="modal-header">
+                    <h3 class="modal-title">Membership Gate Modal</h3>
+                    <span class="modal-size">480px</span>
+                </div>
+                <div class="modal-path">components/paywall/MembershipGateModal.vue</div>
+                <div class="modal-preview">
+                    <div class="preview-modal">
+                        <div style="width:480px;background:white;border-radius:16px;padding:40px 32px;font-family:-apple-system,sans-serif;box-shadow:0 20px 60px rgba(0,0,0,0.15);text-align:center;position:relative;">
+                            <button style="position:absolute;top:16px;right:16px;background:none;border:none;font-size:18px;cursor:pointer;color:#909499;">✕</button>
+                            <div style="font-size:36px;margin-bottom:16px;">⭐</div>
+                            <h2 style="font-size:22px;font-weight:700;color:#232425;margin-bottom:12px;">Unlock Pro Features</h2>
+                            <p style="font-size:15px;color:#606366;margin-bottom:32px;line-height:1.5;">This feature requires a Genspark Pro membership.</p>
+                            <button style="width:100%;height:48px;background:#0F7FFF;border:none;border-radius:30px;font-size:16px;color:white;cursor:pointer;font-weight:500;margin-bottom:12px;">Upgrade to Pro</button>
+                            <button style="background:none;border:none;font-size:15px;color:#606366;cursor:pointer;text-decoration:underline;">Continue with Free</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="code-section">
+                    <div class="code-header">
+                        <span class="code-label">Vue Component</span>
+                        <button class="copy-btn" onclick="copyCode(this, 'membership-gate-code')">Copy</button>
+                    </div>
+                    <div class="code-snippet" id="membership-gate-code">&lt;div class="membership-gate" style="width:480px; border-radius:16px; text-align:center;"&gt;
+  &lt;button class="close-btn"&gt;✕&lt;/button&gt;
+  &lt;span class="icon"&gt;⭐&lt;/span&gt;
+  &lt;h2&gt;Unlock Pro Features&lt;/h2&gt;
+  &lt;p&gt;This feature requires a Genspark Pro membership.&lt;/p&gt;
+  &lt;button class="btn-blue-pill" @click="upgrade"&gt;Upgrade to Pro&lt;/button&gt;
+  &lt;button class="btn-ghost" @click="$emit('close')"&gt;Continue with Free&lt;/button&gt;
+&lt;/div&gt;</div>
+                </div>
+                <button class="show-modal-btn" onclick="showModal('membership-gate-modal')">Show Modal</button>
+            </div>
+
+            <!-- Member Required / Paywall Modal -->
+            <div class="modal-item">
+                <div class="modal-header">
+                    <h3 class="modal-title">Member Required Modal</h3>
+                    <span class="modal-size">480px</span>
+                </div>
+                <div class="modal-path">components/paywall/MemberRequiredModal.vue</div>
+                <div class="modal-preview">
+                    <div class="preview-modal">
+                        <div style="width:480px;background:white;border-radius:16px;padding:40px 32px;font-family:-apple-system,sans-serif;box-shadow:0 20px 60px rgba(0,0,0,0.15);text-align:center;position:relative;overflow:hidden;">
+                            <div style="position:absolute;bottom:-40px;right:-40px;width:160px;height:160px;background:radial-gradient(circle,#0F7FFF,transparent);opacity:0.15;filter:blur(20px);border-radius:50%;"></div>
+                            <div style="position:absolute;bottom:-20px;right:40px;width:100px;height:100px;background:radial-gradient(circle,#8B5CF6,transparent);opacity:0.15;filter:blur(16px);border-radius:50%;"></div>
+                            <button style="position:absolute;top:16px;right:16px;background:none;border:none;font-size:18px;cursor:pointer;color:#909499;z-index:1;">✕</button>
+                            <h2 style="font-size:20px;font-weight:700;color:#232425;margin-bottom:12px;position:relative;">Upgrade Required</h2>
+                            <p style="font-size:15px;color:#606366;margin-bottom:32px;line-height:1.5;position:relative;">This feature is only available for Pro members.</p>
+                            <button style="width:100%;height:48px;background:#0F7FFF;border:none;border-radius:30px;font-size:16px;color:white;cursor:pointer;font-weight:500;margin-bottom:12px;position:relative;">Upgrade to Pro</button>
+                            <button style="background:none;border:none;font-size:15px;color:#606366;cursor:pointer;position:relative;">Not now</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="code-section">
+                    <div class="code-header">
+                        <span class="code-label">Vue Component</span>
+                        <button class="copy-btn" onclick="copyCode(this, 'member-required-code')">Copy</button>
+                    </div>
+                    <div class="code-snippet" id="member-required-code">&lt;div class="member-required" style="width:480px; border-radius:16px; overflow:hidden;"&gt;
+  &lt;!-- Decorative blurred circles --&gt;
+  &lt;div class="bg-circle blue"&gt;&lt;/div&gt;
+  &lt;div class="bg-circle purple"&gt;&lt;/div&gt;
+  &lt;button class="close-btn"&gt;✕&lt;/button&gt;
+  &lt;h2&gt;Upgrade Required&lt;/h2&gt;
+  &lt;p&gt;This feature is only available for Pro members.&lt;/p&gt;
+  &lt;button class="btn-blue-pill" @click="upgrade"&gt;Upgrade to Pro&lt;/button&gt;
+  &lt;button class="btn-ghost" @click="$emit('close')"&gt;Not now&lt;/button&gt;
+&lt;/div&gt;</div>
+                </div>
+                <button class="show-modal-btn" onclick="showModal('member-required-modal')">Show Modal</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Subscription Modals Section -->
+    <div class="modal-section">
+        <div class="section-header">
+            <h2 class="section-title">Subscription Modals</h2>
+            <p class="section-description">Plan management and downgrade confirmation dialogs</p>
+        </div>
+        <div class="modal-grid">
+
+            <!-- Downgrade Confirm Modal -->
+            <div class="modal-item">
+                <div class="modal-header">
+                    <h3 class="modal-title">Downgrade Confirm Modal</h3>
+                    <span class="modal-size">480px</span>
+                </div>
+                <div class="modal-path">components/subscription/DowngradeConfirmModal.vue</div>
+                <div class="modal-preview">
+                    <div class="preview-modal">
+                        <div style="width:480px;background:white;border-radius:16px;padding:28px;font-family:-apple-system,sans-serif;box-shadow:0 20px 60px rgba(0,0,0,0.15);position:relative;">
+                            <button style="position:absolute;top:16px;right:16px;background:none;border:none;font-size:18px;cursor:pointer;color:#909499;">✕</button>
+                            <h2 style="font-size:20px;font-weight:700;color:#232425;margin-bottom:20px;">Confirm Downgrade</h2>
+                            <div style="background:#FFFBEE;border-left:3px solid #F59E0B;border-radius:8px;padding:16px;margin-bottom:20px;">
+                                <p style="font-size:14px;color:#232425;margin-bottom:12px;font-weight:500;">After downgrading, you will lose access to:</p>
+                                <div style="display:flex;flex-direction:column;gap:8px;">
+                                    <div style="display:flex;gap:8px;align-items:center;font-size:14px;color:#606366;"><span style="color:#EF4444;font-weight:700;">✕</span> Unused credits will be removed</div>
+                                    <div style="display:flex;gap:8px;align-items:center;font-size:14px;color:#606366;"><span style="color:#EF4444;font-weight:700;">✕</span> Unlimited AI requests</div>
+                                    <div style="display:flex;gap:8px;align-items:center;font-size:14px;color:#606366;"><span style="color:#EF4444;font-weight:700;">✕</span> Creative tools &amp; design studio</div>
+                                    <div style="display:flex;gap:8px;align-items:center;font-size:14px;color:#606366;"><span style="color:#EF4444;font-weight:700;">✕</span> Meeting transcription</div>
+                                    <div style="display:flex;gap:8px;align-items:center;font-size:14px;color:#606366;"><span style="color:#EF4444;font-weight:700;">✕</span> Additional cloud storage</div>
+                                </div>
+                            </div>
+                            <div style="display:flex;gap:12px;">
+                                <button style="flex:1;height:44px;background:white;border:1px solid #EAEAEA;border-radius:8px;font-size:15px;color:#232425;cursor:pointer;">Cancel</button>
+                                <button style="flex:1;height:44px;background:#EF4444;border:none;border-radius:8px;font-size:15px;color:white;cursor:pointer;font-weight:500;">Confirm Downgrade</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="code-section">
+                    <div class="code-header">
+                        <span class="code-label">Vue Component</span>
+                        <button class="copy-btn" onclick="copyCode(this, 'downgrade-confirm-code')">Copy</button>
+                    </div>
+                    <div class="code-snippet" id="downgrade-confirm-code">&lt;div class="downgrade-modal" style="width:480px; border-radius:16px;"&gt;
+  &lt;button class="close-btn"&gt;✕&lt;/button&gt;
+  &lt;h2&gt;Confirm Downgrade&lt;/h2&gt;
+  &lt;div class="warning-card"&gt;
+    &lt;p&gt;After downgrading, you will lose access to:&lt;/p&gt;
+    &lt;ul class="loss-list"&gt;
+      &lt;li&gt;Unused credits will be removed&lt;/li&gt;
+      &lt;li&gt;Unlimited AI requests&lt;/li&gt;
+      &lt;li&gt;Creative tools &amp; design studio&lt;/li&gt;
+      &lt;li&gt;Meeting transcription&lt;/li&gt;
+      &lt;li&gt;Additional cloud storage&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+  &lt;div class="footer"&gt;
+    &lt;button class="btn-outline" @click="$emit('cancel')"&gt;Cancel&lt;/button&gt;
+    &lt;button class="btn-danger" @click="confirmDowngrade"&gt;Confirm Downgrade&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</div>
+                </div>
+                <button class="show-modal-btn" onclick="showModal('downgrade-confirm-modal')">Show Modal</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Workspace Modals Section -->
+    <div class="modal-section">
+        <div class="section-header">
+            <h2 class="section-title">Workspace Modals</h2>
+            <p class="section-description">Hub creation and management dialogs</p>
+        </div>
+        <div class="modal-grid">
+
+            <!-- Create Hub Dialog -->
+            <div class="modal-item">
+                <div class="modal-header">
+                    <h3 class="modal-title">Create Hub Dialog</h3>
+                    <span class="modal-size">480px</span>
+                </div>
+                <div class="modal-path">components/hub/CreateHubDialog.vue</div>
+                <div class="modal-preview">
+                    <div class="preview-modal">
+                        <div style="width:480px;background:white;border-radius:12px;padding:28px;font-family:-apple-system,sans-serif;box-shadow:0 20px 60px rgba(0,0,0,0.15);">
+                            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+                                <h3 style="font-size:18px;font-weight:700;color:#232425;">Create Hub</h3>
+                                <button style="background:none;border:none;font-size:18px;cursor:pointer;color:#909499;">✕</button>
+                            </div>
+                            <div style="margin-bottom:16px;">
+                                <label style="display:block;font-size:14px;font-weight:500;color:#232425;margin-bottom:6px;">Name</label>
+                                <input placeholder="Hub name" style="width:100%;height:40px;padding:0 12px;border:1px solid #EAEAEA;border-radius:8px;font-size:14px;outline:none;" />
+                            </div>
+                            <div style="margin-bottom:16px;">
+                                <label style="display:block;font-size:14px;font-weight:500;color:#232425;margin-bottom:8px;">Color</label>
+                                <div style="display:flex;gap:8px;">
+                                    <div style="width:28px;height:28px;border-radius:50%;background:#FF6B6B;border:2px solid #232425;cursor:pointer;"></div>
+                                    <div style="width:28px;height:28px;border-radius:50%;background:#FF9F43;cursor:pointer;"></div>
+                                    <div style="width:28px;height:28px;border-radius:50%;background:#FECA57;cursor:pointer;"></div>
+                                    <div style="width:28px;height:28px;border-radius:50%;background:#48DBFB;cursor:pointer;"></div>
+                                    <div style="width:28px;height:28px;border-radius:50%;background:#1DD1A1;cursor:pointer;"></div>
+                                    <div style="width:28px;height:28px;border-radius:50%;background:#54A0FF;cursor:pointer;"></div>
+                                    <div style="width:28px;height:28px;border-radius:50%;background:#5F27CD;cursor:pointer;"></div>
+                                    <div style="width:28px;height:28px;border-radius:50%;background:#232425;cursor:pointer;"></div>
+                                </div>
+                            </div>
+                            <div style="margin-bottom:24px;">
+                                <label style="display:block;font-size:14px;font-weight:500;color:#232425;margin-bottom:6px;">Description</label>
+                                <textarea placeholder="Describe this hub..." style="width:100%;height:80px;padding:10px 12px;border:1px solid #EAEAEA;border-radius:8px;font-size:14px;outline:none;resize:none;font-family:inherit;"></textarea>
+                            </div>
+                            <div style="display:flex;gap:12px;">
+                                <button style="flex:1;height:40px;background:white;border:1px solid #EAEAEA;border-radius:8px;font-size:15px;color:#232425;cursor:pointer;">Cancel</button>
+                                <button style="flex:1;height:40px;background:#232425;border:none;border-radius:8px;font-size:15px;color:white;cursor:pointer;font-weight:500;">Create</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="code-section">
+                    <div class="code-header">
+                        <span class="code-label">Vue Component</span>
+                        <button class="copy-btn" onclick="copyCode(this, 'create-hub-code')">Copy</button>
+                    </div>
+                    <div class="code-snippet" id="create-hub-code">&lt;div class="create-hub-dialog" style="width:480px; border-radius:12px;"&gt;
+  &lt;div class="dialog-header"&gt;
+    &lt;h3&gt;Create Hub&lt;/h3&gt;
+    &lt;button @click="$emit('close')"&gt;✕&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;el-form :model="form"&gt;
+    &lt;el-form-item label="Name"&gt;
+      &lt;el-input v-model="form.name" placeholder="Hub name" /&gt;
+    &lt;/el-form-item&gt;
+    &lt;el-form-item label="Color"&gt;
+      &lt;div class="color-picker"&gt;
+        &lt;div v-for="color in colors" :key="color"
+          class="color-dot" :style="{ background: color }"
+          :class="{ active: form.color === color }"
+          @click="form.color = color" /&gt;
+      &lt;/div&gt;
+    &lt;/el-form-item&gt;
+    &lt;el-form-item label="Description"&gt;
+      &lt;el-input v-model="form.description" type="textarea" /&gt;
+    &lt;/el-form-item&gt;
+  &lt;/el-form&gt;
+  &lt;div class="footer"&gt;
+    &lt;button @click="$emit('cancel')"&gt;Cancel&lt;/button&gt;
+    &lt;button :disabled="!form.name" @click="createHub"&gt;Create&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</div>
+                </div>
+                <button class="show-modal-btn" onclick="showModal('create-hub-modal')">Show Modal</button>
+            </div>
+
+            <!-- Delete Hub Dialog -->
+            <div class="modal-item">
+                <div class="modal-header">
+                    <h3 class="modal-title">Delete Hub Dialog</h3>
+                    <span class="modal-size">480px</span>
+                </div>
+                <div class="modal-path">components/hub/DeleteHubDialog.vue</div>
+                <div class="modal-preview">
+                    <div class="preview-modal">
+                        <div style="width:480px;background:white;border-radius:12px;padding:28px;font-family:-apple-system,sans-serif;box-shadow:0 20px 60px rgba(0,0,0,0.15);">
+                            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+                                <h3 style="font-size:18px;font-weight:700;color:#232425;">Delete Hub</h3>
+                                <button style="background:none;border:none;font-size:18px;cursor:pointer;color:#909499;">✕</button>
+                            </div>
+                            <div style="display:flex;flex-direction:column;gap:0;margin-bottom:28px;">
+                                <div style="display:flex;gap:16px;align-items:flex-start;padding:12px 0;">
+                                    <div style="width:32px;height:32px;border-radius:50%;background:#EF4444;color:white;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;flex-shrink:0;">1</div>
+                                    <div>
+                                        <p style="font-size:15px;font-weight:600;color:#232425;margin-bottom:4px;">Removing agents</p>
+                                        <p style="font-size:13px;color:#606366;">Disconnecting all agents from this hub</p>
+                                    </div>
+                                </div>
+                                <div style="display:flex;gap:16px;align-items:flex-start;padding:12px 0;border-top:1px solid #f0f0f0;">
+                                    <div style="width:32px;height:32px;border-radius:50%;background:#f0f0f0;color:#909499;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;flex-shrink:0;">2</div>
+                                    <div>
+                                        <p style="font-size:15px;font-weight:600;color:#909499;margin-bottom:4px;">Clearing data</p>
+                                        <p style="font-size:13px;color:#C4C7CC;">Removing all hub files and history</p>
+                                    </div>
+                                </div>
+                                <div style="display:flex;gap:16px;align-items:flex-start;padding:12px 0;border-top:1px solid #f0f0f0;">
+                                    <div style="width:32px;height:32px;border-radius:50%;background:#f0f0f0;color:#909499;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;flex-shrink:0;">3</div>
+                                    <div>
+                                        <p style="font-size:15px;font-weight:600;color:#909499;margin-bottom:4px;">Finalizing</p>
+                                        <p style="font-size:13px;color:#C4C7CC;">Completing the deletion process</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="display:flex;gap:12px;">
+                                <button style="flex:1;height:40px;background:white;border:1px solid #EAEAEA;border-radius:8px;font-size:15px;color:#232425;cursor:pointer;">Cancel</button>
+                                <button style="flex:1;height:40px;background:#EF4444;border:none;border-radius:8px;font-size:15px;color:white;cursor:pointer;font-weight:500;">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="code-section">
+                    <div class="code-header">
+                        <span class="code-label">Vue Component</span>
+                        <button class="copy-btn" onclick="copyCode(this, 'delete-hub-code')">Copy</button>
+                    </div>
+                    <div class="code-snippet" id="delete-hub-code">&lt;div class="delete-hub-dialog" style="width:480px; border-radius:12px;"&gt;
+  &lt;div class="dialog-header"&gt;
+    &lt;h3&gt;Delete Hub&lt;/h3&gt;
+    &lt;button @click="$emit('close')"&gt;✕&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class="steps-list"&gt;
+    &lt;div v-for="(step, i) in steps" :key="i" class="step-item"&gt;
+      &lt;div class="step-indicator" :class="{ active: i === currentStep, done: i &lt; currentStep }"&gt;
+        &lt;span v-if="i &lt; currentStep"&gt;✓&lt;/span&gt;
+        &lt;span v-else&gt;{{ i + 1 }}&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;p class="step-title"&gt;{{ step.title }}&lt;/p&gt;
+        &lt;p class="step-desc"&gt;{{ step.desc }}&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="footer"&gt;
+    &lt;button @click="$emit('cancel')"&gt;Cancel&lt;/button&gt;
+    &lt;button class="btn-danger" @click="deleteHub"&gt;Delete&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</div>
+                </div>
+                <button class="show-modal-btn" onclick="showModal('delete-hub-modal')">Show Modal</button>
+            </div>
+
+        </div>
+    </div>
+
     <!-- Copy notification -->
     <div class="copy-notification" id="copyNotification">Code copied to clipboard!</div>
 
@@ -2218,6 +2764,216 @@
             <div style="display: flex; gap: 12px;">
                 <button style="flex: 1; padding: 12px; background: #f5f5f5; color: #606366; border: none; border-radius: 8px;">Close</button>
                 <button style="flex: 1; padding: 12px; background: #232425; color: white; border: none; border-radius: 8px;">Download</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== NEW ONLINE MODAL OVERLAY IMPLEMENTATIONS ===== -->
+
+    <!-- Generic Confirm Modal (Standard) -->
+    <div id="generic-confirm-modal" class="modal-overlay">
+        <div class="modal-dialog" style="width:480px;padding:28px;background:white;border-radius:16px;position:relative;">
+            <button class="close-btn" onclick="hideModal('generic-confirm-modal')">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+            <h2 style="font-size:20px;font-weight:700;color:#232425;margin-bottom:12px;">Confirm Action</h2>
+            <p style="font-size:16px;color:#606366;margin-bottom:28px;line-height:1.5;">Are you sure you want to proceed? This action cannot be undone.</p>
+            <div style="display:flex;gap:12px;">
+                <button onclick="hideModal('generic-confirm-modal')" style="flex:1;height:44px;background:white;border:1px solid #EAEAEA;border-radius:8px;font-size:15px;color:#232425;cursor:pointer;font-family:inherit;">Cancel</button>
+                <button onclick="hideModal('generic-confirm-modal')" style="flex:1;height:44px;background:#232425;border:none;border-radius:8px;font-size:15px;color:white;cursor:pointer;font-family:inherit;font-weight:500;">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Generic Confirm Modal (Danger) -->
+    <div id="generic-confirm-danger-modal" class="modal-overlay">
+        <div class="modal-dialog" style="width:480px;padding:28px;background:white;border-radius:16px;position:relative;">
+            <button class="close-btn" onclick="hideModal('generic-confirm-danger-modal')">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+            <h2 style="font-size:20px;font-weight:700;color:#232425;margin-bottom:12px;">Delete Project</h2>
+            <p style="font-size:16px;color:#606366;margin-bottom:28px;line-height:1.5;">This will permanently delete the project and all its data. This action cannot be undone.</p>
+            <div style="display:flex;gap:12px;">
+                <button onclick="hideModal('generic-confirm-danger-modal')" style="flex:1;height:44px;background:white;border:1px solid #EAEAEA;border-radius:8px;font-size:15px;color:#232425;cursor:pointer;font-family:inherit;">Cancel</button>
+                <button onclick="hideModal('generic-confirm-danger-modal')" style="flex:1;height:44px;background:#EF4444;border:none;border-radius:8px;font-size:15px;color:white;cursor:pointer;font-family:inherit;font-weight:500;">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Dialog Modal -->
+    <div id="login-dialog-modal" class="modal-overlay">
+        <div class="modal-dialog" style="width:480px;padding:32px;background:white;border-radius:16px;position:relative;">
+            <button class="close-btn" onclick="hideModal('login-dialog-modal')">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+            <h2 style="font-size:24px;font-weight:700;color:#232425;text-align:center;margin-bottom:8px;">Sign in to Genspark</h2>
+            <p style="font-size:14px;color:#909499;text-align:center;margin-bottom:28px;">Access your AI-powered workspace</p>
+            <button style="width:100%;height:44px;background:#F1F1F1;border:none;border-radius:12px;display:flex;align-items:center;justify-content:center;gap:10px;font-size:15px;color:#232425;margin-bottom:12px;cursor:pointer;font-family:inherit;">
+                <svg width="18" height="18" viewBox="0 0 18 18"><path d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.874 2.684-6.615z" fill="#4285F4"/><path d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 0 0 9 18z" fill="#34A853"/><path d="M3.964 10.71A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 0 0 0 9c0 1.452.348 2.827.957 4.042l3.007-2.332z" fill="#FBBC05"/><path d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.958L3.964 7.29C4.672 5.163 6.656 3.58 9 3.58z" fill="#EA4335"/></svg>
+                Continue with Google
+            </button>
+            <button style="width:100%;height:44px;background:#F1F1F1;border:none;border-radius:12px;display:flex;align-items:center;justify-content:center;gap:10px;font-size:15px;color:#232425;margin-bottom:20px;cursor:pointer;font-family:inherit;">
+                <svg width="18" height="18" viewBox="0 0 18 18"><path d="M13.28 9.75c-.02-2.3 1.88-3.42 1.97-3.47-1.07-1.57-2.74-1.78-3.33-1.8-1.41-.14-2.76.83-3.48.83-.72 0-1.82-.81-3-.79C3.9 4.54 2.3 5.54 1.42 7.1-.37 10.3.82 15.07 2.58 17.59c.88 1.26 1.92 2.68 3.28 2.63 1.32-.05 1.82-.85 3.42-.85 1.6 0 2.05.85 3.44.82 1.42-.02 2.32-1.28 3.18-2.55.99-1.45 1.41-2.87 1.43-2.94-.03-.02-2.75-1.06-2.77-4.23l.02.28z" fill="#000"/><path d="M11.1 2.7C11.83 1.8 12.3.56 12.17-.7 11.07-.63 9.77.07 9 1c-.7.84-1.31 2.1-1.15 3.34 1.24.1 2.5-.63 3.25-1.64z" fill="#000"/></svg>
+                Continue with Apple
+            </button>
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+                <div style="flex:1;border-top:1px dashed #EAEAEA;"></div>
+                <span style="font-size:13px;color:#909499;">OR</span>
+                <div style="flex:1;border-top:1px dashed #EAEAEA;"></div>
+            </div>
+            <button style="width:100%;height:44px;background:white;border:1px solid #EAEAEA;border-radius:12px;font-size:15px;color:#232425;cursor:pointer;font-family:inherit;">More Options</button>
+        </div>
+    </div>
+
+    <!-- Subscription Success Modal -->
+    <div id="subscription-success-modal" class="modal-overlay">
+        <div class="modal-dialog" style="width:480px;padding:40px 32px;background:white;border-radius:16px;position:relative;text-align:center;">
+            <button class="close-btn" onclick="hideModal('subscription-success-modal')">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+            <svg width="70" height="70" viewBox="0 0 70 70" style="margin-bottom:20px;"><circle cx="35" cy="35" r="30" fill="none" stroke="#10B981" stroke-width="4"/><path d="M20 36l10 10 20-22" stroke="#10B981" stroke-width="4" fill="none" stroke-linecap="round"/></svg>
+            <h2 style="font-size:24px;font-weight:700;color:#232425;margin-bottom:12px;">Subscription Activated!</h2>
+            <p style="font-size:15px;color:#606366;margin-bottom:32px;line-height:1.5;">Your plan is now active. Enjoy all the premium features.</p>
+            <button onclick="hideModal('subscription-success-modal')" style="width:100%;height:48px;background:#232425;border:none;border-radius:30px;font-size:16px;color:white;cursor:pointer;font-weight:500;font-family:inherit;">Get Started</button>
+        </div>
+    </div>
+
+    <!-- Task Submitted Modal -->
+    <div id="task-submitted-modal" class="modal-overlay">
+        <div class="modal-dialog" style="width:540px;padding:40px 32px;background:white;border-radius:16px;text-align:center;">
+            <div style="font-size:30px;margin-bottom:16px;">🎉 🎉 🎉</div>
+            <p style="font-size:18px;color:#232425;margin-bottom:12px;">Your task has been submitted!</p>
+            <p style="font-size:15px;color:#606366;font-weight:600;margin-bottom:32px;line-height:1.5;">Feel free to leave the page, we'll notify you when done.</p>
+            <div style="display:flex;gap:12px;justify-content:center;">
+                <button onclick="hideModal('task-submitted-modal')" style="padding:12px 28px;background:white;border:1px solid #EAEAEA;border-radius:8px;font-size:15px;color:#232425;cursor:pointer;font-family:inherit;">OK</button>
+                <button onclick="hideModal('task-submitted-modal')" style="padding:12px 28px;background:#232425;border:none;border-radius:8px;font-size:15px;color:white;cursor:pointer;font-family:inherit;font-weight:500;">Check Task Status</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Membership Gate Modal -->
+    <div id="membership-gate-modal" class="modal-overlay">
+        <div class="modal-dialog" style="width:480px;padding:40px 32px;background:white;border-radius:16px;position:relative;text-align:center;">
+            <button class="close-btn" onclick="hideModal('membership-gate-modal')">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+            <div style="font-size:48px;margin-bottom:16px;">⭐</div>
+            <h2 style="font-size:22px;font-weight:700;color:#232425;margin-bottom:12px;">Unlock Pro Features</h2>
+            <p style="font-size:15px;color:#606366;margin-bottom:32px;line-height:1.5;">This feature requires a Genspark Pro membership.</p>
+            <button style="width:100%;height:48px;background:#0F7FFF;border:none;border-radius:30px;font-size:16px;color:white;cursor:pointer;font-weight:500;margin-bottom:12px;font-family:inherit;">Upgrade to Pro</button>
+            <br>
+            <button onclick="hideModal('membership-gate-modal')" style="background:none;border:none;font-size:15px;color:#606366;cursor:pointer;text-decoration:underline;font-family:inherit;">Continue with Free</button>
+        </div>
+    </div>
+
+    <!-- Member Required Modal -->
+    <div id="member-required-modal" class="modal-overlay">
+        <div class="modal-dialog" style="width:480px;padding:40px 32px;background:white;border-radius:16px;position:relative;text-align:center;overflow:hidden;">
+            <div style="position:absolute;bottom:-40px;right:-40px;width:200px;height:200px;background:radial-gradient(circle,#0F7FFF,transparent);opacity:0.15;filter:blur(30px);border-radius:50%;pointer-events:none;"></div>
+            <div style="position:absolute;bottom:-20px;right:60px;width:130px;height:130px;background:radial-gradient(circle,#8B5CF6,transparent);opacity:0.15;filter:blur(20px);border-radius:50%;pointer-events:none;"></div>
+            <button class="close-btn" onclick="hideModal('member-required-modal')" style="z-index:2;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+            <h2 style="font-size:20px;font-weight:700;color:#232425;margin-bottom:12px;position:relative;z-index:1;">Upgrade Required</h2>
+            <p style="font-size:15px;color:#606366;margin-bottom:32px;line-height:1.5;position:relative;z-index:1;">This feature is only available for Pro members.</p>
+            <button style="width:100%;height:48px;background:#0F7FFF;border:none;border-radius:30px;font-size:16px;color:white;cursor:pointer;font-weight:500;margin-bottom:12px;font-family:inherit;position:relative;z-index:1;">Upgrade to Pro</button>
+            <br>
+            <button onclick="hideModal('member-required-modal')" style="background:none;border:none;font-size:15px;color:#606366;cursor:pointer;font-family:inherit;position:relative;z-index:1;">Not now</button>
+        </div>
+    </div>
+
+    <!-- Downgrade Confirm Modal -->
+    <div id="downgrade-confirm-modal" class="modal-overlay">
+        <div class="modal-dialog" style="width:480px;padding:28px;background:white;border-radius:16px;position:relative;">
+            <button class="close-btn" onclick="hideModal('downgrade-confirm-modal')">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+            <h2 style="font-size:20px;font-weight:700;color:#232425;margin-bottom:20px;">Confirm Downgrade</h2>
+            <div style="background:#FFFBEE;border-left:3px solid #F59E0B;border-radius:8px;padding:16px;margin-bottom:24px;">
+                <p style="font-size:14px;color:#232425;margin-bottom:12px;font-weight:500;">After downgrading, you will lose access to:</p>
+                <div style="display:flex;flex-direction:column;gap:10px;">
+                    <div style="display:flex;gap:10px;align-items:center;font-size:14px;color:#606366;"><span style="color:#EF4444;font-weight:700;flex-shrink:0;">✕</span> Unused credits will be removed</div>
+                    <div style="display:flex;gap:10px;align-items:center;font-size:14px;color:#606366;"><span style="color:#EF4444;font-weight:700;flex-shrink:0;">✕</span> Unlimited AI requests</div>
+                    <div style="display:flex;gap:10px;align-items:center;font-size:14px;color:#606366;"><span style="color:#EF4444;font-weight:700;flex-shrink:0;">✕</span> Creative tools &amp; design studio</div>
+                    <div style="display:flex;gap:10px;align-items:center;font-size:14px;color:#606366;"><span style="color:#EF4444;font-weight:700;flex-shrink:0;">✕</span> Meeting transcription</div>
+                    <div style="display:flex;gap:10px;align-items:center;font-size:14px;color:#606366;"><span style="color:#EF4444;font-weight:700;flex-shrink:0;">✕</span> Additional cloud storage</div>
+                </div>
+            </div>
+            <div style="display:flex;gap:12px;">
+                <button onclick="hideModal('downgrade-confirm-modal')" style="flex:1;height:44px;background:white;border:1px solid #EAEAEA;border-radius:8px;font-size:15px;color:#232425;cursor:pointer;font-family:inherit;">Cancel</button>
+                <button onclick="hideModal('downgrade-confirm-modal')" style="flex:1;height:44px;background:#EF4444;border:none;border-radius:8px;font-size:15px;color:white;cursor:pointer;font-weight:500;font-family:inherit;">Confirm Downgrade</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Hub Modal -->
+    <div id="create-hub-modal" class="modal-overlay">
+        <div class="modal-dialog" style="width:480px;padding:28px;background:white;border-radius:12px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+                <h2 style="font-size:18px;font-weight:700;color:#232425;">Create Hub</h2>
+                <button onclick="hideModal('create-hub-modal')" style="background:none;border:none;font-size:20px;cursor:pointer;color:#909499;line-height:1;">✕</button>
+            </div>
+            <div style="margin-bottom:16px;">
+                <label style="display:block;font-size:14px;font-weight:500;color:#232425;margin-bottom:6px;">Name</label>
+                <input placeholder="Hub name" style="width:100%;height:40px;padding:0 12px;border:1px solid #EAEAEA;border-radius:8px;font-size:14px;outline:none;font-family:inherit;box-sizing:border-box;" />
+            </div>
+            <div style="margin-bottom:16px;">
+                <label style="display:block;font-size:14px;font-weight:500;color:#232425;margin-bottom:8px;">Color</label>
+                <div style="display:flex;gap:8px;">
+                    <div onclick="this.parentNode.querySelectorAll('div').forEach(d=>d.style.outline='none');this.style.outline='2px solid #232425'" style="width:28px;height:28px;border-radius:50%;background:#FF6B6B;cursor:pointer;outline:2px solid #232425;"></div>
+                    <div onclick="this.parentNode.querySelectorAll('div').forEach(d=>d.style.outline='none');this.style.outline='2px solid #232425'" style="width:28px;height:28px;border-radius:50%;background:#FF9F43;cursor:pointer;"></div>
+                    <div onclick="this.parentNode.querySelectorAll('div').forEach(d=>d.style.outline='none');this.style.outline='2px solid #232425'" style="width:28px;height:28px;border-radius:50%;background:#FECA57;cursor:pointer;"></div>
+                    <div onclick="this.parentNode.querySelectorAll('div').forEach(d=>d.style.outline='none');this.style.outline='2px solid #232425'" style="width:28px;height:28px;border-radius:50%;background:#48DBFB;cursor:pointer;"></div>
+                    <div onclick="this.parentNode.querySelectorAll('div').forEach(d=>d.style.outline='none');this.style.outline='2px solid #232425'" style="width:28px;height:28px;border-radius:50%;background:#1DD1A1;cursor:pointer;"></div>
+                    <div onclick="this.parentNode.querySelectorAll('div').forEach(d=>d.style.outline='none');this.style.outline='2px solid #232425'" style="width:28px;height:28px;border-radius:50%;background:#54A0FF;cursor:pointer;"></div>
+                    <div onclick="this.parentNode.querySelectorAll('div').forEach(d=>d.style.outline='none');this.style.outline='2px solid #232425'" style="width:28px;height:28px;border-radius:50%;background:#5F27CD;cursor:pointer;"></div>
+                    <div onclick="this.parentNode.querySelectorAll('div').forEach(d=>d.style.outline='none');this.style.outline='2px solid #232425'" style="width:28px;height:28px;border-radius:50%;background:#232425;cursor:pointer;"></div>
+                </div>
+            </div>
+            <div style="margin-bottom:24px;">
+                <label style="display:block;font-size:14px;font-weight:500;color:#232425;margin-bottom:6px;">Description</label>
+                <textarea placeholder="Describe this hub..." style="width:100%;height:80px;padding:10px 12px;border:1px solid #EAEAEA;border-radius:8px;font-size:14px;outline:none;resize:none;font-family:inherit;box-sizing:border-box;"></textarea>
+            </div>
+            <div style="display:flex;gap:12px;">
+                <button onclick="hideModal('create-hub-modal')" style="flex:1;height:40px;background:white;border:1px solid #EAEAEA;border-radius:8px;font-size:15px;color:#232425;cursor:pointer;font-family:inherit;">Cancel</button>
+                <button style="flex:1;height:40px;background:#232425;border:none;border-radius:8px;font-size:15px;color:white;cursor:pointer;font-weight:500;font-family:inherit;">Create</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Hub Modal -->
+    <div id="delete-hub-modal" class="modal-overlay">
+        <div class="modal-dialog" style="width:480px;padding:28px;background:white;border-radius:12px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+                <h2 style="font-size:18px;font-weight:700;color:#232425;">Delete Hub</h2>
+                <button onclick="hideModal('delete-hub-modal')" style="background:none;border:none;font-size:20px;cursor:pointer;color:#909499;line-height:1;">✕</button>
+            </div>
+            <div style="display:flex;flex-direction:column;margin-bottom:28px;">
+                <div style="display:flex;gap:16px;align-items:flex-start;padding:12px 0;">
+                    <div style="width:32px;height:32px;border-radius:50%;background:#EF4444;color:white;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;flex-shrink:0;">1</div>
+                    <div>
+                        <p style="font-size:15px;font-weight:600;color:#232425;margin-bottom:4px;">Removing agents</p>
+                        <p style="font-size:13px;color:#606366;">Disconnecting all agents from this hub</p>
+                    </div>
+                </div>
+                <div style="display:flex;gap:16px;align-items:flex-start;padding:12px 0;border-top:1px solid #f0f0f0;">
+                    <div style="width:32px;height:32px;border-radius:50%;background:#f0f0f0;color:#909499;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;flex-shrink:0;">2</div>
+                    <div>
+                        <p style="font-size:15px;font-weight:600;color:#909499;margin-bottom:4px;">Clearing data</p>
+                        <p style="font-size:13px;color:#C4C7CC;">Removing all hub files and history</p>
+                    </div>
+                </div>
+                <div style="display:flex;gap:16px;align-items:flex-start;padding:12px 0;border-top:1px solid #f0f0f0;">
+                    <div style="width:32px;height:32px;border-radius:50%;background:#f0f0f0;color:#909499;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;flex-shrink:0;">3</div>
+                    <div>
+                        <p style="font-size:15px;font-weight:600;color:#909499;margin-bottom:4px;">Finalizing</p>
+                        <p style="font-size:13px;color:#C4C7CC;">Completing the deletion process</p>
+                    </div>
+                </div>
+            </div>
+            <div style="display:flex;gap:12px;">
+                <button onclick="hideModal('delete-hub-modal')" style="flex:1;height:40px;background:white;border:1px solid #EAEAEA;border-radius:8px;font-size:15px;color:#232425;cursor:pointer;font-family:inherit;">Cancel</button>
+                <button onclick="hideModal('delete-hub-modal')" style="flex:1;height:40px;background:#EF4444;border:none;border-radius:8px;font-size:15px;color:white;cursor:pointer;font-weight:500;font-family:inherit;">Delete</button>
             </div>
         </div>
     </div>
