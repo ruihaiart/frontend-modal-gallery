@@ -1885,602 +1885,669 @@
     <section class="section" id="modals">
       <div class="section-header">
         <h2 class="section-title">Modals</h2>
-        <p class="section-desc">Production modal components. Styles shown inline — copy the implementation code below each.</p>
+        <p class="section-desc">Production modal content redesigned to conform to the Design System. Each modal uses correct tokens — copy the compliant implementation below.</p>
       </div>
 
       <style>
-        .modal-gallery-group { margin-bottom: 40px; }
-        .modal-gallery-label { font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--ui-text-faint); margin-bottom: 14px; }
-        .modal-exhibit { background: var(--ui-bg-page); border: 1px solid var(--ui-border); border-radius: 14px; overflow: hidden; margin-bottom: 16px; }
-        .modal-exhibit-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; border-bottom: 1px solid var(--ui-border); }
-        .modal-exhibit-name { font-size: 14px; font-weight: 600; color: var(--ui-text-primary); }
-        .modal-exhibit-desc { font-size: 13px; color: var(--ui-text-secondary); margin-top: 1px; }
-        .modal-exhibit-body { padding: 32px 24px; display: flex; align-items: center; justify-content: center; background: var(--ui-bg-subtle); }
-        .modal-exhibit-code { position: relative; }
-        .modal-exhibit-code pre { margin: 0; padding: 16px 20px; font-size: 12px; line-height: 1.7; background: #1a1a1a; color: #e8e8e8; overflow-x: auto; border-top: 1px solid var(--ui-border); }
-        .modal-copy-btn { position: absolute; top: 10px; right: 12px; padding: 4px 10px; border-radius: 6px; border: none; background: rgba(255,255,255,0.12); color: #e8e8e8; font-size: 11px; cursor: pointer; transition: background 0.15s; }
-        .modal-copy-btn:hover { background: rgba(255,255,255,0.22); }
-        .modal-copy-btn.copied { background: #10B981; color: #fff; }
-        /* Inline modal card */
-        .m-card { background: #fff; border-radius: 16px; padding: 24px; width: 100%; max-width: 480px; box-shadow: 0 4px 24px rgba(0,0,0,0.12); }
-        .m-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
-        .m-card-title { font-size: 18px; font-weight: 700; color: #232425; }
-        .m-card-close { width: 28px; height: 28px; border: none; background: #F5F5F5; border-radius: 50%; cursor: pointer; font-size: 14px; color: #606366; display: flex; align-items: center; justify-content: center; }
-        .m-card-body { font-size: 15px; color: #606366; line-height: 1.6; margin-bottom: 20px; }
-        .m-card-footer { display: flex; justify-content: flex-end; gap: 8px; }
-        .m-btn { height: 40px; padding: 0 16px; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; border: none; }
-        .m-btn-outline { background: #fff; border: 1px solid #EAEAEA; color: #232425; }
-        .m-btn-primary { background: #232425; color: #fff; font-weight: 600; }
-        .m-btn-blue { background: #0F7FFF; color: #fff; font-weight: 600; }
-        .m-btn-danger { background: #EF4444; color: #fff; font-weight: 600; }
-        .m-btn-ghost { background: none; border: none; color: #606366; }
-        .m-btn-pill { border-radius: 30px; }
-        .m-btn-full { width: 100%; height: 48px; font-size: 16px; }
-        .m-warning-card { background: #FFFBEE; border-left: 3px solid #F59E0B; border-radius: 0 8px 8px 0; padding: 14px 16px; margin-bottom: 20px; }
-        .m-login-btn { width: 100%; height: 44px; border-radius: 12px; border: none; background: #F1F1F1; font-size: 15px; color: #0D0D0D; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 10px; }
-        .m-login-outline { background: #fff; border: 1px solid rgba(0,0,0,0.15); }
-        .m-divider { display: flex; align-items: center; gap: 9px; margin: 4px 0 10px; }
-        .m-divider-line { flex: 1; height: 0; border-top: 1px dashed #EAEAEA; }
-        .m-step { display: flex; gap: 14px; padding: 12px 0; }
-        .m-step + .m-step { border-top: 1px solid #F2F2F2; }
-        .m-step-dot { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
-        .m-step-done { background: #232425; color: #fff; }
-        .m-step-active { background: #0F7FFF; color: #fff; }
-        .m-step-pending { border: 1.5px solid #D0D3D8; color: #909499; }
+        .mg-group { margin-bottom: 48px; }
+        .mg-label { font-size: 11px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--ui-text-faint); margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--ui-border); }
+        .mg-card { background: var(--ui-bg-page); border: 1px solid var(--ui-border); border-radius: 14px; overflow: hidden; margin-bottom: 20px; }
+        .mg-card-meta { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; padding: 16px 20px 14px; }
+        .mg-card-info { flex: 1; }
+        .mg-card-name { font-size: 14px; font-weight: 600; color: var(--ui-text-primary); margin-bottom: 3px; }
+        .mg-card-desc { font-size: 13px; color: var(--ui-text-secondary); line-height: 1.5; }
+        .mg-badge { font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 6px; background: #EFF6FF; color: #2563EB; white-space: nowrap; flex-shrink: 0; }
+        .mg-preview { padding: 32px 24px; display: flex; align-items: center; justify-content: center; background: #F0F0F2; border-top: 1px solid var(--ui-border); border-bottom: 1px solid var(--ui-border); }
+        .mg-code-wrap { position: relative; }
+        .mg-code-wrap pre { margin: 0; padding: 16px 20px 16px; font-size: 11.5px; line-height: 1.75; background: #111; color: #e2e8f0; overflow-x: auto; font-family: "SF Mono", "Fira Code", monospace; }
+        .mg-copy { position: absolute; top: 10px; right: 12px; padding: 4px 10px; border-radius: 6px; border: none; background: rgba(255,255,255,.1); color: #cbd5e1; font-size: 11px; font-family: inherit; cursor: pointer; transition: all .15s; }
+        .mg-copy:hover { background: rgba(255,255,255,.18); color: #fff; }
+        .mg-copy.ok { background: #10B981; color: #fff; }
+
+        /* ── DS-Compliant Modal Styles (tokens applied) ── */
+        .ds-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; z-index: 999; }
+        .ds-modal-wrap { background: var(--color-bg-page, #fff); border-radius: var(--modal-radius, 16px); padding: var(--modal-padding, 24px); box-shadow: var(--modal-shadow, 0 10px 25px rgba(0,0,0,0.2)); width: 100%; position: relative; }
+        .ds-modal-wrap.sm { max-width: var(--modal-width-sm, 480px); }
+        .ds-modal-wrap.md { max-width: var(--modal-width-md, 560px); }
+        .ds-modal-wrap.lg { max-width: var(--modal-width-lg, 640px); }
+        .ds-close { position: absolute; top: 16px; right: 16px; width: 28px; height: 28px; border: none; background: var(--color-bg-subtle, #F5F5F5); border-radius: 50%; cursor: pointer; font-size: 14px; color: var(--color-text-secondary, #606366); display: flex; align-items: center; justify-content: center; transition: background var(--transition-fast, 150ms); }
+        .ds-close:hover { background: var(--color-bg-subtle, #EAEAEA); }
+        .ds-modal-title { font-size: var(--modal-title-size, 20px); font-weight: var(--modal-title-weight, 700); color: var(--color-text-primary, #232425); margin: 0 0 var(--space-8, 8px); }
+        .ds-modal-title-lg { font-size: var(--modal-title-size-lg, 24px); font-weight: 700; color: var(--color-text-primary, #232425); margin: 0 0 var(--space-8, 8px); }
+        .ds-modal-body { font-size: var(--text-small, 14px); color: var(--color-text-secondary, #606366); line-height: 1.6; margin: 0 0 var(--space-20, 20px); }
+        .ds-modal-footer { display: flex; justify-content: flex-end; gap: var(--space-8, 8px); }
+        .ds-modal-footer.center { justify-content: center; }
+        .ds-modal-footer.full { flex-direction: column; }
+        /* Buttons (DS-compliant) */
+        .ds-btn { height: var(--size-md, 40px); padding: 0 var(--space-16, 16px); font-size: var(--text-small, 14px); font-weight: 600; border: none; cursor: pointer; transition: all var(--transition-fast, 150ms); white-space: nowrap; }
+        .ds-btn-sm { height: var(--size-sm, 32px); padding: 0 var(--space-12, 12px); font-size: 13px; }
+        .ds-btn-lg { height: var(--size-lg, 48px); padding: 0 var(--space-20, 20px); font-size: var(--text-body, 16px); }
+        .ds-btn-primary { background: var(--color-brand-primary, #232425); color: #fff; border-radius: var(--radius-8, 8px); }
+        .ds-btn-primary:hover { background: var(--color-brand-hover, #393A3B); }
+        .ds-btn-primary-pill { background: var(--color-brand-primary, #232425); color: #fff; border-radius: 30px; }
+        .ds-btn-blue { background: var(--color-brand-secondary, #0F7FFF); color: #fff; border-radius: var(--radius-8, 8px); }
+        .ds-btn-blue-pill { background: var(--color-brand-secondary, #0F7FFF); color: #fff; border-radius: 30px; }
+        .ds-btn-outline { background: var(--color-bg-page, #fff); color: var(--color-text-primary, #232425); border: var(--border-width-1, 1px) solid var(--color-border-default, #EAEAEA); border-radius: var(--radius-8, 8px); }
+        .ds-btn-danger { background: var(--color-error, #EF4444); color: #fff; border-radius: var(--radius-8, 8px); }
+        .ds-btn-ghost { background: none; border: none; color: var(--color-text-secondary, #606366); font-weight: 400; }
+        .ds-btn-full { width: 100%; }
+        /* Form fields */
+        .ds-field { margin-bottom: var(--space-16, 16px); }
+        .ds-field-label { font-size: var(--text-caption, 12px); font-weight: 600; color: var(--color-text-primary, #232425); margin-bottom: var(--space-6, 6px); text-transform: uppercase; letter-spacing: .04em; }
+        .ds-input { width: 100%; height: var(--size-md, 40px); border: var(--border-width-1, 1px) solid var(--color-border-default, #EAEAEA); border-radius: var(--radius-8, 8px); padding: 0 var(--space-12, 12px); font-size: var(--text-small, 14px); color: var(--color-text-primary, #232425); outline: none; box-sizing: border-box; transition: border-color var(--transition-fast, 150ms); }
+        .ds-input:focus { border-color: var(--color-border-brand, #0F7FFF); box-shadow: 0 0 0 3px rgba(15,127,255,.1); }
+        .ds-textarea { width: 100%; border: var(--border-width-1, 1px) solid var(--color-border-default, #EAEAEA); border-radius: var(--radius-8, 8px); padding: var(--space-12, 12px); font-size: var(--text-small, 14px); color: var(--color-text-primary, #232425); outline: none; resize: none; font-family: inherit; box-sizing: border-box; }
+        /* Warning block */
+        .ds-warning { background: #FFFBEE; border-left: 3px solid var(--color-warning, #F59E0B); border-radius: 0 var(--radius-8, 8px) var(--radius-8, 8px) 0; padding: var(--space-16, 16px); margin-bottom: var(--space-20, 20px); }
+        .ds-warning-title { font-size: var(--text-caption, 12px); font-weight: 700; color: #92400E; margin: 0 0 var(--space-8, 8px); text-transform: uppercase; letter-spacing: .04em; }
+        .ds-warning-item { display: flex; gap: var(--space-8, 8px); align-items: center; font-size: var(--text-small, 14px); color: var(--color-text-secondary, #606366); margin-bottom: var(--space-4, 4px); }
+        .ds-warning-x { color: var(--color-error, #EF4444); font-weight: 700; flex-shrink: 0; }
+        /* Step indicator */
+        .ds-steps { margin-bottom: var(--space-20, 20px); }
+        .ds-step { display: flex; gap: var(--space-12, 12px); padding: var(--space-12, 12px) 0; }
+        .ds-step + .ds-step { border-top: 1px solid var(--color-border-subtle, #F2F2F2); }
+        .ds-step-dot { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+        .ds-step-dot.done { background: var(--color-brand-primary, #232425); color: #fff; }
+        .ds-step-dot.active { background: var(--color-brand-secondary, #0F7FFF); color: #fff; }
+        .ds-step-dot.pending { border: 1.5px solid var(--color-border-strong, #D0D3D8); color: var(--color-text-tertiary, #909499); }
+        .ds-step-label { font-size: var(--text-small, 14px); font-weight: 600; color: var(--color-text-primary, #232425); }
+        .ds-step-desc { font-size: var(--text-caption, 12px); color: var(--color-text-secondary, #606366); margin-top: 2px; }
+        /* Social login btn */
+        .ds-social-btn { width: 100%; height: 44px; border-radius: var(--radius-12, 12px); background: var(--color-bg-subtle, #F5F5F5); border: none; font-size: var(--text-body, 16px); color: var(--color-text-primary, #232425); cursor: pointer; display: flex; align-items: center; justify-content: center; gap: var(--space-8, 8px); margin-bottom: var(--space-12, 12px); transition: background var(--transition-fast, 150ms); }
+        .ds-social-btn:hover { background: var(--color-border-default, #EAEAEA); }
+        .ds-social-btn.outline { background: var(--color-bg-page, #fff); border: 1px solid var(--color-border-default, #EAEAEA); }
+        .ds-divider { display: flex; align-items: center; gap: var(--space-8, 8px); margin: var(--space-4, 4px) 0 var(--space-12, 12px); }
+        .ds-divider-line { flex: 1; height: 0; border-top: 1px dashed var(--color-border-default, #EAEAEA); }
+        /* Orb decorator */
+        .ds-orb { position: absolute; border-radius: 50%; pointer-events: none; filter: blur(40px); }
+        /* Color swatches */
+        .ds-color-opts { display: flex; gap: var(--space-8, 8px); flex-wrap: wrap; }
+        .ds-color-dot { width: 26px; height: 26px; border-radius: 50%; cursor: pointer; transition: transform .12s; }
+        .ds-color-dot:hover { transform: scale(1.15); }
+        .ds-color-dot.sel { outline: 2.5px solid var(--color-text-primary, #232425); outline-offset: 2px; }
       </style>
 
       <!-- ── System ── -->
-      <div class="modal-gallery-group">
-        <div class="modal-gallery-label">System</div>
+      <div class="mg-group">
+        <div class="mg-label">System</div>
 
-        <!-- Confirm Standard -->
-        <div class="modal-exhibit">
-          <div class="modal-exhibit-header">
-            <div>
-              <div class="modal-exhibit-name">Confirm Dialog</div>
-              <div class="modal-exhibit-desc">Generic confirmation — use for non-destructive actions</div>
+        <!-- Confirm Dialog -->
+        <div class="mg-card">
+          <div class="mg-card-meta">
+            <div class="mg-card-info">
+              <div class="mg-card-name">Confirm Dialog <code style="font-size:11px;background:#f5f5f7;padding:2px 6px;border-radius:4px;color:#606366">ConfirmDialog.vue</code></div>
+              <div class="mg-card-desc">Generic confirmation — non-destructive actions use primary button, destructive actions use danger button</div>
+            </div>
+            <span class="mg-badge">DS Compliant</span>
+          </div>
+          <div class="mg-preview">
+            <div class="ds-modal-wrap sm">
+              <button class="ds-close">✕</button>
+              <div class="ds-modal-title">Delete project?</div>
+              <div class="ds-modal-body">Are you sure you want to delete this project? All associated data will be permanently removed and cannot be recovered.</div>
+              <div class="ds-modal-footer">
+                <button class="ds-btn ds-btn-outline">Cancel</button>
+                <button class="ds-btn ds-btn-primary">Confirm</button>
+              </div>
             </div>
           </div>
-          <div class="modal-exhibit-body">
-            <div class="m-card">
-              <div class="m-card-header">
-                <span class="m-card-title">Delete project?</span>
-                <button class="m-card-close">✕</button>
-              </div>
-              <div class="m-card-body">Are you sure you want to delete this project? All associated data will be permanently removed.</div>
-              <div class="m-card-footer">
-                <button class="m-btn m-btn-outline">Cancel</button>
-                <button class="m-btn m-btn-primary">Confirm</button>
-              </div>
-            </div>
-          </div>
-          <div class="modal-exhibit-code">
-            <pre id="code-confirm">&lt;div class="modal-overlay"&gt;
-  &lt;div class="modal" style="width:480px;border-radius:16px;padding:24px"&gt;
-    &lt;div class="modal-header"&gt;
-      &lt;h3&gt;Delete project?&lt;/h3&gt;
-      &lt;button class="close-btn"&gt;✕&lt;/button&gt;
-    &lt;/div&gt;
-    &lt;p class="modal-body"&gt;
-      Are you sure? This action cannot be undone.
-    &lt;/p&gt;
+          <div class="mg-code-wrap">
+            <pre id="c-confirm">&lt;!-- ConfirmDialog.vue — DS-compliant implementation --&gt;
+&lt;div class="modal-overlay"&gt; &lt;!-- rgba(0,0,0,0.4) backdrop --&gt;
+  &lt;div class="modal"&gt; &lt;!-- width:480px; border-radius:var(--modal-radius); padding:var(--modal-padding); --&gt;
+    &lt;button class="close-btn" @click="handleCancel"&gt;✕&lt;/button&gt;
+
+    &lt;h3 class="modal-title"&gt;{{ title }}&lt;/h3&gt;
+    &lt;!-- font-size:var(--modal-title-size); font-weight:700; color:var(--color-text-primary) --&gt;
+
+    &lt;p class="modal-body"&gt;{{ message }}&lt;/p&gt;
+    &lt;!-- font-size:var(--text-small); color:var(--color-text-secondary); line-height:1.6 --&gt;
+
     &lt;div class="modal-footer"&gt;
-      &lt;button class="btn-outline" @click="close"&gt;Cancel&lt;/button&gt;
-      &lt;button class="btn-primary" @click="confirm"&gt;Confirm&lt;/button&gt;
+      &lt;button class="btn-outline" @click="handleCancel"&gt;{{ cancelText }}&lt;/button&gt;
+      &lt;button :class="isDanger ? 'btn-danger' : 'btn-primary'" @click="handleConfirm"&gt;
+        {{ confirmText }}
+      &lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-&lt;/div&gt;</pre>
-            <button class="modal-copy-btn" onclick="copyCode('code-confirm', this)">Copy</button>
+&lt;/div&gt;
+
+/* Token usage */
+.modal         { border-radius: var(--modal-radius); padding: var(--modal-padding); box-shadow: var(--modal-shadow); }
+.modal-title   { font-size: var(--modal-title-size); font-weight: var(--modal-title-weight); }
+.btn-primary   { background: var(--color-brand-primary); border-radius: var(--radius-8); height: var(--size-md); }
+.btn-danger    { background: var(--color-error); border-radius: var(--radius-8); height: var(--size-md); }
+.btn-outline   { border: 1px solid var(--color-border-default); border-radius: var(--radius-8); height: var(--size-md); }</pre>
+            <button class="mg-copy" onclick="mgCopy('c-confirm',this)">Copy</button>
           </div>
         </div>
 
-        <!-- Confirm Danger -->
-        <div class="modal-exhibit">
-          <div class="modal-exhibit-header">
-            <div>
-              <div class="modal-exhibit-name">Confirm Dialog — Danger</div>
-              <div class="modal-exhibit-desc">Destructive action confirmation — confirm button turns red</div>
+        <!-- Login Dialog -->
+        <div class="mg-card">
+          <div class="mg-card-meta">
+            <div class="mg-card-info">
+              <div class="mg-card-name">Login Dialog <code style="font-size:11px;background:#f5f5f7;padding:2px 6px;border-radius:4px;color:#606366">common/LoginDialog.vue</code></div>
+              <div class="mg-card-desc">Sign-in with OAuth providers. Social buttons use bg-subtle background, outline style for third option</div>
+            </div>
+            <span class="mg-badge">DS Compliant</span>
+          </div>
+          <div class="mg-preview">
+            <div class="ds-modal-wrap sm" style="padding:0">
+              <div style="display:flex;justify-content:flex-end;padding:10px 10px 0">
+                <button class="ds-close" style="position:static">✕</button>
+              </div>
+              <div style="padding:0 24px 36px">
+                <div style="text-align:center;margin-bottom:20px">
+                  <div class="ds-modal-title-lg" style="font-size:22px">Sign in to Genspark</div>
+                  <div style="font-size:14px;color:#606366">Access your AI workspace and all your projects</div>
+                </div>
+                <button class="ds-social-btn">
+                  <svg width="16" height="16" viewBox="0 0 16 16"><path d="M15.68 8.18c0-.57-.05-1.12-.14-1.64H8v3.1h4.29a3.67 3.67 0 01-1.59 2.41v2h2.57c1.5-1.38 2.37-3.41 2.37-5.87z" fill="#4285F4"/><path d="M8 16c2.16 0 3.97-.71 5.29-1.93l-2.57-2a4.8 4.8 0 01-7.18-2.52H.94v2.07A8 8 0 008 16z" fill="#34A853"/><path d="M3.54 9.55A4.8 4.8 0 013.28 8c0-.54.09-1.06.26-1.55V4.38H.94A8 8 0 000 8c0 1.29.31 2.51.94 3.62l2.6-2.07z" fill="#FBBC05"/><path d="M8 3.18c1.22 0 2.31.42 3.17 1.24l2.37-2.37A8 8 0 000 8h.94A4.8 4.8 0 018 3.18z" fill="#EA4335"/></svg>
+                  Continue with Google
+                </button>
+                <button class="ds-social-btn">
+                  <svg width="15" height="15" viewBox="0 0 15 15" fill="#000"><path d="M10.47.1c.07.85-.25 1.7-.74 2.3-.49.61-1.29 1.08-2.07 1.02-.08-.8.29-1.65.75-2.23C8.9.52 9.73.06 10.47.1zM13.18 10.3c-.38.83-.56 1.2-1.04 1.94-.68 1.03-1.63 2.32-2.81 2.33-1.04.01-1.32-.68-2.73-.67-1.42.01-1.72.69-2.77.68-1.18-.01-2.07-1.18-2.75-2.21C-.63 9.97-.09 6.73 1.64 4.98c1.22-1.22 3.17-1.26 4.41-.03.44.44.54.91 1.47.91.95 0 1.22-.6 2.28-.61 1.16-.01 2.47.67 3.35 1.79l-.02.42-.01-.16z"/></svg>
+                  Continue with Apple
+                </button>
+                <div class="ds-divider"><div class="ds-divider-line"></div><span style="font-size:13px;color:#909499">or</span><div class="ds-divider-line"></div></div>
+                <button class="ds-social-btn outline">More options</button>
+              </div>
             </div>
           </div>
-          <div class="modal-exhibit-body">
-            <div class="m-card">
-              <div class="m-card-header">
-                <span class="m-card-title">Delete account?</span>
-                <button class="m-card-close">✕</button>
-              </div>
-              <div class="m-card-body">This will permanently delete your account and all your data. This action <strong>cannot be undone</strong>.</div>
-              <div class="m-card-footer">
-                <button class="m-btn m-btn-outline">Cancel</button>
-                <button class="m-btn m-btn-danger">Delete Account</button>
-              </div>
-            </div>
-          </div>
-          <div class="modal-exhibit-code">
-            <pre id="code-confirm-danger">&lt;!-- Same as Confirm Dialog, change confirm button class --&gt;
-&lt;button class="btn-danger" @click="confirm"&gt;Delete Account&lt;/button&gt;
+          <div class="mg-code-wrap">
+            <pre id="c-login">&lt;!-- LoginDialog.vue — DS-compliant implementation --&gt;
+&lt;div class="modal"&gt; &lt;!-- width:480px; border-radius:var(--modal-radius) --&gt;
+  &lt;div class="header-row"&gt;
+    &lt;button class="close-btn" @click="handleClose"&gt;✕&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class="content"&gt;
+    &lt;h2&gt;Sign in to Genspark&lt;/h2&gt;
+    &lt;p&gt;Access your AI workspace&lt;/p&gt;
 
-&lt;!-- CSS --&gt;
-.btn-danger {
-  background: #EF4444;
-  color: #fff;
-  border-radius: 8px;
-  border: none;
-  height: 40px;
-  padding: 0 16px;
-  font-weight: 600;
-}</pre>
-            <button class="modal-copy-btn" onclick="copyCode('code-confirm-danger', this)">Copy</button>
-          </div>
-        </div>
-
-        <!-- Login -->
-        <div class="modal-exhibit">
-          <div class="modal-exhibit-header">
-            <div>
-              <div class="modal-exhibit-name">Login Dialog</div>
-              <div class="modal-exhibit-desc">Sign in with Google, Apple, or more options</div>
-            </div>
-          </div>
-          <div class="modal-exhibit-body">
-            <div class="m-card" style="max-width:480px">
-              <div style="display:flex;justify-content:flex-end;margin:-8px -8px 8px"><button class="m-card-close">✕</button></div>
-              <div style="text-align:center;margin-bottom:20px">
-                <h2 style="font-size:22px;font-weight:700;color:#0D0D0D;margin:0 0 6px">Sign in to Genspark</h2>
-                <p style="font-size:14px;color:#606366;margin:0">Access your AI workspace and all your projects</p>
-              </div>
-              <button class="m-login-btn">
-                <svg width="16" height="16" viewBox="0 0 16 16"><path d="M15.68 8.18c0-.57-.05-1.12-.14-1.64H8v3.1h4.29a3.67 3.67 0 01-1.59 2.41v2h2.57c1.5-1.38 2.37-3.41 2.37-5.87z" fill="#4285F4"/><path d="M8 16c2.16 0 3.97-.71 5.29-1.93l-2.57-2a4.8 4.8 0 01-7.18-2.52H.94v2.07A8 8 0 008 16z" fill="#34A853"/><path d="M3.54 9.55A4.8 4.8 0 013.28 8c0-.54.09-1.06.26-1.55V4.38H.94A8 8 0 000 8c0 1.29.31 2.51.94 3.62l2.6-2.07z" fill="#FBBC05"/><path d="M8 3.18c1.22 0 2.31.42 3.17 1.24l2.37-2.37A8 8 0 000 8h.94A4.8 4.8 0 018 3.18z" fill="#EA4335"/></svg>
-                Continue with Google
-              </button>
-              <button class="m-login-btn">
-                <svg width="15" height="15" viewBox="0 0 15 15" fill="#000"><path d="M10.47.1c.07.85-.25 1.7-.74 2.3-.49.61-1.29 1.08-2.07 1.02-.08-.8.29-1.65.75-2.23C8.9.52 9.73.06 10.47.1zM13.18 10.3c-.38.83-.56 1.2-1.04 1.94-.68 1.03-1.63 2.32-2.81 2.33-1.04.01-1.32-.68-2.73-.67-1.42.01-1.72.69-2.77.68-1.18-.01-2.07-1.18-2.75-2.21C-.63 9.97-.09 6.73 1.64 4.98c1.22-1.22 3.17-1.26 4.41-.03.44.44.54.91 1.47.91.95 0 1.22-.6 2.28-.61 1.16-.01 2.47.67 3.35 1.79l-.02.42-.01-.16z"/></svg>
-                Continue with Apple
-              </button>
-              <div class="m-divider"><div class="m-divider-line"></div><span style="font-size:13px;color:#909499">or</span><div class="m-divider-line"></div></div>
-              <button class="m-login-btn m-login-outline">More options</button>
-            </div>
-          </div>
-          <div class="modal-exhibit-code">
-            <pre id="code-login">&lt;!-- LoginDialog.vue (simplified) --&gt;
-&lt;n-modal v-model:show="visible"&gt;
-  &lt;div class="login-modal"&gt;
-    &lt;div class="header"&gt;
-      &lt;h2&gt;Sign in to Genspark&lt;/h2&gt;
-    &lt;/div&gt;
     &lt;button class="social-btn" @click="handleGoogleLogin"&gt;
       &lt;GoogleIcon /&gt; Continue with Google
     &lt;/button&gt;
     &lt;button class="social-btn" @click="handleAppleLogin"&gt;
       &lt;AppleIcon /&gt; Continue with Apple
     &lt;/button&gt;
+
     &lt;div class="divider"&gt;&lt;span&gt;or&lt;/span&gt;&lt;/div&gt;
+
     &lt;button class="social-btn outline" @click="handleMoreOptions"&gt;
       More options
     &lt;/button&gt;
   &lt;/div&gt;
-&lt;/n-modal&gt;
+&lt;/div&gt;
 
-&lt;!-- social-btn styles --&gt;
+/* Token usage */
 .social-btn {
-  width: 100%; height: 44px; border-radius: 12px;
-  background: #F1F1F1; border: none; font-size: 15px;
-  display: flex; align-items: center; justify-content: center; gap: 8px;
+  width: 100%; height: 44px;
+  border-radius: var(--radius-12);
+  background: var(--color-bg-subtle);   /* #F5F5F5 */
+  border: none; font-size: var(--text-body);
+  gap: var(--space-8);
 }
-.social-btn.outline { background: #fff; border: 1px solid rgba(0,0,0,0.15); }</pre>
-            <button class="modal-copy-btn" onclick="copyCode('code-login', this)">Copy</button>
+.social-btn.outline {
+  background: var(--color-bg-page);
+  border: 1px solid var(--color-border-default);
+}</pre>
+            <button class="mg-copy" onclick="mgCopy('c-login',this)">Copy</button>
           </div>
         </div>
       </div>
 
       <!-- ── Feedback & Status ── -->
-      <div class="modal-gallery-group">
-        <div class="modal-gallery-label">Feedback &amp; Status</div>
+      <div class="mg-group">
+        <div class="mg-label">Feedback &amp; Status</div>
 
-        <!-- Success -->
-        <div class="modal-exhibit">
-          <div class="modal-exhibit-header">
-            <div>
-              <div class="modal-exhibit-name">Subscription Success</div>
-              <div class="modal-exhibit-desc">Post-payment confirmation with checkmark</div>
+        <!-- Subscription Success -->
+        <div class="mg-card">
+          <div class="mg-card-meta">
+            <div class="mg-card-info">
+              <div class="mg-card-name">Subscription Success <code style="font-size:11px;background:#f5f5f7;padding:2px 6px;border-radius:4px;color:#606366">subscription2/SubscriptionSuccessModal.vue</code></div>
+              <div class="mg-card-desc">Post-payment confirmation. Centered layout, success icon, primary pill CTA</div>
             </div>
+            <span class="mg-badge">DS Compliant</span>
           </div>
-          <div class="modal-exhibit-body">
-            <div class="m-card" style="text-align:center;display:flex;flex-direction:column;align-items:center;gap:24px">
-              <button class="m-card-close" style="align-self:flex-end">✕</button>
+          <div class="mg-preview">
+            <div class="ds-modal-wrap sm" style="text-align:center;display:flex;flex-direction:column;align-items:center;gap:24px">
+              <button class="ds-close">✕</button>
               <svg width="70" height="70" viewBox="0 0 70 70"><circle cx="35" cy="35" r="30" fill="none" stroke="#10B981" stroke-width="4"/><path d="M20 36l10 10 20-22" stroke="#10B981" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
               <div>
-                <div style="font-size:22px;font-weight:700;color:#232425;margin-bottom:6px">Subscription Activated!</div>
-                <div style="font-size:14px;color:#606366;line-height:1.6">Your plan is now active. Enjoy all the premium features.</div>
+                <div class="ds-modal-title-lg" style="text-align:center">Subscription Activated!</div>
+                <div class="ds-modal-body" style="margin:0">Your plan is now active. Enjoy all the premium features.</div>
               </div>
-              <button class="m-btn m-btn-primary m-btn-pill m-btn-full">Get Started</button>
+              <button class="ds-btn ds-btn-primary-pill ds-btn-lg ds-btn-full">Get Started</button>
             </div>
           </div>
-          <div class="modal-exhibit-code">
-            <pre id="code-success">&lt;!-- SubscriptionSuccessModal.vue --&gt;
+          <div class="mg-code-wrap">
+            <pre id="c-success">&lt;!-- SubscriptionSuccessModal.vue — DS-compliant --&gt;
 &lt;div class="modal-overlay" @click.self="$emit('close')"&gt;
-  &lt;div class="modal-window"&gt;
-    &lt;button class="modal-close" @click="$emit('close')"&gt;✕&lt;/button&gt;
-    &lt;div class="modal-icon"&gt;
-      &lt;!-- Green checkmark SVG --&gt;
-      &lt;svg width="70" height="70" viewBox="0 0 70 70"&gt;
-        &lt;circle cx="35" cy="35" r="30" fill="none" stroke="#10B981" stroke-width="4"/&gt;
-        &lt;path d="M20 36l10 10 20-22" stroke="#10B981" stroke-width="4" fill="none" stroke-linecap="round"/&gt;
-      &lt;/svg&gt;
-    &lt;/div&gt;
+  &lt;div class="modal" style="width:480px; text-align:center;"&gt;
+    &lt;button class="close-btn" @click="$emit('close')"&gt;✕&lt;/button&gt;
+
+    &lt;!-- Success icon --&gt;
+    &lt;svg width="70" height="70" viewBox="0 0 70 70"&gt;
+      &lt;circle cx="35" cy="35" r="30" fill="none" stroke="var(--color-success)" stroke-width="4"/&gt;
+      &lt;path d="M20 36l10 10 20-22" stroke="var(--color-success)" stroke-width="4"
+        fill="none" stroke-linecap="round" stroke-linejoin="round"/&gt;
+    &lt;/svg&gt;
+
     &lt;h2&gt;{{ title || 'Subscription Activated!' }}&lt;/h2&gt;
     &lt;p&gt;{{ subtitle }}&lt;/p&gt;
-    &lt;button class="btn-primary" @click="$emit('close')"&gt;Get Started&lt;/button&gt;
+
+    &lt;button class="btn-primary-pill btn-lg btn-full" @click="$emit('close')"&gt;
+      {{ buttonText || 'Get Started' }}
+    &lt;/button&gt;
   &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;!-- .modal-window --&gt;
-width: 480px; border-radius: 16px; padding: 24px;
-display: flex; flex-direction: column; align-items: center; gap: 40px;</pre>
-            <button class="modal-copy-btn" onclick="copyCode('code-success', this)">Copy</button>
+/* Token usage */
+.modal          { border-radius: var(--modal-radius); padding: var(--modal-padding); box-shadow: var(--modal-shadow); }
+.btn-primary-pill { background: var(--color-brand-primary); border-radius: 30px; height: var(--size-lg); }
+.close-btn      { background: var(--color-bg-subtle); border-radius: 50%; }</pre>
+            <button class="mg-copy" onclick="mgCopy('c-success',this)">Copy</button>
           </div>
         </div>
 
         <!-- Task Submitted -->
-        <div class="modal-exhibit">
-          <div class="modal-exhibit-header">
-            <div>
-              <div class="modal-exhibit-name">Task Submitted</div>
-              <div class="modal-exhibit-desc">Async task acknowledgment with celebration state</div>
+        <div class="mg-card">
+          <div class="mg-card-meta">
+            <div class="mg-card-info">
+              <div class="mg-card-name">Task Submitted <code style="font-size:11px;background:#f5f5f7;padding:2px 6px;border-radius:4px;color:#606366">TaskSubmittedModal.vue</code></div>
+              <div class="mg-card-desc">Async task acknowledgment. Celebration emoji header, two action buttons</div>
             </div>
+            <span class="mg-badge">DS Compliant</span>
           </div>
-          <div class="modal-exhibit-body">
-            <div class="m-card" style="text-align:center;width:540px;max-width:100%">
-              <div style="font-size:30px;margin-bottom:14px">🎉 🎉 🎉</div>
-              <p style="font-size:16px;color:#232425;margin:0 0 8px">Your task has been submitted!</p>
-              <p style="font-size:14px;font-weight:600;color:#232425;margin:0 0 20px">Feel free to leave the page, we'll notify you when done.</p>
-              <div style="display:flex;justify-content:center;gap:8px">
-                <button class="m-btn m-btn-outline">OK</button>
-                <button class="m-btn m-btn-primary">Check Task Status</button>
+          <div class="mg-preview">
+            <div class="ds-modal-wrap md" style="text-align:center">
+              <div style="font-size:28px;margin-bottom:16px">🎉 🎉 🎉</div>
+              <div class="ds-modal-title" style="text-align:center">Your task has been submitted!</div>
+              <div class="ds-modal-body" style="font-weight:600;color:#232425">Feel free to leave the page, we'll notify you when done.</div>
+              <div class="ds-modal-footer" style="justify-content:center">
+                <button class="ds-btn ds-btn-outline">OK</button>
+                <button class="ds-btn ds-btn-primary">Check Task Status</button>
               </div>
             </div>
           </div>
-          <div class="modal-exhibit-code">
-            <pre id="code-task">&lt;!-- TaskSubmittedModal.vue --&gt;
+          <div class="mg-code-wrap">
+            <pre id="c-task">&lt;!-- TaskSubmittedModal.vue — DS-compliant --&gt;
 &lt;NModal v-model:show="internalShow" :mask-closable="maskClosable"&gt;
-  &lt;div class="create_result"&gt;
-    &lt;div class="content"&gt;
-      &lt;p style="font-size:30px"&gt;🎉 🎉 🎉&lt;/p&gt;
-      &lt;p&gt;{{ t('pages.autopilotagent.task_submitted_desc') }}&lt;/p&gt;
-      &lt;p class="bold"&gt;{{ t('pages.autopilotagent.task_submitted_desc_feel_free') }}&lt;/p&gt;
-    &lt;/div&gt;
-    &lt;div class="buttons"&gt;
-      &lt;div class="button default" @click="handleCancel"&gt;OK&lt;/div&gt;
-      &lt;div v-if="showViewButton" class="button" @click="handleConfirm"&gt;
+  &lt;div class="modal" style="width:560px; text-align:center;"&gt;
+    &lt;p style="font-size:28px"&gt;🎉 🎉 🎉&lt;/p&gt;
+
+    &lt;h3&gt;Your task has been submitted!&lt;/h3&gt;
+    &lt;!-- font-size:var(--modal-title-size); font-weight:700 --&gt;
+
+    &lt;p class="bold"&gt;Feel free to leave — we'll notify you when done.&lt;/p&gt;
+    &lt;!-- font-weight:600; color:var(--color-text-primary) --&gt;
+
+    &lt;div class="modal-footer" style="justify-content:center"&gt;
+      &lt;button class="btn-outline" @click="handleCancel"&gt;OK&lt;/button&gt;
+      &lt;button v-if="showViewButton" class="btn-primary" @click="handleConfirm"&gt;
         Check Task Status
-      &lt;/div&gt;
+      &lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/NModal&gt;
 
-&lt;!-- .create_result --&gt;
-width: 540px; padding: 30px 20px 20px;
-text-align: center; font-size: 16px;</pre>
-            <button class="modal-copy-btn" onclick="copyCode('code-task', this)">Copy</button>
+/* Token usage */
+.modal     { border-radius: var(--modal-radius); padding: var(--modal-padding); }
+.btn-primary  { background: var(--color-brand-primary); border-radius: var(--radius-8); height: var(--size-md); }
+.btn-outline  { border: 1px solid var(--color-border-default); border-radius: var(--radius-8); height: var(--size-md); }</pre>
+            <button class="mg-copy" onclick="mgCopy('c-task',this)">Copy</button>
           </div>
         </div>
       </div>
 
       <!-- ── Paywall & Upgrade ── -->
-      <div class="modal-gallery-group">
-        <div class="modal-gallery-label">Paywall &amp; Upgrade</div>
+      <div class="mg-group">
+        <div class="mg-label">Paywall &amp; Upgrade</div>
 
         <!-- Membership Gate -->
-        <div class="modal-exhibit">
-          <div class="modal-exhibit-header">
-            <div>
-              <div class="modal-exhibit-name">Membership Gate</div>
-              <div class="modal-exhibit-desc">Feature gate with upgrade CTA — use for soft paywall</div>
+        <div class="mg-card">
+          <div class="mg-card-meta">
+            <div class="mg-card-info">
+              <div class="mg-card-name">Membership Gate <code style="font-size:11px;background:#f5f5f7;padding:2px 6px;border-radius:4px;color:#606366">payment/MembershipGateModal.vue</code></div>
+              <div class="mg-card-desc">Soft paywall. Blue pill CTA (brand-secondary) for upgrade, ghost for dismiss</div>
+            </div>
+            <span class="mg-badge">DS Compliant</span>
+          </div>
+          <div class="mg-preview">
+            <div class="ds-modal-wrap sm" style="text-align:center;display:flex;flex-direction:column;align-items:center;gap:16px">
+              <button class="ds-close">✕</button>
+              <div class="ds-modal-title">Unlock Pro Features</div>
+              <div class="ds-modal-body" style="margin:0">This feature requires a Genspark Pro membership. Upgrade to access unlimited AI requests, creative tools, and more.</div>
+              <button class="ds-btn ds-btn-blue-pill ds-btn-lg ds-btn-full">Upgrade to Pro</button>
+              <button class="ds-btn ds-btn-ghost" style="font-size:13px">Continue with Free</button>
             </div>
           </div>
-          <div class="modal-exhibit-body">
-            <div class="m-card" style="text-align:center;display:flex;flex-direction:column;align-items:center;gap:18px;position:relative">
-              <button class="m-card-close" style="position:absolute;top:0;right:0">✕</button>
-              <h2 style="font-size:20px;font-weight:700;color:#232425;margin:0;padding-top:4px">Unlock Pro Features</h2>
-              <p style="font-size:14px;color:#606366;line-height:1.6;margin:0">This feature requires a Genspark Pro membership. Upgrade to access unlimited AI requests, creative tools, and more.</p>
-              <button class="m-btn m-btn-blue m-btn-pill m-btn-full">Upgrade to Pro</button>
-              <button class="m-btn m-btn-ghost" style="font-size:13px">Continue with Free</button>
-            </div>
-          </div>
-          <div class="modal-exhibit-code">
-            <pre id="code-gate">&lt;!-- MembershipGateModal.vue --&gt;
+          <div class="mg-code-wrap">
+            <pre id="c-gate">&lt;!-- MembershipGateModal.vue — DS-compliant --&gt;
 &lt;Teleport to="body"&gt;
-  &lt;div class="membership-gate-overlay" @click.self="handleSecondaryAction"&gt;
-    &lt;div class="membership-gate-modal"&gt;
-      &lt;CloseIcon @click="handleSecondaryAction" /&gt;
-      &lt;div class="modal-title"&gt;{{ title }}&lt;/div&gt;
-      &lt;div class="modal-description"&gt;{{ description }}&lt;/div&gt;
-      &lt;div class="primary-button" @click="handlePrimaryAction"&gt;
-        Upgrade to Pro
-      &lt;/div&gt;
-      &lt;div class="secondary-button" @click="handleSecondaryAction"&gt;
-        Continue with Free
+  &lt;Transition name="modal-fade"&gt;
+    &lt;div v-if="visible" class="modal-overlay" @click.self="handleSecondaryAction"&gt;
+      &lt;div class="modal" style="width:480px; text-align:center;"&gt;
+        &lt;button class="close-btn" @click="handleSecondaryAction"&gt;✕&lt;/button&gt;
+
+        &lt;h3&gt;{{ title }}&lt;/h3&gt;
+        &lt;p&gt;{{ description }}&lt;/p&gt;
+
+        &lt;button class="btn-blue-pill btn-lg btn-full" @click="handlePrimaryAction"&gt;
+          {{ primaryButtonText }}
+        &lt;/button&gt;
+        &lt;button class="btn-ghost" @click="handleSecondaryAction"&gt;
+          {{ secondaryButtonText }}
+        &lt;/button&gt;
       &lt;/div&gt;
     &lt;/div&gt;
-  &lt;/div&gt;
+  &lt;/Transition&gt;
 &lt;/Teleport&gt;
 
-&lt;!-- .primary-button --&gt;
-width: 100%; height: 48px; border-radius: 30px;
-background: #0F7FFF; color: #fff; font-weight: 600;</pre>
-            <button class="modal-copy-btn" onclick="copyCode('code-gate', this)">Copy</button>
+/* Token usage */
+.btn-blue-pill { background: var(--color-brand-secondary); border-radius: 30px; height: var(--size-lg); }
+.btn-ghost     { background: none; border: none; color: var(--color-text-secondary); font-size: var(--text-small); }</pre>
+            <button class="mg-copy" onclick="mgCopy('c-gate',this)">Copy</button>
           </div>
         </div>
 
         <!-- Member Required -->
-        <div class="modal-exhibit">
-          <div class="modal-exhibit-header">
-            <div>
-              <div class="modal-exhibit-name">Member Required</div>
-              <div class="modal-exhibit-desc">Hard paywall with decorative gradient background</div>
+        <div class="mg-card">
+          <div class="mg-card-meta">
+            <div class="mg-card-info">
+              <div class="mg-card-name">Member Required <code style="font-size:11px;background:#f5f5f7;padding:2px 6px;border-radius:4px;color:#606366">MemberRequiredModal.vue</code></div>
+              <div class="mg-card-desc">Hard paywall with decorative blur orbs in background. Relative-positioned children above orbs.</div>
+            </div>
+            <span class="mg-badge">DS Compliant</span>
+          </div>
+          <div class="mg-preview">
+            <div class="ds-modal-wrap sm" style="overflow:hidden;text-align:center;display:flex;flex-direction:column;align-items:center;gap:16px">
+              <div class="ds-orb" style="width:160px;height:160px;background:#0F7FFF;opacity:.12;bottom:-40px;right:-40px"></div>
+              <div class="ds-orb" style="width:110px;height:110px;background:#8B5CF6;opacity:.12;bottom:-20px;right:60px"></div>
+              <button class="ds-close" style="z-index:1">✕</button>
+              <div class="ds-modal-title" style="position:relative;z-index:1">Upgrade Required</div>
+              <div class="ds-modal-body" style="margin:0;position:relative;z-index:1">This feature is only available for Pro members. Upgrade your plan to continue.</div>
+              <button class="ds-btn ds-btn-blue-pill ds-btn-lg ds-btn-full" style="position:relative;z-index:1">Upgrade to Pro</button>
+              <button class="ds-btn ds-btn-ghost" style="font-size:13px;position:relative;z-index:1">Not now</button>
             </div>
           </div>
-          <div class="modal-exhibit-body">
-            <div class="m-card" style="text-align:center;display:flex;flex-direction:column;align-items:center;gap:18px;overflow:hidden;position:relative">
-              <div style="position:absolute;bottom:-40px;right:-40px;width:160px;height:160px;border-radius:50%;background:#0F7FFF;opacity:.15;filter:blur(36px);pointer-events:none"></div>
-              <div style="position:absolute;bottom:-20px;right:60px;width:110px;height:110px;border-radius:50%;background:#8B5CF6;opacity:.15;filter:blur(28px);pointer-events:none"></div>
-              <button class="m-card-close" style="position:absolute;top:0;right:0;z-index:1">✕</button>
-              <h2 style="font-size:20px;font-weight:700;color:#232425;margin:0;padding-top:4px;position:relative;z-index:1">Upgrade Required</h2>
-              <p style="font-size:14px;color:#606366;line-height:1.6;margin:0;position:relative;z-index:1">This feature is only available for Pro members. Upgrade your plan to continue.</p>
-              <button class="m-btn m-btn-blue m-btn-pill m-btn-full" style="position:relative;z-index:1">Upgrade to Pro</button>
-              <button class="m-btn m-btn-ghost" style="font-size:13px;position:relative;z-index:1">Not now</button>
-            </div>
-          </div>
-          <div class="modal-exhibit-code">
-            <pre id="code-member">&lt;!-- MemberRequiredModal.vue --&gt;
+          <div class="mg-code-wrap">
+            <pre id="c-member">&lt;!-- MemberRequiredModal.vue — DS-compliant --&gt;
 &lt;NModal v-model:show="showModal"&gt;
-  &lt;div class="member-required-dialog-wrapper"&gt;
-    &lt;div class="member-required-dialog"&gt;
-      &lt;div class="title"&gt;Upgrade Required&lt;/div&gt;
-      &lt;div class="message"&gt;{{ displayMessage }}&lt;/div&gt;
-      &lt;div class="button primary" @click="goToPricing"&gt;Upgrade to Pro&lt;/div&gt;
-      &lt;div class="button" @click="showModal = false"&gt;Not now&lt;/div&gt;
-    &lt;/div&gt;
-    &lt;!-- Decorative blur orbs --&gt;
-    &lt;div class="background"&gt;
-      &lt;div class="b1"&gt;&lt;/div&gt; &lt;!-- blue orb --&gt;
-      &lt;div class="b2"&gt;&lt;/div&gt; &lt;!-- purple orb --&gt;
+  &lt;div class="modal-wrapper"&gt;
+    &lt;div class="modal" style="overflow:hidden; position:relative; text-align:center;"&gt;
+      &lt;button class="close-btn" style="z-index:1"&gt;✕&lt;/button&gt;
+
+      &lt;h3 style="position:relative; z-index:1"&gt;Upgrade Required&lt;/h3&gt;
+      &lt;p style="position:relative; z-index:1"&gt;{{ displayMessage }}&lt;/p&gt;
+
+      &lt;button class="btn-blue-pill btn-lg btn-full" style="z-index:1" @click="goToPricing"&gt;
+        Upgrade to Pro
+      &lt;/button&gt;
+      &lt;button class="btn-ghost" style="z-index:1" @click="showModal = false"&gt;Not now&lt;/button&gt;
+
+      &lt;!-- Decorative orbs --&gt;
+      &lt;div class="orb orb-blue"&gt;&lt;/div&gt;
+      &lt;div class="orb orb-purple"&gt;&lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/NModal&gt;
 
-&lt;!-- .b1, .b2 decorative orbs --&gt;
-position: absolute; border-radius: 50%; filter: blur(36px); opacity: 0.15;</pre>
-            <button class="modal-copy-btn" onclick="copyCode('code-member', this)">Copy</button>
+/* Orb tokens */
+.orb { position: absolute; border-radius: 50%; filter: blur(40px); pointer-events: none; }
+.orb-blue   { width: 160px; height: 160px; bottom: -40px; right: -40px; background: var(--color-brand-secondary); opacity: 0.12; }
+.orb-purple { width: 110px; height: 110px; bottom: -20px; right: 60px; background: #8B5CF6; opacity: 0.12; }</pre>
+            <button class="mg-copy" onclick="mgCopy('c-member',this)">Copy</button>
           </div>
         </div>
       </div>
 
       <!-- ── Subscription ── -->
-      <div class="modal-gallery-group">
-        <div class="modal-gallery-label">Subscription</div>
+      <div class="mg-group">
+        <div class="mg-label">Subscription</div>
 
-        <!-- Downgrade -->
-        <div class="modal-exhibit">
-          <div class="modal-exhibit-header">
-            <div>
-              <div class="modal-exhibit-name">Downgrade Confirm</div>
-              <div class="modal-exhibit-desc">Warning list of features lost on downgrade</div>
+        <!-- Downgrade Confirm -->
+        <div class="mg-card">
+          <div class="mg-card-meta">
+            <div class="mg-card-info">
+              <div class="mg-card-name">Downgrade Confirm <code style="font-size:11px;background:#f5f5f7;padding:2px 6px;border-radius:4px;color:#606366">subscription2/SubscriptionDowngradeConfirmModal.vue</code></div>
+              <div class="mg-card-desc">Warning-card pattern with left border accent. Danger CTA for irreversible action.</div>
             </div>
+            <span class="mg-badge">DS Compliant</span>
           </div>
-          <div class="modal-exhibit-body">
-            <div class="m-card">
-              <div class="m-card-header">
-                <span class="m-card-title">Confirm Downgrade</span>
-                <button class="m-card-close">✕</button>
+          <div class="mg-preview">
+            <div class="ds-modal-wrap sm">
+              <button class="ds-close">✕</button>
+              <div class="ds-modal-title">Confirm Downgrade</div>
+              <div class="ds-warning">
+                <div class="ds-warning-title">After downgrading, you will lose:</div>
+                <div class="ds-warning-item"><span class="ds-warning-x">✕</span> Unused credits will be removed</div>
+                <div class="ds-warning-item"><span class="ds-warning-x">✕</span> Unlimited AI requests</div>
+                <div class="ds-warning-item"><span class="ds-warning-x">✕</span> Creative tools &amp; design studio</div>
+                <div class="ds-warning-item"><span class="ds-warning-x">✕</span> Meeting transcription &amp; Speakly</div>
+                <div class="ds-warning-item"><span class="ds-warning-x">✕</span> Additional cloud storage</div>
               </div>
-              <div class="m-warning-card">
-                <p style="font-size:13px;font-weight:600;color:#92400E;margin:0 0 10px">After downgrading, you will lose access to:</p>
-                <div style="display:flex;flex-direction:column;gap:6px">
-                  <div style="display:flex;gap:8px;font-size:13px;color:#606366"><span style="color:#EF4444;font-weight:700">✕</span> Unused credits will be removed</div>
-                  <div style="display:flex;gap:8px;font-size:13px;color:#606366"><span style="color:#EF4444;font-weight:700">✕</span> Unlimited AI requests</div>
-                  <div style="display:flex;gap:8px;font-size:13px;color:#606366"><span style="color:#EF4444;font-weight:700">✕</span> Creative tools &amp; design studio</div>
-                  <div style="display:flex;gap:8px;font-size:13px;color:#606366"><span style="color:#EF4444;font-weight:700">✕</span> Meeting transcription &amp; Speakly</div>
-                  <div style="display:flex;gap:8px;font-size:13px;color:#606366"><span style="color:#EF4444;font-weight:700">✕</span> Additional cloud storage</div>
-                </div>
-              </div>
-              <div class="m-card-footer">
-                <button class="m-btn m-btn-outline">Cancel</button>
-                <button class="m-btn m-btn-danger">Confirm Downgrade</button>
+              <div class="ds-modal-footer">
+                <button class="ds-btn ds-btn-outline">Cancel</button>
+                <button class="ds-btn ds-btn-danger">Confirm Downgrade</button>
               </div>
             </div>
           </div>
-          <div class="modal-exhibit-code">
-            <pre id="code-downgrade">&lt;!-- SubscriptionDowngradeConfirmModal.vue --&gt;
+          <div class="mg-code-wrap">
+            <pre id="c-downgrade">&lt;!-- SubscriptionDowngradeConfirmModal.vue — DS-compliant --&gt;
 &lt;div class="modal-overlay" @click.self="$emit('close')"&gt;
-  &lt;div class="modal-window"&gt;
-    &lt;h2&gt;Confirm Downgrade&lt;/h2&gt;
-    &lt;!-- Warning card --&gt;
+  &lt;div class="modal" style="width:480px"&gt;
+    &lt;button class="close-btn"&gt;✕&lt;/button&gt;
+    &lt;h3&gt;Confirm Downgrade&lt;/h3&gt;
+
+    &lt;!-- Warning card pattern --&gt;
     &lt;div class="warning-card"&gt;
-      &lt;p class="warning-label"&gt;After downgrading, you will lose access to:&lt;/p&gt;
+      &lt;p class="warning-label"&gt;After downgrading, you will lose:&lt;/p&gt;
       &lt;div v-for="item in lostFeatures" class="warning-item"&gt;
-        &lt;svg class="warning-x"&gt;...&lt;/svg&gt;
+        &lt;svg class="x-icon"&gt;...&lt;/svg&gt;
         &lt;span&gt;{{ item }}&lt;/span&gt;
       &lt;/div&gt;
     &lt;/div&gt;
-    &lt;div class="actions"&gt;
+
+    &lt;div class="modal-footer"&gt;
       &lt;button class="btn-outline" @click="$emit('close')"&gt;Cancel&lt;/button&gt;
       &lt;button class="btn-danger" @click="confirmDowngrade"&gt;Confirm Downgrade&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;!-- .warning-card --&gt;
-background: #FFFBEE; border-left: 3px solid #F59E0B;
-border-radius: 0 8px 8px 0; padding: 14px 16px;</pre>
-            <button class="modal-copy-btn" onclick="copyCode('code-downgrade', this)">Copy</button>
+/* Warning card token pattern */
+.warning-card {
+  background: #FFFBEE;
+  border-left: 3px solid var(--color-warning);  /* #F59E0B */
+  border-radius: 0 var(--radius-8) var(--radius-8) 0;
+  padding: var(--space-16);
+  margin-bottom: var(--space-20);
+}
+.btn-danger { background: var(--color-error); border-radius: var(--radius-8); height: var(--size-md); }</pre>
+            <button class="mg-copy" onclick="mgCopy('c-downgrade',this)">Copy</button>
           </div>
         </div>
       </div>
 
       <!-- ── Workspace ── -->
-      <div class="modal-gallery-group">
-        <div class="modal-gallery-label">Workspace</div>
+      <div class="mg-group">
+        <div class="mg-label">Workspace</div>
 
         <!-- Create Hub -->
-        <div class="modal-exhibit">
-          <div class="modal-exhibit-header">
-            <div>
-              <div class="modal-exhibit-name">Create Hub</div>
-              <div class="modal-exhibit-desc">Create or edit a Hub with name, color picker, description</div>
+        <div class="mg-card">
+          <div class="mg-card-meta">
+            <div class="mg-card-info">
+              <div class="mg-card-name">Create Hub <code style="font-size:11px;background:#f5f5f7;padding:2px 6px;border-radius:4px;color:#606366">hub/CreateHubDialog.vue</code></div>
+              <div class="mg-card-desc">Form modal with name input, color picker (8 swatches), and description textarea</div>
             </div>
+            <span class="mg-badge">DS Compliant</span>
           </div>
-          <div class="modal-exhibit-body">
-            <div class="m-card" style="max-width:480px">
-              <div class="m-card-header" style="margin-bottom:20px">
-                <span class="m-card-title" style="font-size:17px">Create Hub</span>
-                <button class="m-card-close">✕</button>
+          <div class="mg-preview">
+            <div class="ds-modal-wrap sm">
+              <button class="ds-close">✕</button>
+              <div class="ds-modal-title" style="margin-bottom:20px">Create Hub</div>
+              <div class="ds-field">
+                <div class="ds-field-label">Name</div>
+                <input class="ds-input" type="text" placeholder="Hub name">
               </div>
-              <div style="display:flex;flex-direction:column;gap:16px;margin-bottom:20px">
-                <div>
-                  <div style="font-size:13px;font-weight:500;color:#232425;margin-bottom:6px">Name</div>
-                  <input type="text" placeholder="Hub name" style="width:100%;height:40px;border-radius:8px;border:1px solid #EAEAEA;padding:0 12px;font-size:14px;color:#232425;outline:none;box-sizing:border-box">
-                </div>
-                <div>
-                  <div style="font-size:13px;font-weight:500;color:#232425;margin-bottom:8px">Color</div>
-                  <div style="display:flex;gap:8px">
-                    <div style="width:26px;height:26px;border-radius:50%;background:#FF6B6B;cursor:pointer;outline:2.5px solid #232425;outline-offset:2px"></div>
-                    <div style="width:26px;height:26px;border-radius:50%;background:#FF9F43;cursor:pointer"></div>
-                    <div style="width:26px;height:26px;border-radius:50%;background:#FECA57;cursor:pointer"></div>
-                    <div style="width:26px;height:26px;border-radius:50%;background:#48DBFB;cursor:pointer"></div>
-                    <div style="width:26px;height:26px;border-radius:50%;background:#1DD1A1;cursor:pointer"></div>
-                    <div style="width:26px;height:26px;border-radius:50%;background:#54A0FF;cursor:pointer"></div>
-                    <div style="width:26px;height:26px;border-radius:50%;background:#5F27CD;cursor:pointer"></div>
-                    <div style="width:26px;height:26px;border-radius:50%;background:#232425;cursor:pointer"></div>
-                  </div>
-                </div>
-                <div>
-                  <div style="font-size:13px;font-weight:500;color:#232425;margin-bottom:6px">Description</div>
-                  <textarea placeholder="Describe this hub..." rows="3" style="width:100%;border-radius:8px;border:1px solid #EAEAEA;padding:10px 12px;font-size:14px;color:#232425;outline:none;resize:none;font-family:inherit;box-sizing:border-box"></textarea>
+              <div class="ds-field">
+                <div class="ds-field-label">Color</div>
+                <div class="ds-color-opts">
+                  <div class="ds-color-dot sel" style="background:#FF6B6B"></div>
+                  <div class="ds-color-dot" style="background:#FF9F43"></div>
+                  <div class="ds-color-dot" style="background:#FECA57"></div>
+                  <div class="ds-color-dot" style="background:#48DBFB"></div>
+                  <div class="ds-color-dot" style="background:#1DD1A1"></div>
+                  <div class="ds-color-dot" style="background:#54A0FF"></div>
+                  <div class="ds-color-dot" style="background:#5F27CD"></div>
+                  <div class="ds-color-dot" style="background:#232425"></div>
                 </div>
               </div>
-              <div class="m-card-footer">
-                <button class="m-btn m-btn-outline">Cancel</button>
-                <button class="m-btn m-btn-primary">Create</button>
+              <div class="ds-field">
+                <div class="ds-field-label">Description</div>
+                <textarea class="ds-textarea" rows="3" placeholder="Describe this hub..."></textarea>
+              </div>
+              <div class="ds-modal-footer">
+                <button class="ds-btn ds-btn-outline">Cancel</button>
+                <button class="ds-btn ds-btn-primary">Create</button>
               </div>
             </div>
           </div>
-          <div class="modal-exhibit-code">
-            <pre id="code-hub">&lt;!-- CreateHubDialog.vue --&gt;
-&lt;div class="dialog-overlay"&gt;
-  &lt;div class="dialog-content"&gt;
+          <div class="mg-code-wrap">
+            <pre id="c-hub">&lt;!-- CreateHubDialog.vue — DS-compliant --&gt;
+&lt;div class="dialog-overlay" v-if="modelValue"&gt;
+  &lt;div class="dialog" style="width:480px"&gt;  &lt;!-- border-radius:var(--modal-radius) --&gt;
     &lt;div class="dialog-header"&gt;
-      &lt;p class="dialog-title"&gt;Create Hub&lt;/p&gt;
-      &lt;button class="close-btn" @click="close"&gt;×&lt;/button&gt;
+      &lt;h3&gt;Create Hub&lt;/h3&gt;
+      &lt;button class="close-btn" @click="close"&gt;✕&lt;/button&gt;
     &lt;/div&gt;
+
     &lt;div class="form"&gt;
-      &lt;div class="form-field"&gt;
-        &lt;p class="field-label"&gt;Name&lt;/p&gt;
-        &lt;input v-model="formData.name" class="text-input" placeholder="Hub name" maxlength="50" /&gt;
+      &lt;div class="field"&gt;
+        &lt;label class="field-label"&gt;Name&lt;/label&gt;
+        &lt;input v-model="formData.name" class="ds-input" placeholder="Hub name" maxlength="50" /&gt;
       &lt;/div&gt;
-      &lt;div class="form-field"&gt;
-        &lt;p class="field-label"&gt;Color&lt;/p&gt;
+
+      &lt;div class="field"&gt;
+        &lt;label class="field-label"&gt;Color&lt;/label&gt;
         &lt;div class="color-options"&gt;
           &lt;button v-for="(color, i) in colorOptions" :key="i"
-            :style="{ backgroundColor: color }"
-            :class="['color-option', { selected: selectedColorIndex === i }]"
+            class="color-dot" :class="{ selected: selectedColorIndex === i }"
+            :style="{ background: color }"
             @click="selectColor(i)" /&gt;
         &lt;/div&gt;
       &lt;/div&gt;
-      &lt;div class="form-field"&gt;
-        &lt;p class="field-label"&gt;Description&lt;/p&gt;
-        &lt;textarea v-model="formData.description" class="text-area" maxlength="500" /&gt;
+
+      &lt;div class="field"&gt;
+        &lt;label class="field-label"&gt;Description&lt;/label&gt;
+        &lt;textarea v-model="formData.description" class="ds-textarea" maxlength="500" /&gt;
       &lt;/div&gt;
     &lt;/div&gt;
-    &lt;div class="action-buttons"&gt;
-      &lt;div class="cancel-button" @click="close"&gt;Cancel&lt;/div&gt;
-      &lt;div :class="['submit-button', { enabled: isFormValid }]" @click="submit"&gt;Create&lt;/div&gt;
+
+    &lt;div class="footer"&gt;
+      &lt;button class="btn-outline" @click="close"&gt;Cancel&lt;/button&gt;
+      &lt;button class="btn-primary" :disabled="!isFormValid" @click="submit"&gt;Create&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-&lt;/div&gt;</pre>
-            <button class="modal-copy-btn" onclick="copyCode('code-hub', this)">Copy</button>
+&lt;/div&gt;
+
+/* Token usage */
+.ds-input    { border: 1px solid var(--color-border-default); border-radius: var(--radius-8); height: var(--size-md); }
+.ds-input:focus { border-color: var(--color-border-brand); box-shadow: 0 0 0 3px rgba(15,127,255,.1); }
+.ds-textarea { border: 1px solid var(--color-border-default); border-radius: var(--radius-8); }
+.color-dot.selected { outline: 2.5px solid var(--color-text-primary); outline-offset: 2px; }</pre>
+            <button class="mg-copy" onclick="mgCopy('c-hub',this)">Copy</button>
           </div>
         </div>
 
         <!-- Delete Hub -->
-        <div class="modal-exhibit">
-          <div class="modal-exhibit-header">
-            <div>
-              <div class="modal-exhibit-name">Delete Hub</div>
-              <div class="modal-exhibit-desc">Multi-step deletion with progress indicators</div>
+        <div class="mg-card">
+          <div class="mg-card-meta">
+            <div class="mg-card-info">
+              <div class="mg-card-name">Delete Hub <code style="font-size:11px;background:#f5f5f7;padding:2px 6px;border-radius:4px;color:#606366">hub/DeleteHubDialog.vue</code></div>
+              <div class="mg-card-desc">Multi-step deletion with step indicator — done (filled dark), active (filled blue), pending (outline)</div>
+            </div>
+            <span class="mg-badge">DS Compliant</span>
+          </div>
+          <div class="mg-preview">
+            <div class="ds-modal-wrap sm">
+              <button class="ds-close">✕</button>
+              <div class="ds-modal-title" style="margin-bottom:16px">Delete Hub</div>
+              <div class="ds-steps">
+                <div class="ds-step">
+                  <div class="ds-step-dot done">✓</div>
+                  <div><div class="ds-step-label">Removing agents</div><div class="ds-step-desc">Disconnecting all agents from this hub</div></div>
+                </div>
+                <div class="ds-step">
+                  <div class="ds-step-dot active">2</div>
+                  <div><div class="ds-step-label">Clearing data</div><div class="ds-step-desc">Removing all hub files and history</div></div>
+                </div>
+                <div class="ds-step" style="opacity:.4">
+                  <div class="ds-step-dot pending">3</div>
+                  <div><div class="ds-step-label">Finalizing</div><div class="ds-step-desc">Completing the deletion process</div></div>
+                </div>
+              </div>
+              <div class="ds-modal-footer">
+                <button class="ds-btn ds-btn-outline">Cancel</button>
+                <button class="ds-btn ds-btn-danger">Delete</button>
+              </div>
             </div>
           </div>
-          <div class="modal-exhibit-body">
-            <div class="m-card" style="max-width:480px">
-              <div class="m-card-header" style="margin-bottom:16px">
-                <span class="m-card-title" style="font-size:17px">Delete Hub</span>
-                <button class="m-card-close">✕</button>
-              </div>
-              <div style="margin-bottom:20px">
-                <div class="m-step">
-                  <div class="m-step-dot m-step-done">✓</div>
-                  <div><div style="font-size:14px;font-weight:600;color:#232425">Removing agents</div><div style="font-size:13px;color:#606366;margin-top:2px">Disconnecting all agents from this hub</div></div>
-                </div>
-                <div class="m-step">
-                  <div class="m-step-dot m-step-active">2</div>
-                  <div><div style="font-size:14px;font-weight:600;color:#232425">Clearing data</div><div style="font-size:13px;color:#606366;margin-top:2px">Removing all hub files and history</div></div>
-                </div>
-                <div class="m-step" style="opacity:0.45">
-                  <div class="m-step-dot m-step-pending">3</div>
-                  <div><div style="font-size:14px;font-weight:600;color:#232425">Finalizing</div><div style="font-size:13px;color:#606366;margin-top:2px">Completing the deletion process</div></div>
-                </div>
-              </div>
-              <div class="m-card-footer">
-                <button class="m-btn m-btn-outline">Cancel</button>
-                <button class="m-btn m-btn-danger">Delete</button>
-              </div>
-            </div>
-          </div>
-          <div class="modal-exhibit-code">
-            <pre id="code-delete-hub">&lt;!-- DeleteHubDialog.vue --&gt;
-&lt;div class="dialog-overlay"&gt;
-  &lt;div class="dialog-content"&gt;
+          <div class="mg-code-wrap">
+            <pre id="c-delhub">&lt;!-- DeleteHubDialog.vue — DS-compliant --&gt;
+&lt;div class="dialog-overlay" v-if="modelValue"&gt;
+  &lt;div class="dialog" style="width:480px"&gt;
     &lt;div class="dialog-header"&gt;
-      &lt;p&gt;Delete Hub&lt;/p&gt;
-      &lt;button @click="handleCancel"&gt;×&lt;/button&gt;
+      &lt;h3&gt;Delete Hub&lt;/h3&gt;
+      &lt;button class="close-btn" @click="handleCancel"&gt;✕&lt;/button&gt;
     &lt;/div&gt;
-    &lt;div class="steps-container"&gt;
+
+    &lt;div class="steps"&gt;
       &lt;div v-for="(step, i) in steps" :key="i"
-        class="step-item"
-        :class="{ active: currentStep === i+1, completed: currentStep &gt; i+1 }"&gt;
-        &lt;div class="step-indicator"&gt;
+        class="step" :class="{ active: currentStep===i+1, done: currentStep&gt;i+1, pending: currentStep&lt;i+1 }"&gt;
+        &lt;div class="step-dot"&gt;
           &lt;span v-if="currentStep &gt; i+1"&gt;✓&lt;/span&gt;
           &lt;span v-else&gt;{{ i+1 }}&lt;/span&gt;
         &lt;/div&gt;
-        &lt;div class="step-content"&gt;
-          &lt;div class="step-title"&gt;{{ step.title }}&lt;/div&gt;
-          &lt;div class="step-description"&gt;{{ step.description }}&lt;/div&gt;
+        &lt;div&gt;
+          &lt;div class="step-label"&gt;{{ step.title }}&lt;/div&gt;
+          &lt;div class="step-desc"&gt;{{ step.description }}&lt;/div&gt;
         &lt;/div&gt;
       &lt;/div&gt;
     &lt;/div&gt;
-    &lt;div class="actions"&gt;
-      &lt;button @click="handleCancel"&gt;Cancel&lt;/button&gt;
+
+    &lt;div class="footer"&gt;
+      &lt;button class="btn-outline" @click="handleCancel"&gt;Cancel&lt;/button&gt;
       &lt;button class="btn-danger" @click="startDelete"&gt;Delete&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-&lt;/div&gt;</pre>
-            <button class="modal-copy-btn" onclick="copyCode('code-delete-hub', this)">Copy</button>
+&lt;/div&gt;
+
+/* Step indicator tokens */
+.step-dot         { width:28px; height:28px; border-radius:50%; font-size:12px; font-weight:700; }
+.step.done .step-dot   { background: var(--color-brand-primary); color:#fff; }
+.step.active .step-dot { background: var(--color-brand-secondary); color:#fff; }
+.step.pending .step-dot { border: 1.5px solid var(--color-border-strong); color: var(--color-text-tertiary); }</pre>
+            <button class="mg-copy" onclick="mgCopy('c-delhub',this)">Copy</button>
           </div>
         </div>
       </div>
 
       <script>
-      function copyCode(id, btn) {
-        const pre = document.getElementById(id);
-        if (!pre) return;
-        navigator.clipboard.writeText(pre.innerText).then(() => {
+      function mgCopy(id, btn) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        navigator.clipboard.writeText(el.innerText).then(() => {
           btn.textContent = 'Copied!';
-          btn.classList.add('copied');
-          setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+          btn.classList.add('ok');
+          setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('ok'); }, 2000);
         });
       }
       </script>
 
     </section>
+
 
     <!-- ========================================================
          9. BADGES
