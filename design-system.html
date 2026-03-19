@@ -1,0 +1,2251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Genspark Design System v2.0</title>
+<style>
+  /* ============================================================
+     DESIGN TOKENS
+  ============================================================ */
+  :root {
+    /* Brand Colors */
+    --color-brand-primary: #232425;
+    --color-brand-hover: #393A3B;
+    --color-brand-active: #1A1B1C;
+    --color-brand-blue: #0F7FFF;
+
+    /* Text Colors */
+    --color-text-primary: #232425;
+    --color-text-secondary: #606366;
+    --color-text-tertiary: #909499;
+    --color-text-disabled: #C4C7CC;
+    --color-text-link: #0F7FFF;
+
+    /* Background Colors */
+    --color-bg-page: #FFFFFF;
+    --color-bg-surface: #FAFAFA;
+    --color-bg-subtle: #F5F5F5;
+
+    /* Border Colors */
+    --color-border-default: #EAEAEA;
+    --color-border-strong: #D0D3D8;
+    --color-border-subtle: #F2F2F2;
+    --color-border-brand: #0F7FFF;
+
+    /* Status Colors */
+    --color-status-success: #10B981;
+    --color-status-warning: #F59E0B;
+    --color-status-error: #EF4444;
+    --color-status-info: #3B82F6;
+
+    /* Spacing */
+    --spacing-1: 2px;
+    --spacing-2: 4px;
+    --spacing-3: 6px;
+    --spacing-4: 8px;
+    --spacing-5: 12px;
+    --spacing-6: 16px;
+    --spacing-7: 20px;
+    --spacing-8: 24px;
+    --spacing-9: 32px;
+    --spacing-10: 48px;
+
+    /* Border Radius */
+    --radius-sm: 4px;
+    --radius-md: 6px;
+    --radius-lg: 8px;
+    --radius-xl: 10px;
+    --radius-2xl: 12px;
+    --radius-modal: 16px;
+    --radius-pill: 30px;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.07);
+    --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+    --shadow-xl: 0 20px 25px rgba(0,0,0,0.1);
+
+    /* Typography */
+    --font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', system-ui, sans-serif;
+    --font-mono: 'SF Mono', 'Fira Code', 'Cascadia Code', Consolas, monospace;
+
+    /* Layout */
+    --header-height: 60px;
+    --nav-width: 240px;
+
+    /* Semantic UI tokens (light mode) */
+    --ui-bg: var(--color-bg-surface);
+    --ui-bg-card: var(--color-bg-page);
+    --ui-text: var(--color-text-primary);
+    --ui-text-muted: var(--color-text-secondary);
+    --ui-text-faint: var(--color-text-tertiary);
+    --ui-border: var(--color-border-default);
+    --ui-border-strong: var(--color-border-strong);
+    --ui-nav-bg: var(--color-bg-page);
+    --ui-header-bg: rgba(255,255,255,0.85);
+    --ui-code-bg: #F0F4FF;
+    --ui-code-text: #2563EB;
+  }
+
+  /* ============================================================
+     DARK MODE
+  ============================================================ */
+  body.dark {
+    --ui-bg: #111112;
+    --ui-bg-card: #1C1D1E;
+    --ui-text: #F0F0F0;
+    --ui-text-muted: #A0A3A8;
+    --ui-text-faint: #6B6F76;
+    --ui-border: #2E3035;
+    --ui-border-strong: #3D4047;
+    --ui-nav-bg: #161718;
+    --ui-header-bg: rgba(17,17,18,0.88);
+    --ui-code-bg: #1A2744;
+    --ui-code-text: #60A5FA;
+    --color-bg-subtle: #252628;
+  }
+
+  /* ============================================================
+     RESET & BASE
+  ============================================================ */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    font-family: var(--font-family);
+    background: var(--ui-bg);
+    color: var(--ui-text);
+    line-height: 1.6;
+    transition: background 0.25s ease, color 0.25s ease;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--color-text-link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* ============================================================
+     LAYOUT
+  ============================================================ */
+  .app-header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: var(--header-height);
+    background: var(--ui-header-bg);
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    border-bottom: 1px solid var(--ui-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px 0 calc(var(--nav-width) + 24px);
+    z-index: 100;
+    transition: background 0.25s ease, border-color 0.25s ease;
+  }
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .header-logo {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    color: var(--ui-text);
+  }
+
+  .version-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    background: var(--color-brand-blue);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    border-radius: 20px;
+    letter-spacing: 0.3px;
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .theme-toggle {
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--ui-border);
+    background: var(--ui-bg-card);
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    transition: background 0.15s, border-color 0.15s, transform 0.1s;
+    color: var(--ui-text);
+  }
+  .theme-toggle:hover { background: var(--color-bg-subtle); transform: scale(1.05); }
+  .theme-toggle:active { transform: scale(0.95); }
+
+  /* ============================================================
+     SIDE NAV
+  ============================================================ */
+  .side-nav {
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    width: var(--nav-width);
+    height: calc(100vh - var(--header-height));
+    background: var(--ui-nav-bg);
+    border-right: 1px solid var(--ui-border);
+    overflow-y: auto;
+    padding: 24px 0 40px;
+    z-index: 90;
+    transition: background 0.25s ease, border-color 0.25s ease;
+  }
+
+  .side-nav::-webkit-scrollbar { width: 4px; }
+  .side-nav::-webkit-scrollbar-track { background: transparent; }
+  .side-nav::-webkit-scrollbar-thumb { background: var(--ui-border); border-radius: 2px; }
+
+  .nav-group {
+    margin-bottom: 24px;
+  }
+
+  .nav-group-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--ui-text-faint);
+    padding: 0 20px 8px;
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 20px;
+    font-size: 14px;
+    color: var(--ui-text-muted);
+    cursor: pointer;
+    border-radius: 0;
+    transition: color 0.15s, background 0.15s;
+    user-select: none;
+    text-decoration: none;
+    border-left: 2px solid transparent;
+  }
+
+  .nav-item:hover {
+    color: var(--ui-text);
+    background: var(--color-bg-subtle);
+    text-decoration: none;
+  }
+
+  .nav-item.active {
+    color: var(--color-brand-blue);
+    background: color-mix(in srgb, var(--color-brand-blue) 8%, transparent);
+    border-left-color: var(--color-brand-blue);
+    font-weight: 500;
+  }
+
+  .nav-icon { font-size: 13px; opacity: 0.7; }
+
+  /* ============================================================
+     MAIN CONTENT
+  ============================================================ */
+  .main-content {
+    margin-left: var(--nav-width);
+    padding-top: var(--header-height);
+    min-height: 100vh;
+  }
+
+  .content-inner {
+    max-width: 1100px;
+    padding: 48px 48px 96px;
+  }
+
+  /* ============================================================
+     SECTION
+  ============================================================ */
+  .section {
+    margin-bottom: 80px;
+    scroll-margin-top: calc(var(--header-height) + 24px);
+  }
+
+  .section-header {
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--ui-border);
+  }
+
+  .section-title {
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.4px;
+    color: var(--ui-text);
+    margin-bottom: 6px;
+  }
+
+  .section-desc {
+    font-size: 14px;
+    color: var(--ui-text-muted);
+    line-height: 1.5;
+  }
+
+  /* ============================================================
+     CARD
+  ============================================================ */
+  .card {
+    background: var(--ui-bg-card);
+    border: 1px solid var(--ui-border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 16px;
+    transition: background 0.25s, border-color 0.25s;
+  }
+
+  .card-title {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--ui-text-faint);
+    margin-bottom: 16px;
+  }
+
+  /* ============================================================
+     TOKEN CHIP
+  ============================================================ */
+  .token-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    background: var(--ui-code-bg);
+    color: var(--ui-code-text);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    border-radius: 4px;
+    cursor: pointer;
+    user-select: none;
+    transition: opacity 0.15s, transform 0.1s;
+    white-space: nowrap;
+  }
+  .token-chip:hover { opacity: 0.8; }
+  .token-chip:active { transform: scale(0.95); }
+  .token-chip::before { content: '⌥'; font-size: 9px; opacity: 0.6; }
+
+  /* ============================================================
+     COLORS
+  ============================================================ */
+  .color-group { margin-bottom: 28px; }
+  .color-group-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ui-text-muted);
+    margin-bottom: 12px;
+    letter-spacing: 0.2px;
+  }
+
+  .swatches-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 8px;
+  }
+
+  .swatch {
+    border-radius: 8px;
+    border: 1px solid var(--ui-border);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+    background: var(--ui-bg-card);
+  }
+  .swatch:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+  .swatch:active { transform: translateY(0); }
+
+  .swatch-color {
+    height: 48px;
+    width: 100%;
+  }
+
+  .swatch-info {
+    padding: 8px 10px;
+  }
+
+  .swatch-name {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--ui-text);
+    display: block;
+    margin-bottom: 2px;
+    font-family: var(--font-mono);
+  }
+
+  .swatch-hex {
+    font-size: 11px;
+    color: var(--ui-text-muted);
+    font-family: var(--font-mono);
+  }
+
+  .swatch-label {
+    font-size: 10px;
+    color: var(--ui-text-faint);
+    display: block;
+    margin-top: 2px;
+  }
+
+  /* ============================================================
+     TYPOGRAPHY
+  ============================================================ */
+  .type-samples { display: flex; flex-direction: column; gap: 0; }
+
+  .type-row {
+    display: flex;
+    align-items: baseline;
+    gap: 24px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--ui-border);
+  }
+  .type-row:last-child { border-bottom: none; }
+
+  .type-meta {
+    width: 180px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .type-meta .token-chip { margin-bottom: 2px; }
+
+  .type-spec {
+    font-size: 11px;
+    color: var(--ui-text-faint);
+    font-family: var(--font-mono);
+  }
+
+  .type-sample { flex: 1; color: var(--ui-text); }
+
+  .t-h1 { font-size: 36px; font-weight: 700; letter-spacing: -0.5px; line-height: 1.2; }
+  .t-h2 { font-size: 28px; font-weight: 700; letter-spacing: -0.3px; line-height: 1.25; }
+  .t-h3 { font-size: 22px; font-weight: 600; letter-spacing: -0.2px; line-height: 1.3; }
+  .t-h4 { font-size: 18px; font-weight: 600; line-height: 1.35; }
+  .t-body-lg { font-size: 18px; font-weight: 400; line-height: 1.6; }
+  .t-body { font-size: 16px; font-weight: 400; line-height: 1.6; }
+  .t-small { font-size: 14px; font-weight: 400; line-height: 1.5; }
+  .t-caption { font-size: 12px; font-weight: 400; color: var(--ui-text-muted); line-height: 1.4; }
+
+  /* ============================================================
+     SPACING
+  ============================================================ */
+  .spacing-list { display: flex; flex-direction: column; gap: 12px; }
+
+  .spacing-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .spacing-meta {
+    width: 200px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .spacing-bar-wrap {
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  .spacing-bar {
+    height: 20px;
+    background: var(--color-brand-blue);
+    border-radius: 3px;
+    opacity: 0.85;
+    transition: opacity 0.15s;
+    min-width: 4px;
+  }
+  .spacing-bar:hover { opacity: 1; }
+
+  .spacing-px {
+    font-size: 12px;
+    font-family: var(--font-mono);
+    color: var(--ui-text-faint);
+    width: 40px;
+    flex-shrink: 0;
+    text-align: right;
+  }
+
+  /* ============================================================
+     RADIUS
+  ============================================================ */
+  .radius-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: flex-end;
+  }
+
+  .radius-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .radius-box {
+    width: 72px;
+    height: 72px;
+    background: var(--color-brand-blue);
+    opacity: 0.12;
+    border: 2px solid var(--color-brand-blue);
+    flex-shrink: 0;
+  }
+
+  .radius-label {
+    text-align: center;
+  }
+
+  .radius-name {
+    font-size: 11px;
+    font-family: var(--font-mono);
+    color: var(--ui-code-text);
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  .radius-value {
+    font-size: 11px;
+    color: var(--ui-text-faint);
+    font-family: var(--font-mono);
+  }
+
+  /* ============================================================
+     SHADOWS
+  ============================================================ */
+  .shadow-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+  }
+
+  .shadow-card {
+    background: var(--ui-bg-card);
+    border-radius: 10px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: 1px solid var(--ui-border);
+    transition: transform 0.2s;
+  }
+  .shadow-card:hover { transform: translateY(-3px); }
+
+  .shadow-sm-demo  { box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+  .shadow-md-demo  { box-shadow: 0 4px 6px rgba(0,0,0,0.07); }
+  .shadow-lg-demo  { box-shadow: 0 10px 15px rgba(0,0,0,0.1); }
+  .shadow-xl-demo  { box-shadow: 0 20px 25px rgba(0,0,0,0.1); }
+
+  .shadow-label { font-family: var(--font-mono); font-size: 12px; font-weight: 600; color: var(--ui-code-text); }
+  .shadow-value { font-size: 11px; color: var(--ui-text-faint); font-family: var(--font-mono); line-height: 1.4; }
+
+  /* ============================================================
+     BUTTONS
+  ============================================================ */
+  .btn-section-group { margin-bottom: 32px; }
+
+  .btn-type-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
+    padding: 12px 16px;
+    background: var(--color-bg-subtle);
+    border-radius: 8px;
+  }
+
+  .btn-type-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ui-text);
+    min-width: 140px;
+  }
+
+  .btn-type-note {
+    font-size: 12px;
+    color: var(--ui-text-muted);
+    line-height: 1.5;
+    flex: 1;
+  }
+
+  .btn-sizes-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 12px 16px;
+  }
+
+  /* Base button */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-family);
+    font-weight: 500;
+    transition: background 0.15s, transform 0.1s, box-shadow 0.15s, opacity 0.15s;
+    white-space: nowrap;
+    text-decoration: none;
+    outline: none;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn:active { transform: scale(0.97); }
+  .btn:focus-visible { outline: 2px solid var(--color-brand-blue); outline-offset: 2px; }
+  .btn:disabled, .btn.disabled {
+    opacity: 0.38;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  /* Sizes */
+  .btn-sm  { height: 32px; padding: 0 12px; font-size: 13px; border-radius: 6px; }
+  .btn-md  { height: 40px; padding: 0 16px; font-size: 14px; border-radius: 8px; }
+  .btn-lg  { height: 48px; padding: 0 20px; font-size: 16px; border-radius: 8px; }
+
+  /* Pill overrides */
+  .btn-pill.btn-sm  { border-radius: 30px; }
+  .btn-pill.btn-md  { border-radius: 30px; }
+  .btn-pill.btn-lg  { border-radius: 30px; }
+
+  /* Types */
+  .btn-primary {
+    background: var(--color-brand-primary);
+    color: #fff;
+  }
+  .btn-primary:hover:not(:disabled) { background: var(--color-brand-hover); }
+  .btn-primary:active:not(:disabled) { background: var(--color-brand-active); }
+
+  .btn-blue {
+    background: var(--color-brand-blue);
+    color: #fff;
+  }
+  .btn-blue:hover:not(:disabled) { background: #0068E1; }
+  .btn-blue:active:not(:disabled) { background: #0057BD; }
+
+  .btn-secondary {
+    background: var(--color-bg-subtle);
+    color: var(--ui-text);
+    border: 1px solid var(--ui-border);
+  }
+  .btn-secondary:hover:not(:disabled) { background: var(--color-border-default); }
+
+  .btn-outline {
+    background: var(--ui-bg-card);
+    color: var(--ui-text);
+    border: 1px solid var(--ui-border);
+  }
+  .btn-outline:hover:not(:disabled) { border-color: var(--color-brand-primary); }
+
+  .btn-danger {
+    background: var(--color-status-error);
+    color: #fff;
+  }
+  .btn-danger:hover:not(:disabled) { background: #DC2626; }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--ui-text);
+  }
+  .btn-ghost:hover:not(:disabled) { background: var(--color-bg-subtle); }
+
+  .btn-link {
+    background: transparent;
+    color: var(--color-text-link);
+    padding: 0 4px;
+    height: auto;
+  }
+  .btn-link:hover:not(:disabled) { text-decoration: underline; }
+
+  .size-label {
+    font-size: 10px;
+    font-family: var(--font-mono);
+    color: var(--ui-text-faint);
+    text-align: center;
+    margin-top: 4px;
+  }
+
+  .btn-size-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .disabled-col { opacity: 0.5; }
+
+  /* ============================================================
+     INPUTS
+  ============================================================ */
+  .input-states-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+  }
+
+  .input-state-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .input-state-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ui-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .input-wrap {
+    position: relative;
+  }
+
+  .input-field {
+    width: 100%;
+    height: 40px;
+    padding: 0 14px;
+    font-family: var(--font-family);
+    font-size: 14px;
+    border: 1.5px solid var(--ui-border);
+    border-radius: 8px;
+    background: var(--ui-bg-card);
+    color: var(--ui-text);
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .input-field::placeholder { color: var(--color-text-tertiary); }
+
+  .input-field:focus {
+    border-color: var(--color-brand-blue);
+    box-shadow: 0 0 0 3px rgba(15, 127, 255, 0.15);
+  }
+
+  .input-field.input-error {
+    border-color: var(--color-status-error);
+  }
+  .input-field.input-error:focus {
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+  }
+
+  .input-field:disabled {
+    background: var(--color-bg-subtle);
+    color: var(--color-text-disabled);
+    cursor: not-allowed;
+  }
+
+  .input-field.with-icon { padding-left: 40px; }
+
+  .input-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--ui-text-faint);
+    font-size: 14px;
+    pointer-events: none;
+  }
+
+  .input-hint {
+    font-size: 12px;
+    color: var(--color-status-error);
+    margin-top: 2px;
+  }
+
+  .input-hint.neutral { color: var(--ui-text-faint); }
+
+  /* ============================================================
+     MODALS
+  ============================================================ */
+  .modals-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .modal-preview-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .modal-size-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .modal-size-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ui-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .modal-size-px {
+    font-size: 11px;
+    color: var(--ui-text-faint);
+    font-family: var(--font-mono);
+  }
+
+  .modal-card {
+    background: var(--ui-bg-card);
+    border: 1px solid var(--ui-border);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow-xl);
+    max-width: 100%;
+    transition: background 0.25s, border-color 0.25s;
+  }
+
+  .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px 16px;
+    border-bottom: 1px solid var(--ui-border);
+  }
+
+  .modal-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ui-text);
+  }
+
+  .modal-close {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    border: none;
+    background: var(--color-bg-subtle);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: var(--ui-text-muted);
+    transition: background 0.15s;
+  }
+  .modal-close:hover { background: var(--ui-border); }
+
+  .modal-body {
+    padding: 20px 24px;
+  }
+
+  .modal-body-text {
+    font-size: 14px;
+    color: var(--ui-text-muted);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .modal-footer {
+    padding: 16px 24px;
+    border-top: 1px solid var(--ui-border);
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+
+  /* Modal scale containers */
+  .modal-scale-wrap {
+    overflow: hidden;
+    border-radius: 8px;
+    border: 1px solid var(--ui-border);
+    background: var(--color-bg-subtle);
+  }
+
+  .modal-scale-inner {
+    transform-origin: top left;
+    padding: 24px;
+  }
+
+  /* ============================================================
+     BADGES
+  ============================================================ */
+  .badges-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .badge-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .badge-row-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--ui-text-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    width: 60px;
+    flex-shrink: 0;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.4;
+    transition: transform 0.1s;
+  }
+  .badge:hover { transform: scale(1.03); }
+
+  .badge::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    flex-shrink: 0;
+  }
+
+  .badge-no-dot::before { display: none; }
+
+  .badge-success {
+    background: rgba(16, 185, 129, 0.1);
+    color: #059669;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+  }
+  body.dark .badge-success { color: #34D399; background: rgba(16, 185, 129, 0.12); }
+
+  .badge-warning {
+    background: rgba(245, 158, 11, 0.1);
+    color: #D97706;
+    border: 1px solid rgba(245, 158, 11, 0.2);
+  }
+  body.dark .badge-warning { color: #FCD34D; background: rgba(245, 158, 11, 0.12); }
+
+  .badge-error {
+    background: rgba(239, 68, 68, 0.1);
+    color: #DC2626;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+  }
+  body.dark .badge-error { color: #F87171; background: rgba(239, 68, 68, 0.12); }
+
+  .badge-info {
+    background: rgba(59, 130, 246, 0.1);
+    color: #2563EB;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+  }
+  body.dark .badge-info { color: #60A5FA; background: rgba(59, 130, 246, 0.12); }
+
+  .badge-neutral {
+    background: var(--color-bg-subtle);
+    color: var(--ui-text-muted);
+    border: 1px solid var(--ui-border);
+  }
+
+  /* Solid badges */
+  .badge-solid-success { background: #10B981; color: #fff; border: none; }
+  .badge-solid-warning { background: #F59E0B; color: #fff; border: none; }
+  .badge-solid-error   { background: #EF4444; color: #fff; border: none; }
+  .badge-solid-info    { background: #3B82F6; color: #fff; border: none; }
+  .badge-solid-neutral { background: var(--color-brand-primary); color: #fff; border: none; }
+
+  /* Outline badges */
+  .badge-outline-success { background: transparent; color: #10B981; border: 1.5px solid #10B981; }
+  .badge-outline-warning { background: transparent; color: #F59E0B; border: 1.5px solid #F59E0B; }
+  .badge-outline-error   { background: transparent; color: #EF4444; border: 1.5px solid #EF4444; }
+  .badge-outline-info    { background: transparent; color: #3B82F6; border: 1.5px solid #3B82F6; }
+  .badge-outline-neutral { background: transparent; color: var(--ui-text-muted); border: 1.5px solid var(--ui-border); }
+
+  /* ============================================================
+     TOAST
+  ============================================================ */
+  .toast-container {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    pointer-events: none;
+  }
+
+  .toast {
+    background: var(--color-brand-primary);
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    transform: translateY(8px) scale(0.97);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    pointer-events: auto;
+  }
+
+  .toast.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  .toast.hide {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.97);
+  }
+
+  /* ============================================================
+     MISC HELPERS
+  ============================================================ */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .flex-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .mt-8 { margin-top: 8px; }
+  .mt-16 { margin-top: 16px; }
+
+  .divider {
+    height: 1px;
+    background: var(--ui-border);
+    margin: 24px 0;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--ui-border); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--ui-border-strong); }
+
+  /* ============================================================
+     RESPONSIVE
+  ============================================================ */
+  @media (max-width: 900px) {
+    :root { --nav-width: 200px; }
+    .content-inner { padding: 32px 24px 80px; }
+  }
+
+  @media (max-width: 680px) {
+    .side-nav { transform: translateX(-100%); }
+    .main-content { margin-left: 0; }
+    .app-header { padding-left: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     HEADER
+============================================================ -->
+<header class="app-header">
+  <div class="header-left">
+    <span class="header-logo">Genspark Design System</span>
+    <span class="version-badge">v2.0</span>
+  </div>
+  <div class="header-right">
+    <button class="theme-toggle" id="themeToggle" title="Toggle dark mode" aria-label="Toggle dark mode">
+      🌙
+    </button>
+  </div>
+</header>
+
+<!-- ============================================================
+     SIDE NAV
+============================================================ -->
+<nav class="side-nav" id="sideNav">
+  <div class="nav-group">
+    <div class="nav-group-label">Foundations</div>
+    <a class="nav-item active" href="#colors" data-section="colors">
+      <span class="nav-icon">🎨</span> Colors
+    </a>
+    <a class="nav-item" href="#typography" data-section="typography">
+      <span class="nav-icon">Aa</span> Typography
+    </a>
+    <a class="nav-item" href="#spacing" data-section="spacing">
+      <span class="nav-icon">↔</span> Spacing
+    </a>
+    <a class="nav-item" href="#radius" data-section="radius">
+      <span class="nav-icon">◻</span> Radius
+    </a>
+    <a class="nav-item" href="#shadows" data-section="shadows">
+      <span class="nav-icon">◈</span> Shadows
+    </a>
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-label">Components</div>
+    <a class="nav-item" href="#buttons" data-section="buttons">
+      <span class="nav-icon">⬜</span> Buttons
+    </a>
+    <a class="nav-item" href="#inputs" data-section="inputs">
+      <span class="nav-icon">✏️</span> Inputs
+    </a>
+    <a class="nav-item" href="#modals" data-section="modals">
+      <span class="nav-icon">⧉</span> Modals
+    </a>
+    <a class="nav-item" href="#badges" data-section="badges">
+      <span class="nav-icon">◉</span> Badges
+    </a>
+  </div>
+</nav>
+
+<!-- ============================================================
+     MAIN CONTENT
+============================================================ -->
+<main class="main-content">
+  <div class="content-inner">
+
+    <!-- ========================================================
+         1. COLORS
+    ======================================================== -->
+    <section class="section" id="colors">
+      <div class="section-header">
+        <h2 class="section-title">Colors</h2>
+        <p class="section-desc">The complete color palette. Click any swatch to copy the token name to clipboard.</p>
+      </div>
+
+      <!-- Brand -->
+      <div class="card">
+        <div class="color-group">
+          <div class="color-group-title">Brand</div>
+          <div class="swatches-grid">
+            <div class="swatch" onclick="copyToken('--color-brand-primary', this)">
+              <div class="swatch-color" style="background:#232425"></div>
+              <div class="swatch-info">
+                <span class="swatch-name">brand-primary</span>
+                <span class="swatch-hex">#232425</span>
+                <span class="swatch-label">Primary</span>
+              </div>
+            </div>
+            <div class="swatch" onclick="copyToken('--color-brand-hover', this)">
+              <div class="swatch-color" style="background:#393A3B"></div>
+              <div class="swatch-info">
+                <span class="swatch-name">brand-hover</span>
+                <span class="swatch-hex">#393A3B</span>
+                <span class="swatch-label">Hover</span>
+              </div>
+            </div>
+            <div class="swatch" onclick="copyToken('--color-brand-active', this)">
+              <div class="swatch-color" style="background:#1A1B1C"></div>
+              <div class="swatch-info">
+                <span class="swatch-name">brand-active</span>
+                <span class="swatch-hex">#1A1B1C</span>
+                <span class="swatch-label">Active / Pressed</span>
+              </div>
+            </div>
+            <div class="swatch" onclick="copyToken('--color-brand-blue', this)">
+              <div class="swatch-color" style="background:#0F7FFF"></div>
+              <div class="swatch-info">
+                <span class="swatch-name">brand-blue</span>
+                <span class="swatch-hex">#0F7FFF</span>
+                <span class="swatch-label">Blue / CTA</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Text -->
+        <div class="color-group">
+          <div class="color-group-title">Text</div>
+          <div class="swatches-grid">
+            <div class="swatch" onclick="copyToken('--color-text-primary', this)">
+              <div class="swatch-color" style="background:#232425"></div>
+              <div class="swatch-info">
+                <span class="swatch-name">text-primary</span>
+                <span class="swatch-hex">#232425</span>
+                <span class="swatch-label">Body text</span>
+              </div>
+            </div>
+            <div class="swatch" onclick="copyToken('--color-text-secondary', this)">
+              <div class="swatch-color" style="background:#606366"></div>
+              <div class="swatch-info">
+                <span class="swatch-name">text-secondary</span>
+                <span class="swatch-hex">#606366</span>
+                <span class="swatch-label">Supporting text</span>
+              </div>
+            </div>
+            <div class="swatch" onclick="copyToken('--color-text-tertiary', this)">
+              <div class="swatch-color" style="background:#909499"></div>
+              <div class="swatch-info">
+                <span class="swatch-name">text-tertiary</span>
+                <span class="swatch-hex">#909499</span>
+                <span class="swatch-label">Placeholder</span>
+              </div>
+            </div>
+            <div class="swatch" onclick="copyToken('--color-text-disabled', this)">
+              <div class="swatch-color" style="background:#C4C7CC"></div>
+              <div class="swatch-info">
+                <span class="swatch-name">text-disabled</span>
+                <span class="swatch-hex">#C4C7CC</span>
+                <span class="swatch-label">Disabled</span>
+              </div>
+            </div>
+            <div class="swatch" onclick="copyToken('--color-text-link', this)">
+              <div class="swatch-color" style="background:#0F7FFF"></div>
+              <div class="swatch-info">
+                <span class="swatch-name">text-link</span>
+                <span class="swatch-hex">#0F7FFF</span>
+                <span class="swatch-label">Links</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Background -->
+        <div class="color-group">
+          <div class="color-group-title">Background</div>
+          <div class="swatches-grid">
+            <div class="swatch" onclick="copyToken('--color-bg-page', this)">
+              <div class="swatch-color" style="background:#FFFFFF; border-bottom: 1px solid #EAEAEA"></div>
+              <div class="swatch-info">
+                <span class="swatch-name">bg-page</span>
+                <span class="swatch-hex">#FFFFFF</span>
+                <span class="swatch-label">Page / Card</span>
+              </div>
+            </div>
+            <div class="swatch" onclick="copyToken('--color-bg-surface', this)">
+              <div class="swatch-color" style="background:#FAFAFA"></div>
+              <div class="swatch-info">
+                <span class="swatch-name">bg-surface</span>
+                <span class="swatch-hex">#FAFAFA</span>
+                <span class="swatch-label">App background</span>
+              </div>
+            </div>
+            <div class="swatch" onclick="copyToken('--color-bg-subtle', this)">
+              <div class="swatch-color" style="background:#F5F5F5"></div>
+              <div class="swatch-info">
+                <span class="swatch-name">bg-subtle</span>
+                <span class="swatch-hex">#F5F5F5</span>
+                <span class="swatch-label">Subtle fill</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Border -->
+        <div class="color-group">
+          <div class="color-group-title">Border</div>
+          <div class="swatches-grid">
+            <div class="swatch" onclick="copyToken('--color-border-default', this)">
+              <div class="swatch-color" style="background:#EAEAEA"></div>
+              <div class="swatch-info">
+                <span class="swatch-name">border-default</span>
+                <span class="swatch-hex">#EAEAEA</span>
+                <span class="swatch-label">Default border</span>
+              </div>
+            </div>
+            <div class="swatch" onclick="copyToken('--color-border-strong', this)">
+              <div class="swatch-color" style="background:#D0D3D8"></div>
+              <div class="swatch-info">
+                <span class="swatch-name">border-strong</span>
+                <span class="swatch-hex">#D0D3D8</span>
+                <span class="swatch-label">Emphasized</span>
+              </div>
+            </div>
+            <div class="swatch" onclick="copyToken('--color-border-subtle', this)">
+              <div class="swatch-color" style="background:#F2F2F2"></div>
+              <div class="swatch-info">
+                <span class="swatch-name">border-subtle</span>
+                <span class="swatch-hex">#F2F2F2</span>
+                <span class="swatch-label">Subtle separator</span>
+              </div>
+            </div>
+            <div class="swatch" onclick="copyToken('--color-border-brand', this)">
+              <div class="swatch-color" style="background:#0F7FFF"></div>
+              <div class="swatch-info">
+                <span class="swatch-name">border-brand</span>
+                <span class="swatch-hex">#0F7FFF</span>
+                <span class="swatch-label">Focus / selected</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Status -->
+        <div class="color-group">
+          <div class="color-group-title">Status</div>
+          <div class="swatches-grid">
+            <div class="swatch" onclick="copyToken('--color-status-success', this)">
+              <div class="swatch-color" style="background:#10B981"></div>
+              <div class="swatch-info">
+                <span class="swatch-name">status-success</span>
+                <span class="swatch-hex">#10B981</span>
+                <span class="swatch-label">Success</span>
+              </div>
+            </div>
+            <div class="swatch" onclick="copyToken('--color-status-warning', this)">
+              <div class="swatch-color" style="background:#F59E0B"></div>
+              <div class="swatch-info">
+                <span class="swatch-name">status-warning</span>
+                <span class="swatch-hex">#F59E0B</span>
+                <span class="swatch-label">Warning</span>
+              </div>
+            </div>
+            <div class="swatch" onclick="copyToken('--color-status-error', this)">
+              <div class="swatch-color" style="background:#EF4444"></div>
+              <div class="swatch-info">
+                <span class="swatch-name">status-error</span>
+                <span class="swatch-hex">#EF4444</span>
+                <span class="swatch-label">Error / Danger</span>
+              </div>
+            </div>
+            <div class="swatch" onclick="copyToken('--color-status-info', this)">
+              <div class="swatch-color" style="background:#3B82F6"></div>
+              <div class="swatch-info">
+                <span class="swatch-name">status-info</span>
+                <span class="swatch-hex">#3B82F6</span>
+                <span class="swatch-label">Informational</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         2. TYPOGRAPHY
+    ======================================================== -->
+    <section class="section" id="typography">
+      <div class="section-header">
+        <h2 class="section-title">Typography</h2>
+        <p class="section-desc">Type scale built on -apple-system / SF Pro. Live-rendered at actual sizes.</p>
+      </div>
+
+      <div class="card">
+        <div class="type-samples">
+          <div class="type-row">
+            <div class="type-meta">
+              <span class="token-chip" onclick="copyToken('--t-h1', this)">t-h1</span>
+              <span class="type-spec">36px / 700 / -0.5px</span>
+            </div>
+            <div class="type-sample t-h1">Genspark AI Platform</div>
+          </div>
+          <div class="type-row">
+            <div class="type-meta">
+              <span class="token-chip" onclick="copyToken('--t-h2', this)">t-h2</span>
+              <span class="type-spec">28px / 700 / -0.3px</span>
+            </div>
+            <div class="type-sample t-h2">Design at Scale</div>
+          </div>
+          <div class="type-row">
+            <div class="type-meta">
+              <span class="token-chip" onclick="copyToken('--t-h3', this)">t-h3</span>
+              <span class="type-spec">22px / 600 / -0.2px</span>
+            </div>
+            <div class="type-sample t-h3">Component Library</div>
+          </div>
+          <div class="type-row">
+            <div class="type-meta">
+              <span class="token-chip" onclick="copyToken('--t-h4', this)">t-h4</span>
+              <span class="type-spec">18px / 600</span>
+            </div>
+            <div class="type-sample t-h4">Section Heading</div>
+          </div>
+          <div class="type-row">
+            <div class="type-meta">
+              <span class="token-chip" onclick="copyToken('--t-body-lg', this)">t-body-lg</span>
+              <span class="type-spec">18px / 400 / 1.6</span>
+            </div>
+            <div class="type-sample t-body-lg">Large body copy for introductory paragraphs and lead text.</div>
+          </div>
+          <div class="type-row">
+            <div class="type-meta">
+              <span class="token-chip" onclick="copyToken('--t-body', this)">t-body</span>
+              <span class="type-spec">16px / 400 / 1.6</span>
+            </div>
+            <div class="type-sample t-body">Standard body text used across paragraphs, descriptions, and interface copy.</div>
+          </div>
+          <div class="type-row">
+            <div class="type-meta">
+              <span class="token-chip" onclick="copyToken('--t-small', this)">t-small</span>
+              <span class="type-spec">14px / 400 / 1.5</span>
+            </div>
+            <div class="type-sample t-small">Small text for metadata, labels, and supporting copy.</div>
+          </div>
+          <div class="type-row">
+            <div class="type-meta">
+              <span class="token-chip" onclick="copyToken('--t-caption', this)">t-caption</span>
+              <span class="type-spec">12px / 400 / 1.4</span>
+            </div>
+            <div class="type-sample t-caption">Caption text for timestamps, footnotes, and fine print.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         3. SPACING
+    ======================================================== -->
+    <section class="section" id="spacing">
+      <div class="section-header">
+        <h2 class="section-title">Spacing</h2>
+        <p class="section-desc">An 8-point spacing scale with 2px micro steps. All values as CSS custom properties.</p>
+      </div>
+
+      <div class="card">
+        <div class="spacing-list">
+          <div class="spacing-row">
+            <div class="spacing-meta"><span class="token-chip" onclick="copyToken('--spacing-1', this)">--spacing-1</span></div>
+            <div class="spacing-bar-wrap"><div class="spacing-bar" style="width:2px"></div></div>
+            <div class="spacing-px">2px</div>
+          </div>
+          <div class="spacing-row">
+            <div class="spacing-meta"><span class="token-chip" onclick="copyToken('--spacing-2', this)">--spacing-2</span></div>
+            <div class="spacing-bar-wrap"><div class="spacing-bar" style="width:4px"></div></div>
+            <div class="spacing-px">4px</div>
+          </div>
+          <div class="spacing-row">
+            <div class="spacing-meta"><span class="token-chip" onclick="copyToken('--spacing-3', this)">--spacing-3</span></div>
+            <div class="spacing-bar-wrap"><div class="spacing-bar" style="width:6px"></div></div>
+            <div class="spacing-px">6px</div>
+          </div>
+          <div class="spacing-row">
+            <div class="spacing-meta"><span class="token-chip" onclick="copyToken('--spacing-4', this)">--spacing-4</span></div>
+            <div class="spacing-bar-wrap"><div class="spacing-bar" style="width:8px"></div></div>
+            <div class="spacing-px">8px</div>
+          </div>
+          <div class="spacing-row">
+            <div class="spacing-meta"><span class="token-chip" onclick="copyToken('--spacing-5', this)">--spacing-5</span></div>
+            <div class="spacing-bar-wrap"><div class="spacing-bar" style="width:12px"></div></div>
+            <div class="spacing-px">12px</div>
+          </div>
+          <div class="spacing-row">
+            <div class="spacing-meta"><span class="token-chip" onclick="copyToken('--spacing-6', this)">--spacing-6</span></div>
+            <div class="spacing-bar-wrap"><div class="spacing-bar" style="width:16px"></div></div>
+            <div class="spacing-px">16px</div>
+          </div>
+          <div class="spacing-row">
+            <div class="spacing-meta"><span class="token-chip" onclick="copyToken('--spacing-7', this)">--spacing-7</span></div>
+            <div class="spacing-bar-wrap"><div class="spacing-bar" style="width:20px"></div></div>
+            <div class="spacing-px">20px</div>
+          </div>
+          <div class="spacing-row">
+            <div class="spacing-meta"><span class="token-chip" onclick="copyToken('--spacing-8', this)">--spacing-8</span></div>
+            <div class="spacing-bar-wrap"><div class="spacing-bar" style="width:24px"></div></div>
+            <div class="spacing-px">24px</div>
+          </div>
+          <div class="spacing-row">
+            <div class="spacing-meta"><span class="token-chip" onclick="copyToken('--spacing-9', this)">--spacing-9</span></div>
+            <div class="spacing-bar-wrap"><div class="spacing-bar" style="width:32px"></div></div>
+            <div class="spacing-px">32px</div>
+          </div>
+          <div class="spacing-row">
+            <div class="spacing-meta"><span class="token-chip" onclick="copyToken('--spacing-10', this)">--spacing-10</span></div>
+            <div class="spacing-bar-wrap"><div class="spacing-bar" style="width:48px"></div></div>
+            <div class="spacing-px">48px</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         4. RADIUS
+    ======================================================== -->
+    <section class="section" id="radius">
+      <div class="section-header">
+        <h2 class="section-title">Border Radius</h2>
+        <p class="section-desc">Consistent corner radius values across all UI surfaces.</p>
+      </div>
+
+      <div class="card">
+        <div class="radius-grid">
+          <div class="radius-item">
+            <div class="radius-box" style="border-radius:4px"></div>
+            <div class="radius-label">
+              <span class="radius-name" onclick="copyToken('--radius-sm', this)" style="cursor:pointer">--radius-sm</span>
+              <span class="radius-value">4px</span>
+            </div>
+          </div>
+          <div class="radius-item">
+            <div class="radius-box" style="border-radius:6px"></div>
+            <div class="radius-label">
+              <span class="radius-name" onclick="copyToken('--radius-md', this)" style="cursor:pointer">--radius-md</span>
+              <span class="radius-value">6px</span>
+            </div>
+          </div>
+          <div class="radius-item">
+            <div class="radius-box" style="border-radius:8px"></div>
+            <div class="radius-label">
+              <span class="radius-name" onclick="copyToken('--radius-lg', this)" style="cursor:pointer">--radius-lg</span>
+              <span class="radius-value">8px</span>
+            </div>
+          </div>
+          <div class="radius-item">
+            <div class="radius-box" style="border-radius:10px"></div>
+            <div class="radius-label">
+              <span class="radius-name" onclick="copyToken('--radius-xl', this)" style="cursor:pointer">--radius-xl</span>
+              <span class="radius-value">10px</span>
+            </div>
+          </div>
+          <div class="radius-item">
+            <div class="radius-box" style="border-radius:12px"></div>
+            <div class="radius-label">
+              <span class="radius-name" onclick="copyToken('--radius-2xl', this)" style="cursor:pointer">--radius-2xl</span>
+              <span class="radius-value">12px</span>
+            </div>
+          </div>
+          <div class="radius-item">
+            <div class="radius-box" style="border-radius:16px"></div>
+            <div class="radius-label">
+              <span class="radius-name" onclick="copyToken('--radius-modal', this)" style="cursor:pointer">--radius-modal</span>
+              <span class="radius-value">16px · Modal</span>
+            </div>
+          </div>
+          <div class="radius-item">
+            <div class="radius-box" style="border-radius:30px"></div>
+            <div class="radius-label">
+              <span class="radius-name" onclick="copyToken('--radius-pill', this)" style="cursor:pointer">--radius-pill</span>
+              <span class="radius-value">30px · Pill</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         5. SHADOWS
+    ======================================================== -->
+    <section class="section" id="shadows">
+      <div class="section-header">
+        <h2 class="section-title">Shadows</h2>
+        <p class="section-desc">Elevation system with 4 levels. Hover cards to preview lift effect.</p>
+      </div>
+
+      <div class="shadow-grid">
+        <div class="shadow-card shadow-sm-demo" onclick="copyToken('--shadow-sm', this)">
+          <div class="shadow-label">--shadow-sm</div>
+          <div class="shadow-value">0 1px 2px<br>rgba(0,0,0,0.05)</div>
+          <div style="font-size:11px; color: var(--ui-text-faint); margin-top: 4px;">Subtle lift · Chips, tags</div>
+        </div>
+        <div class="shadow-card shadow-md-demo" onclick="copyToken('--shadow-md', this)">
+          <div class="shadow-label">--shadow-md</div>
+          <div class="shadow-value">0 4px 6px<br>rgba(0,0,0,0.07)</div>
+          <div style="font-size:11px; color: var(--ui-text-faint); margin-top: 4px;">Default · Cards, dropdowns</div>
+        </div>
+        <div class="shadow-card shadow-lg-demo" onclick="copyToken('--shadow-lg', this)">
+          <div class="shadow-label">--shadow-lg</div>
+          <div class="shadow-value">0 10px 15px<br>rgba(0,0,0,0.1)</div>
+          <div style="font-size:11px; color: var(--ui-text-faint); margin-top: 4px;">Elevated · Popovers, tooltips</div>
+        </div>
+        <div class="shadow-card shadow-xl-demo" onclick="copyToken('--shadow-xl', this)">
+          <div class="shadow-label">--shadow-xl</div>
+          <div class="shadow-value">0 20px 25px<br>rgba(0,0,0,0.1)</div>
+          <div style="font-size:11px; color: var(--ui-text-faint); margin-top: 4px;">Highest · Modals, dialogs</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         6. BUTTONS
+    ======================================================== -->
+    <section class="section" id="buttons">
+      <div class="section-header">
+        <h2 class="section-title">Buttons</h2>
+        <p class="section-desc">9 button types × 3 sizes (sm / md / lg) + disabled state. All interactive.</p>
+      </div>
+
+      <!-- 1. Primary Pill -->
+      <div class="card">
+        <div class="btn-type-header">
+          <div class="btn-type-name">① Primary Pill</div>
+          <div class="btn-type-note">Casual, guide actions — onboarding, explore, suggestions. The rounded pill shape feels friendly and approachable.</div>
+        </div>
+        <div class="btn-sizes-row">
+          <div class="btn-size-col">
+            <button class="btn btn-primary btn-pill btn-sm">Get started</button>
+            <div class="size-label">sm · 32h</div>
+          </div>
+          <div class="btn-size-col">
+            <button class="btn btn-primary btn-pill btn-md">Get started</button>
+            <div class="size-label">md · 40h</div>
+          </div>
+          <div class="btn-size-col">
+            <button class="btn btn-primary btn-pill btn-lg">Get started</button>
+            <div class="size-label">lg · 48h</div>
+          </div>
+          <div class="btn-size-col disabled-col">
+            <button class="btn btn-primary btn-pill btn-md" disabled>Get started</button>
+            <div class="size-label">disabled</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Primary Square -->
+      <div class="card">
+        <div class="btn-type-header">
+          <div class="btn-type-name">② Primary Square</div>
+          <div class="btn-type-note">Functional, serious actions — save, confirm, apply. Square corners signal decisiveness and intent.</div>
+        </div>
+        <div class="btn-sizes-row">
+          <div class="btn-size-col">
+            <button class="btn btn-primary btn-sm">Save changes</button>
+            <div class="size-label">sm · 32h</div>
+          </div>
+          <div class="btn-size-col">
+            <button class="btn btn-primary btn-md">Save changes</button>
+            <div class="size-label">md · 40h</div>
+          </div>
+          <div class="btn-size-col">
+            <button class="btn btn-primary btn-lg">Save changes</button>
+            <div class="size-label">lg · 48h</div>
+          </div>
+          <div class="btn-size-col disabled-col">
+            <button class="btn btn-primary btn-md" disabled>Save changes</button>
+            <div class="size-label">disabled</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Blue Pill -->
+      <div class="card">
+        <div class="btn-type-header">
+          <div class="btn-type-name">③ Blue Pill</div>
+          <div class="btn-type-note">Key CTA — primary conversion, sign-up, purchase. High visual priority with brand blue and pill shape.</div>
+        </div>
+        <div class="btn-sizes-row">
+          <div class="btn-size-col">
+            <button class="btn btn-blue btn-pill btn-sm">Try for free</button>
+            <div class="size-label">sm · 32h</div>
+          </div>
+          <div class="btn-size-col">
+            <button class="btn btn-blue btn-pill btn-md">Try for free</button>
+            <div class="size-label">md · 40h</div>
+          </div>
+          <div class="btn-size-col">
+            <button class="btn btn-blue btn-pill btn-lg">Try for free</button>
+            <div class="size-label">lg · 48h</div>
+          </div>
+          <div class="btn-size-col disabled-col">
+            <button class="btn btn-blue btn-pill btn-md" disabled>Try for free</button>
+            <div class="size-label">disabled</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Blue Square -->
+      <div class="card">
+        <div class="btn-type-header">
+          <div class="btn-type-name">④ Blue Square</div>
+          <div class="btn-type-note">Form submit, structured actions. Blue communicates primary importance; square shape suits structured contexts like forms.</div>
+        </div>
+        <div class="btn-sizes-row">
+          <div class="btn-size-col">
+            <button class="btn btn-blue btn-sm">Submit</button>
+            <div class="size-label">sm · 32h</div>
+          </div>
+          <div class="btn-size-col">
+            <button class="btn btn-blue btn-md">Submit</button>
+            <div class="size-label">md · 40h</div>
+          </div>
+          <div class="btn-size-col">
+            <button class="btn btn-blue btn-lg">Submit</button>
+            <div class="size-label">lg · 48h</div>
+          </div>
+          <div class="btn-size-col disabled-col">
+            <button class="btn btn-blue btn-md" disabled>Submit</button>
+            <div class="size-label">disabled</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Secondary -->
+      <div class="card">
+        <div class="btn-type-header">
+          <div class="btn-type-name">⑤ Secondary</div>
+          <div class="btn-type-note">Secondary actions — cancel, back, filters. Neutral appearance to not compete with primary actions.</div>
+        </div>
+        <div class="btn-sizes-row">
+          <div class="btn-size-col">
+            <button class="btn btn-secondary btn-sm">Cancel</button>
+            <div class="size-label">sm · 32h</div>
+          </div>
+          <div class="btn-size-col">
+            <button class="btn btn-secondary btn-md">Cancel</button>
+            <div class="size-label">md · 40h</div>
+          </div>
+          <div class="btn-size-col">
+            <button class="btn btn-secondary btn-lg">Cancel</button>
+            <div class="size-label">lg · 48h</div>
+          </div>
+          <div class="btn-size-col disabled-col">
+            <button class="btn btn-secondary btn-md" disabled>Cancel</button>
+            <div class="size-label">disabled</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. Outline -->
+      <div class="card">
+        <div class="btn-type-header">
+          <div class="btn-type-name">⑥ Outline</div>
+          <div class="btn-type-note">White background with border — tertiary actions, tag-like controls. Minimal visual weight.</div>
+        </div>
+        <div class="btn-sizes-row">
+          <div class="btn-size-col">
+            <button class="btn btn-outline btn-sm">Edit profile</button>
+            <div class="size-label">sm · 32h</div>
+          </div>
+          <div class="btn-size-col">
+            <button class="btn btn-outline btn-md">Edit profile</button>
+            <div class="size-label">md · 40h</div>
+          </div>
+          <div class="btn-size-col">
+            <button class="btn btn-outline btn-lg">Edit profile</button>
+            <div class="size-label">lg · 48h</div>
+          </div>
+          <div class="btn-size-col disabled-col">
+            <button class="btn btn-outline btn-md" disabled>Edit profile</button>
+            <div class="size-label">disabled</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. Danger -->
+      <div class="card">
+        <div class="btn-type-header">
+          <div class="btn-type-name">⑦ Danger</div>
+          <div class="btn-type-note">Destructive actions — delete, remove, revoke. Use red intentionally and sparingly to signal high-risk operations.</div>
+        </div>
+        <div class="btn-sizes-row">
+          <div class="btn-size-col">
+            <button class="btn btn-danger btn-sm">Delete</button>
+            <div class="size-label">sm · 32h</div>
+          </div>
+          <div class="btn-size-col">
+            <button class="btn btn-danger btn-md">Delete</button>
+            <div class="size-label">md · 40h</div>
+          </div>
+          <div class="btn-size-col">
+            <button class="btn btn-danger btn-lg">Delete account</button>
+            <div class="size-label">lg · 48h</div>
+          </div>
+          <div class="btn-size-col disabled-col">
+            <button class="btn btn-danger btn-md" disabled>Delete</button>
+            <div class="size-label">disabled</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8. Ghost -->
+      <div class="card">
+        <div class="btn-type-header">
+          <div class="btn-type-name">⑧ Ghost</div>
+          <div class="btn-type-note">Transparent with hover state — toolbar actions, icon buttons, contextual controls. Invisible until needed.</div>
+        </div>
+        <div class="btn-sizes-row">
+          <div class="btn-size-col">
+            <button class="btn btn-ghost btn-sm">More options</button>
+            <div class="size-label">sm · 32h</div>
+          </div>
+          <div class="btn-size-col">
+            <button class="btn btn-ghost btn-md">More options</button>
+            <div class="size-label">md · 40h</div>
+          </div>
+          <div class="btn-size-col">
+            <button class="btn btn-ghost btn-lg">More options</button>
+            <div class="size-label">lg · 48h</div>
+          </div>
+          <div class="btn-size-col disabled-col">
+            <button class="btn btn-ghost btn-md" disabled>More options</button>
+            <div class="size-label">disabled</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9. Link -->
+      <div class="card">
+        <div class="btn-type-header">
+          <div class="btn-type-name">⑨ Link</div>
+          <div class="btn-type-note">Text-only inline actions — view all, learn more, read docs. No visual container; blends with body copy.</div>
+        </div>
+        <div class="btn-sizes-row">
+          <div class="btn-size-col">
+            <button class="btn btn-link btn-sm">Learn more</button>
+            <div class="size-label">sm · 13px</div>
+          </div>
+          <div class="btn-size-col">
+            <button class="btn btn-link btn-md">Learn more</button>
+            <div class="size-label">md · 14px</div>
+          </div>
+          <div class="btn-size-col">
+            <button class="btn btn-link btn-lg">Learn more</button>
+            <div class="size-label">lg · 16px</div>
+          </div>
+          <div class="btn-size-col disabled-col">
+            <button class="btn btn-link btn-md" disabled>Learn more</button>
+            <div class="size-label">disabled</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         7. INPUTS
+    ======================================================== -->
+    <section class="section" id="inputs">
+      <div class="section-header">
+        <h2 class="section-title">Inputs</h2>
+        <p class="section-desc">Text input component across 5 interaction states. All fields are interactive.</p>
+      </div>
+
+      <div class="card">
+        <div class="input-states-grid">
+
+          <!-- Default -->
+          <div class="input-state-item">
+            <div class="input-state-label">Default</div>
+            <div class="input-wrap">
+              <input class="input-field" type="text" placeholder="Enter your email">
+            </div>
+            <span class="token-chip" style="width: fit-content" onclick="copyToken('input-default', this)">input-default</span>
+          </div>
+
+          <!-- Focused (auto-focuses on click) -->
+          <div class="input-state-item">
+            <div class="input-state-label">Focused</div>
+            <div class="input-wrap">
+              <input class="input-field" type="text" value="user@genspark.ai" id="focusedInput">
+            </div>
+            <span class="token-chip" style="width: fit-content" onclick="copyToken('input-focused', this)">input-focused</span>
+          </div>
+
+          <!-- Error -->
+          <div class="input-state-item">
+            <div class="input-state-label">Error</div>
+            <div class="input-wrap">
+              <input class="input-field input-error" type="text" value="invalid-email" aria-describedby="errorHint">
+            </div>
+            <div class="input-hint" id="errorHint">Please enter a valid email address</div>
+            <span class="token-chip" style="width: fit-content" onclick="copyToken('input-error', this)">input-error</span>
+          </div>
+
+          <!-- Disabled -->
+          <div class="input-state-item">
+            <div class="input-state-label">Disabled</div>
+            <div class="input-wrap">
+              <input class="input-field" type="text" value="Cannot edit this field" disabled>
+            </div>
+            <div class="input-hint neutral">Field is read-only</div>
+            <span class="token-chip" style="width: fit-content" onclick="copyToken('input-disabled', this)">input-disabled</span>
+          </div>
+
+          <!-- With icon -->
+          <div class="input-state-item">
+            <div class="input-state-label">With Icon</div>
+            <div class="input-wrap">
+              <span class="input-icon">🔍</span>
+              <input class="input-field with-icon" type="text" placeholder="Search anything...">
+            </div>
+            <span class="token-chip" style="width: fit-content" onclick="copyToken('input-with-icon', this)">input-with-icon</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Textarea -->
+      <div class="card mt-16">
+        <div class="card-title">Textarea</div>
+        <div class="input-states-grid">
+          <div class="input-state-item" style="grid-column: 1 / -1">
+            <textarea class="input-field" style="height: 100px; padding-top: 10px; padding-bottom: 10px; resize: vertical; line-height: 1.5;" placeholder="Write a description..."></textarea>
+            <span class="token-chip" style="width: fit-content" onclick="copyToken('input-textarea', this)">input-textarea</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         8. MODALS
+    ======================================================== -->
+    <section class="section" id="modals">
+      <div class="section-header">
+        <h2 class="section-title">Modals</h2>
+        <p class="section-desc">4 modal widths: sm 480px, md 560px, lg 640px, xl 800px. All use 16px corner radius and xl shadow. Shown inline at reduced scale.</p>
+      </div>
+
+      <div class="modals-grid">
+
+        <!-- SM Modal -->
+        <div class="modal-preview-wrap">
+          <div class="modal-size-label">
+            <span class="modal-size-name">SM</span>
+            <span class="token-chip" onclick="copyToken('modal-sm', this)">modal-sm</span>
+            <span class="modal-size-px">480px</span>
+          </div>
+          <div class="modal-scale-wrap">
+            <div class="modal-scale-inner">
+              <div class="modal-card" style="max-width: 480px;">
+                <div class="modal-header">
+                  <div class="modal-title">Confirm action</div>
+                  <button class="modal-close">✕</button>
+                </div>
+                <div class="modal-body">
+                  <p class="modal-body-text">Are you sure you want to proceed? This action cannot be undone.</p>
+                </div>
+                <div class="modal-footer">
+                  <button class="btn btn-secondary btn-md">Cancel</button>
+                  <button class="btn btn-danger btn-md">Confirm</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MD Modal -->
+        <div class="modal-preview-wrap">
+          <div class="modal-size-label">
+            <span class="modal-size-name">MD</span>
+            <span class="token-chip" onclick="copyToken('modal-md', this)">modal-md</span>
+            <span class="modal-size-px">560px</span>
+          </div>
+          <div class="modal-scale-wrap">
+            <div class="modal-scale-inner">
+              <div class="modal-card" style="max-width: 560px;">
+                <div class="modal-header">
+                  <div class="modal-title">Edit profile</div>
+                  <button class="modal-close">✕</button>
+                </div>
+                <div class="modal-body">
+                  <p class="modal-body-text">Update your personal information and preferences below.</p>
+                  <div style="display: flex; flex-direction: column; gap: 12px;">
+                    <input class="input-field" type="text" placeholder="Full name" style="width:100%">
+                    <input class="input-field" type="text" placeholder="Email address" style="width:100%">
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button class="btn btn-secondary btn-md">Discard</button>
+                  <button class="btn btn-blue btn-md">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- LG Modal -->
+        <div class="modal-preview-wrap">
+          <div class="modal-size-label">
+            <span class="modal-size-name">LG</span>
+            <span class="token-chip" onclick="copyToken('modal-lg', this)">modal-lg</span>
+            <span class="modal-size-px">640px</span>
+          </div>
+          <div class="modal-scale-wrap">
+            <div class="modal-scale-inner">
+              <div class="modal-card" style="max-width: 640px;">
+                <div class="modal-header">
+                  <div class="modal-title">Create new project</div>
+                  <button class="modal-close">✕</button>
+                </div>
+                <div class="modal-body">
+                  <p class="modal-body-text">Fill in the details below to set up your new project workspace.</p>
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                    <input class="input-field" type="text" placeholder="Project name" style="grid-column: 1/-1">
+                    <input class="input-field" type="text" placeholder="Team">
+                    <input class="input-field" type="text" placeholder="Category">
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button class="btn btn-secondary btn-md">Cancel</button>
+                  <button class="btn btn-primary btn-md">Create project</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- XL Modal -->
+        <div class="modal-preview-wrap">
+          <div class="modal-size-label">
+            <span class="modal-size-name">XL</span>
+            <span class="token-chip" onclick="copyToken('modal-xl', this)">modal-xl</span>
+            <span class="modal-size-px">800px</span>
+          </div>
+          <div class="modal-scale-wrap">
+            <div class="modal-scale-inner">
+              <div class="modal-card" style="max-width: 800px;">
+                <div class="modal-header">
+                  <div class="modal-title">Advanced settings</div>
+                  <button class="modal-close">✕</button>
+                </div>
+                <div class="modal-body">
+                  <p class="modal-body-text">Configure advanced options for your integration. Changes apply immediately after saving.</p>
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                    <input class="input-field" type="text" placeholder="API endpoint URL" style="grid-column: 1/-1">
+                    <input class="input-field" type="text" placeholder="Client ID">
+                    <input class="input-field" type="text" placeholder="Client Secret">
+                    <input class="input-field" type="text" placeholder="Timeout (ms)">
+                    <input class="input-field" type="text" placeholder="Max retries">
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button class="btn btn-ghost btn-md">Reset defaults</button>
+                  <button class="btn btn-secondary btn-md">Cancel</button>
+                  <button class="btn btn-primary btn-md">Apply settings</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================
+         9. BADGES
+    ======================================================== -->
+    <section class="section" id="badges">
+      <div class="section-header">
+        <h2 class="section-title">Badges</h2>
+        <p class="section-desc">Status indicators in 3 styles: Soft (default), Solid, and Outline. 5 semantic variants each.</p>
+      </div>
+
+      <div class="card">
+        <div class="badges-grid">
+
+          <!-- Soft (default) -->
+          <div>
+            <div class="card-title">Soft (Default)</div>
+            <div class="badge-row">
+              <span class="badge badge-success">Success</span>
+              <span class="badge badge-warning">Warning</span>
+              <span class="badge badge-error">Error</span>
+              <span class="badge badge-info">Info</span>
+              <span class="badge badge-neutral">Neutral</span>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <!-- Solid -->
+          <div>
+            <div class="card-title">Solid</div>
+            <div class="badge-row">
+              <span class="badge badge-solid-success badge-no-dot">Success</span>
+              <span class="badge badge-solid-warning badge-no-dot">Warning</span>
+              <span class="badge badge-solid-error badge-no-dot">Error</span>
+              <span class="badge badge-solid-info badge-no-dot">Info</span>
+              <span class="badge badge-solid-neutral badge-no-dot">Neutral</span>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <!-- Outline -->
+          <div>
+            <div class="card-title">Outline</div>
+            <div class="badge-row">
+              <span class="badge badge-outline-success badge-no-dot">Success</span>
+              <span class="badge badge-outline-warning badge-no-dot">Warning</span>
+              <span class="badge badge-outline-error badge-no-dot">Error</span>
+              <span class="badge badge-outline-info badge-no-dot">Info</span>
+              <span class="badge badge-outline-neutral badge-no-dot">Neutral</span>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <!-- Usage examples -->
+          <div>
+            <div class="card-title">In Context</div>
+            <div class="badge-row" style="flex-direction: column; align-items: flex-start; gap: 12px;">
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span style="font-size: 14px; color: var(--ui-text)">API Status</span>
+                <span class="badge badge-success">Operational</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span style="font-size: 14px; color: var(--ui-text)">Deployment</span>
+                <span class="badge badge-warning">Degraded</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span style="font-size: 14px; color: var(--ui-text)">Auth Service</span>
+                <span class="badge badge-error">Outage</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span style="font-size: 14px; color: var(--ui-text)">Plan</span>
+                <span class="badge badge-solid-info badge-no-dot">Pro</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span style="font-size: 14px; color: var(--ui-text)">Version</span>
+                <span class="badge badge-neutral">v2.0.4</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /content-inner -->
+</main>
+
+<!-- ============================================================
+     TOAST CONTAINER
+============================================================ -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- ============================================================
+     JAVASCRIPT
+============================================================ -->
+<script>
+  /* ============================================================
+     THEME TOGGLE
+  ============================================================ */
+  const themeToggle = document.getElementById('themeToggle');
+  const body = document.body;
+  let isDark = localStorage.getItem('ds-theme') === 'dark';
+
+  function applyTheme() {
+    if (isDark) {
+      body.classList.add('dark');
+      themeToggle.textContent = '☀️';
+      themeToggle.title = 'Switch to light mode';
+    } else {
+      body.classList.remove('dark');
+      themeToggle.textContent = '🌙';
+      themeToggle.title = 'Switch to dark mode';
+    }
+  }
+
+  themeToggle.addEventListener('click', () => {
+    isDark = !isDark;
+    localStorage.setItem('ds-theme', isDark ? 'dark' : 'light');
+    applyTheme();
+  });
+
+  applyTheme();
+
+  /* ============================================================
+     COPY TOKEN
+  ============================================================ */
+  function copyToken(token, el) {
+    if (!navigator.clipboard) {
+      showToast('⚠️ Clipboard not available');
+      return;
+    }
+    navigator.clipboard.writeText(token).then(() => {
+      showToast('✓ Copied: ' + token);
+    }).catch(() => {
+      showToast('⚠️ Copy failed');
+    });
+  }
+
+  /* ============================================================
+     TOAST
+  ============================================================ */
+  function showToast(message) {
+    const container = document.getElementById('toastContainer');
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.textContent = message;
+    container.appendChild(toast);
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        toast.classList.add('show');
+      });
+    });
+
+    setTimeout(() => {
+      toast.classList.remove('show');
+      toast.classList.add('hide');
+      setTimeout(() => toast.remove(), 300);
+    }, 2200);
+  }
+
+  /* ============================================================
+     INTERSECTION OBSERVER — NAV HIGHLIGHT
+  ============================================================ */
+  const sections = document.querySelectorAll('.section[id]');
+  const navItems = document.querySelectorAll('.nav-item[data-section]');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        navItems.forEach(item => {
+          item.classList.toggle('active', item.dataset.section === id);
+        });
+      }
+    });
+  }, {
+    rootMargin: '-60px 0px -60% 0px',
+    threshold: 0
+  });
+
+  sections.forEach(section => observer.observe(section));
+
+  /* ============================================================
+     NAV LINK SMOOTH SCROLL
+  ============================================================ */
+  navItems.forEach(item => {
+    item.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = item.getAttribute('href').slice(1);
+      const target = document.getElementById(targetId);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  /* ============================================================
+     FOCUSED INPUT STATE — auto-focus on click
+  ============================================================ */
+  const focusedInput = document.getElementById('focusedInput');
+  if (focusedInput) {
+    // Show focused state visually
+    focusedInput.addEventListener('mousedown', () => {
+      setTimeout(() => focusedInput.focus(), 0);
+    });
+  }
+
+  /* ============================================================
+     SWATCH COPY WITH HEX FALLBACK
+  ============================================================ */
+  document.querySelectorAll('.swatch').forEach(swatch => {
+    swatch.addEventListener('click', function() {
+      const hexEl = this.querySelector('.swatch-hex');
+      const nameEl = this.querySelector('.swatch-name');
+      if (hexEl && nameEl) {
+        const text = nameEl.textContent + ': ' + hexEl.textContent;
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(hexEl.textContent).then(() => {
+            showToast('✓ Copied: ' + hexEl.textContent);
+          });
+        }
+      }
+    });
+  });
+
+  /* ============================================================
+     REMOVE SWATCH DUPLICATE CLICK HANDLER (prevent double-fire)
+  ============================================================ */
+  // Swatches now use the click event only, so we override the onclick
+  // attribute behavior and let the event bubbling handle it natively.
+</script>
+</body>
+</html>
